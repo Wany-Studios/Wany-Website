@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  webpage:
+    build: .
+    volumes:
+      - ./public:/var/www
+    restart: always
+    ports:
+      - "8080:8080"
