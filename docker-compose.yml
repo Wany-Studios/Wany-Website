@@ -4,7 +4,7 @@ services:
   webpage:
     build: .
     volumes:
-      - ./public:/var/www
+      - ./public:/usr/share/nginx/html
     restart: always
     ports:
-      - "8080:8080"
+      - "8080:80"

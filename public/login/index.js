@@ -40,6 +40,21 @@ function getFormData() {
     }
 }
 
+async function test() {
+    return await fetch(SERVER + "info", {
+        body: JSON.stringify({
+            usernameOrEmail,
+            password
+        }),
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        method: "POST",
+        credentials: "include"
+    });
+}
+
 document.querySelector("form").onsubmit = async function (e) {
     e.preventDefault();
 
