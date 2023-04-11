@@ -1,0 +1,126 @@
+@import url("../global/css/style.css");
+@import url("../global/css/fonts.css");
+@import url('https://fonts.cdnfonts.com/css/euclid-circular-b');
+body{
+    margin: 0;
+    font-family: 'Euclid Circular B', sans-serif;
+}
+.elements{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--Background);
+    color: var(--FontPrimary);
+}
+.box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    background-color: var(--Header);
+    width: 400px;
+    height: 400px;
+    border-radius: 10px;
+}
+form{
+    width: 70%;
+}
+
+.caixa_texto{
+    background-color: transparent;
+    width: 100%;
+    max-width:300px;
+    height:40px;
+    border: none;
+    border-bottom: 2px solid gray;
+    color: gray;
+    outline:0;
+    
+}
+.criar{
+    color: var(--Carousel);
+    text-decoration: none;
+}
+.criar:hover{
+    text-decoration: underline;
+}
+div .input {
+    width: 100%;
+    margin:30px 0;
+    position: relative;
+}
+div .input label{
+    font-size: 17px;
+    position: absolute;
+    left: 0;
+    top: 11px;
+    color: gray;
+    cursor: text;
+    outline: 0;
+    transition: 0.5s ease-in-out;
+}
+div .input .caixa_texto:focus,
+div .input .caixa_texto:valid{
+    border-bottom: 2px solid var(--CarouselArrow);
+}
+div .input .caixa_texto:focus ~ label,
+div .input .caixa_texto:valid ~ label{
+    transform: translateY(-24px);
+    font-size: 13px;
+    color: var(--CarouselArrow);
+}
+.foto_google{
+    width: 17px;
+    height: 17px;
+   
+  
+}
+.botao{
+    width: 100%;
+    height: 38px;
+    background-color: var(--CarouselArrow);
+    color: var(--FontPrimary);
+    border: none;
+    border-radius: 10px;
+    transition: 0.5s ease-in-out;
+    cursor: pointer; 
+    animation: inicial-left 2s;
+}
+.sub {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: gray;
+}
+.botao:hover{
+    background-color: var(--Carousel);
+}
+.sub:hover{
+    background-color: rgb(87, 87, 87);
+}
+
+.left-move{
+    animation: left-move 2s;
+}
+.right-move{
+    animation: right-move 2s;
+}
+@keyframes left-move {
+    from{
+        transition:  translateX(-300px);
+    }to{
+        transition: translateX(0px);
+    }
+}
+@keyframes right-move {
+    from{
+        transition:  translateX(-300px);
+    }to{
+        transition: translateX(0px);
+    }
+}

@@ -1,0 +1,12 @@
+#sessao-destaques {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 27.5 rem;
+  width: 100%;
+  background-color: linear-gradient(
+    180deg,
+    #f54703 0%,
+    rgba(122, 34, 0, 0.56) 100%
+  );
+}
