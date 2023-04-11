@@ -1,66 +1,22 @@
-// fazer requisição de login
-async function makeLoginRequest(usernameOrEmail, password) {
-    const response = await fetch(SERVER + "auth/signin", {
-        body: JSON.stringify({
-            usernameOrEmail,
-            password
-        }),
-        headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-        },
-        method: "POST",
-        credentials: "include"
-    });
+import("../global/js/scripts.js");
 
-    if (!response.ok) {
-        try {
-            const { code, message, errors } = await response.json();
-            const [messageName, messageText] = message.split("|");
 
-            return handleResponseError(messageName, messageText);
-        }
-        catch (err) {
+//DECLARAÇÃO DE VARIÁVEIS
+const button = document.getElementById("button");
+const email_log = document.getElementById("email_log");
+const pass_log = document.getElementById("pass_log");
 
-            throw new Error("Não foi possível completar o login");
-        }
+button.addEventListener('click', sendData());
+
+function sendData(email_log, pass_log){
+
+    if(email_log == "" || pass_log == ""){
+        alert("Preencha todos os campos por favor");
+        return;
     }
 
-    return await response.json();
-}
-
-// obtém campos do formulário
-function getFormData() {
-    const usernameOrEmail = document.getElementById("usernameOrEmail").value;
-    const password = document.getElementById("password").value;
-
-    return {
-        usernameOrEmail,
-        password
-    }
-}
-
-async function test() {
-    return await fetch(SERVER + "info", {
-        body: JSON.stringify({
-            usernameOrEmail,
-            password
-        }),
-        headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-        },
-        method: "POST",
-        credentials: "include"
+    axios.post(SERVER+"auth/login", ).then(function(response){
+        console.log("hello");
     });
 }
 
-document.querySelector("form").onsubmit = async function (e) {
-    e.preventDefault();
-
-    const { password, usernameOrEmail } = getFormData();
-    const data = await makeLoginRequest(usernameOrEmail, password);
-
-    // receebe a resposta arqui
-    console.log({ data })
-}

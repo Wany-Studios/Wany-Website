@@ -1,21 +1,21 @@
-@import url('./fonts.css');
-:root{
+@import url("./fonts.css");
+:root {
   --Nav: #464545;
-  --Header: #2F2F2F;
+  --Header: #2f2f2f;
   --Background: #181818;
-  --Carousel: #F54703;
-  --CarouselArrow: #FF7518;
-  --FontPrimary: #E5E5E5;
+  --Carousel: #f54703;
+  --CarouselArrow: #ff7518;
+  --FontPrimary: #e5e5e5;
 }
 
 .dark-theme:root {
   --Nav: #464545;
-  --Header: #2F2F2F;
+  --Header: #2f2f2f;
   --Background: #181818;
-  --Carousel: #F54703;
-  --CarouselArrow: #FF7518;
-  --FontPrimary: #E5E5E5;
-} 
+  --Carousel: #f54703;
+  --CarouselArrow: #ff7518;
+  --FontPrimary: #e5e5e5;
+}
 
 * {
   margin: 0;
@@ -23,4 +23,32 @@
   box-sizing: border-box;
 }
 
+#headerWany {
+  height: 8.188 rem;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
 
+#div-header-logo-e-nome {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  row-gap: 2rem;
+}
+
+#div-header-icones {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  row-gap: 2rem;
+}
+
+#navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3.553 rem;
+  width: 70%;
+  row-gap: 2rem;
+}
