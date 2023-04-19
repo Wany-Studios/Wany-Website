@@ -9,25 +9,18 @@
 </head>
 <body>
     <div class="elements">
-        <div class="box">
-          <h1>Wany</h1>
-            <form method="POST" autocomplete="off">
-                <div class="input  right-move">
-                    <input type="text" id="email_log"  class="caixa_texto" required>
-                    <label for="email">E-mail</label>
-                </div>
-                
-                <div class="input right-move">
-                    <input type="password" id="pass_log" class="caixa_texto" required>
-                    <label for="password">Password</label>
-                </div>
-               
-                <input type="button" class="botao left-move" id="button" value="Sign in"><br><br>
-                <button class="botao sub left-move" type="button"><img src="../global/images/svg/google.svg" class="foto_google">Login with Google</button>
+        <div class="header">
+            <h2>Wany Project</h2>
+            <form method="POST">
+                <input type="email" placeholder="Digite seu email" id="email_log" required><br>
+                <input type="password" placeholder="Digite sua senha" id="pass_log" required><hr>
+                <input type="button" id="button" value="Entrar">
             </form>
-         
-            <br>
-            <h5>Don't have a Wany account?<a href="./cadastro.html" class="criar">Create an account</a></h5>
+        </div>
+        <div class="box">
+            
+        </div>
+       
     </div>
     <script src="./index.js" type="module"></script>
 </body>

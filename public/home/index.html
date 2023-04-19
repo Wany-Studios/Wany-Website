@@ -5,16 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="0; URL='./login/'">
-    <link rel="stylesheet" href="global/css/style.css">
+    <link rel="stylesheet" href="../global/css/style.css">
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <title>Home</title>
 </head>
 
 <body>
     <header id="headerWany">
         <div id="div-header-logo-e-nome">
-            <img src="../global/images/logo.png" alt="a logo do website, um fantasma com cores vibrantes">
+            <img id="logo-img" src="../global/images/logo.png" alt="a logo do website, um fantasma com cores vibrantes">
             <h1>WANY</h1>
         </div>
         <div id="div-header-icones">
@@ -22,23 +22,81 @@
             <img src="../global/images/svg/header/menu.svg" alt="ícone de uma menu">
         </div>
     </header>
-    <nav id="navbar">
-        <div>
-            <img src="../global/images/svg/navbar/icon-home.svg" alt="ícone da home">
-            <img src="../global/images/svg/navbar/controle-videogame.svg" alt="ícone de controle de vídeogame">
-            <img src="../global/images/svg/navbar/megafone.svg" alt="ícone de um megafone">
-            <img src="../global/images/svg/navbar/estrela.svg" alt="ícone de uma estrela">
-        </div>
-    </nav>
+    <div id="div-navbar">
+        <nav id="navbar">
+            <div id="div-icones-navbar">
+                <img src="../global/images/svg/navbar/icon-home.svg" alt="ícone da home">
+                <a href="index.html">Home</a>
+                <img src="../global/images/svg/navbar/controle-videogame.svg" alt="ícone de controle de vídeogame">
+                <a href="#">Jogos</a>
+                <img src="../global/images/svg/navbar/megafone.svg" alt="ícone de um megafone">
+                <a href="#">Novidades</a>
+                <img src="../global/images/svg/navbar/estrela.svg" alt="ícone de uma estrela">
+                <a href="#">Populares</a>
+            </div>
+        </nav>
+    </div>
+
 
     <div id="sessao-destaques">
-        <div style="display: flex; justify-content: center; align-items: baseline;">
+        <div id="div-h2-sessao-destaques">
             <h2>Destaques</h2>
         </div>
-        <div>
+
+        <div id="container-jogos-destaque" style="position: relative;">
+            <!-- Slider main container -->
+            <img class="seta-esquerda" onclick="moverSlideEsquerda()" src="../global/images/svg/seta-esquerda.svg"
+                alt="ícone de uma seta para a esquerda">
+            <img class="seta-direita" onclick="moverSlideDireita()" src="../global/images/svg/seta-direita.svg"
+                alt="ícone de uma seta para a direita">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+
+                    <div class="swiper-slide">
+                        <div class="jogo-destaque"></div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="jogo-destaque"></div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="jogo-destaque"></div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+
+    </div>
+    </div>
+
+
+    <div id="div-pai-container-jogos-sessoes">
+
+        <div class="container-jogos-sessoes">
+            <div class="jogos-sessoes">
+                <div class="jogo-retrato-home"></div>
+                <div class="jogo-retrato-home"></div>
+                <div class="jogo-retrato-home"></div>
+                <div class="jogo-retrato-home"></div>
+                <div id="botao-seta-jogos-sessoes">
+                    <div class="retangulo-botao">
+                        <img src="../global/images/svg/seta-branca-direita.svg"
+                            alt="ícone de uma seta branca para a direita">
+                    </div>
+
+                </div>
+            </div>
 
         </div>
+
+
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="index.js"></script>
 </body>
 
 </html>
