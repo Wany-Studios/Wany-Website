@@ -5,7 +5,7 @@
   --Background: #181818;
   --Carousel: #f54703;
   --CarouselArrow: #ff7518;
-  --FontPrimary: #e5e5e5;
+  --FontPrimaryColor: #e5e5e5;
 }
 
 .dark-theme:root {
@@ -14,41 +14,12 @@
   --Background: #181818;
   --Carousel: #f54703;
   --CarouselArrow: #ff7518;
-  --FontPrimary: #e5e5e5;
+  --FontPrimaryColor: #e5e5e5;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-#headerWany {
-  height: 8.188 rem;
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
-
-#div-header-logo-e-nome {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  row-gap: 2rem;
-}
-
-#div-header-icones {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  row-gap: 2rem;
-}
-
-#navbar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 3.553 rem;
-  width: 70%;
-  row-gap: 2rem;
+  font-family: "roboto", arial;
 }
