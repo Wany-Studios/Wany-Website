@@ -1,7 +1,8 @@
-body{
+body {
     margin: 0;
 }
-.elements{
+
+.elements {
     display: flex;
     width: 100vw;
     height: 100vh;
@@ -11,26 +12,139 @@ body{
     background-color: var(--Background);
     color: var(--FontPrimary);
 }
-.header{
+
+.header {
     width: 100vw;
     height: 65px;
     text-align: center;
     background-color: var(--Header);
 
 }
-.box{
+
+.box {
     width: 450px;
     height: 600px;
     margin: 0;
     background: var(--Header);
 }
+
 input[type="email"],
 input[type="password"],
-input[type="text"]{
-    background-color: transparent;
-    width: 100%;
-    height:40px;
-    border-bottom: 2px solid gray;
-    color: gray;
+input[type="text"] {
+    width: 450px;
+    max-height: 600px;
+    border-radius: 10px;
+    padding: 20px;
 }
 
+form {
+    width: 70%;
+}
+
+.ano {
+    position: relative;
+    max-width: 80px;
+    display: inline-block;
+}
+
+option {
+    background: var(--Header);
+}
+
+select {
+    background: transparent;
+    color: var(--FontPrimary);
+    border: 1px solid gray;
+    height: 40px;
+    width: 55px;
+    text-align: center;
+}
+
+select:focus,
+select:valid {
+    border: 1px solid var(--CarouselArrow);
+    outline: 0;
+}
+
+.caixa_texto {
+    background-color: transparent;
+    width: 100%;
+    height: 40px;
+    border-bottom: 2px solid gray;
+    color: gray;
+    outline: 0;
+    position: relative;
+    z-index: 1;
+
+}
+
+.criar {
+    color: var(--Carousel);
+    text-decoration: none;
+}
+
+.criar:hover {
+    text-decoration: underline;
+}
+
+div .input {
+    width: 100%;
+    margin: 30px 0;
+    position: relative;
+}
+
+div .input label {
+    font-size: 17px;
+    position: absolute;
+    left: 0;
+    top: 11px;
+    color: gray;
+    cursor: text;
+    outline: 0;
+    transition: 0.5s ease-in-out;
+}
+
+div .input .caixa_texto:focus,
+div .input .caixa_texto:valid {
+    border-bottom: 2px solid var(--CarouselArrow);
+}
+
+div .input .caixa_texto:focus~label,
+div .input .caixa_texto:valid~label {
+    transform: translateY(-24px);
+    font-size: 13px;
+    color: var(--CarouselArrow);
+}
+
+.foto_google {
+    width: 17px;
+    height: 17px;
+}
+
+.botao {
+    width: 100%;
+    height: 38px;
+    background-color: var(--CarouselArrow);
+    color: var(--FontPrimary);
+    border: none;
+    border-radius: 10px;
+    transition: 0.5s ease-in-out;
+    cursor: pointer;
+    animation: inicial-left 2s;
+}
+
+.sub {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: gray;
+}
+
+.botao:hover {
+    background-color: var(--Carousel);
+}
+
+.sub:hover {
+    background-color: rgb(87, 87, 87);
+}
