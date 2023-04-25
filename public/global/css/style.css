@@ -1,11 +1,12 @@
 @import url("./fonts.css");
+
 :root {
   --Nav: #464545;
   --Header: #2f2f2f;
   --Background: #181818;
   --Carousel: #f54703;
   --CarouselArrow: #ff7518;
-  --FontPrimary: #e5e5e5;
+  --FontPrimaryColor: #e5e5e5;
 }
 
 .dark-theme:root {
@@ -14,13 +15,14 @@
   --Background: #181818;
   --Carousel: #f54703;
   --CarouselArrow: #ff7518;
-  --FontPrimary: #e5e5e5;
+  --FontPrimaryColor: #e5e5e5;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "roboto", arial;
 }
 
 #headerWany {

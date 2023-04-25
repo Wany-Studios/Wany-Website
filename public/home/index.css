@@ -10,6 +10,7 @@ body {
   width: 100%;
   background-color: var(--Header);
 }
+
 #headerWany #logo-img {
   object-fit: contain;
   height: 89px;
@@ -46,10 +47,12 @@ body {
   width: 61.74rem;
   background-color: var(--Nav);
 }
+
 #div-icones-navbar {
   display: flex;
   gap: 3rem;
 }
+
 #div-icones-navbar a {
   text-decoration: none;
   color: white;
@@ -161,6 +164,7 @@ h2 {
   background: #d9d9d9;
   border-radius: 5px;
 }
+
 #searchbar a {
   display: flex;
   justify-content: flex-start;
@@ -210,12 +214,10 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  background: linear-gradient(
-    90deg,
-    #ffffff 0%,
-    rgba(217, 217, 217, 0) 100%,
-    rgba(217, 217, 217, 0) 100%
-  );
+  background: linear-gradient(90deg,
+      #ffffff 0%,
+      rgba(217, 217, 217, 0) 100%,
+      rgba(217, 217, 217, 0) 100%);
   border-radius: 10px;
   width: 16.875rem;
   height: 9.188rem;

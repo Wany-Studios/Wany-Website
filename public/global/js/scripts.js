@@ -1,4 +1,4 @@
-const SERVER = "http://localhost:8000/";
+const SERVER = "/api/";
 
 return new Promise(async resolve => {
     const a = await import("../../lib/axios/axios.min.js");
