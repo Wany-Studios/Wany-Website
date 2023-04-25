@@ -1,12 +1,222 @@
-#sessao-destaques {
+body {
+  background-color: var(--Background);
+  color: var(--FontPrimaryColor);
+}
+
+#headerWany {
+  height: 4.188rem;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: var(--Header);
+}
+#headerWany #logo-img {
+  object-fit: contain;
+  height: 89px;
+}
+
+#div-header-logo-e-nome {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  row-gap: 2rem;
+}
+
+#div-header-icones {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 1rem;
+  gap: 1rem;
+  width: 100%;
+}
+
+#div-navbar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#navbar {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 27.5 rem;
+  height: 3.553rem;
+  width: 61.74rem;
+  background-color: var(--Nav);
+}
+#div-icones-navbar {
+  display: flex;
+  gap: 3rem;
+}
+#div-icones-navbar a {
+  text-decoration: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  margin-left: -2rem;
+}
+
+#sessao-destaques {
+  display: flex;
+  flex-direction: column;
+  height: 26.5rem;
   width: 100%;
-  background-color: linear-gradient(
-    180deg,
-    #f54703 0%,
-    rgba(122, 34, 0, 0.56) 100%
+  background: linear-gradient(180deg, #f54703 0%, rgba(122, 34, 0, 0.56) 100%);
+  margin-top: 1rem;
+}
+
+#div-h2-sessao-destaques {
+  display: flex;
+  width: 100%;
+  height: 4rem;
+  margin-top: 1rem;
+  justify-content: center;
+}
+
+h2 {
+  font-weight: 400;
+  font-size: 40px;
+}
+
+#container-jogos-destaque {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.swiper-slide .jogo-destaque {
+  background-color: #d9d9d9;
+  margin: 0 auto;
+}
+
+/* #container-jogos-destaque .swiper {
+  height: 300px;
+} */
+
+.swiper {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+}
+
+.seta-direita,
+.seta-esquerda {
+  display: flex;
+  row-gap: 1rem;
+  opacity: 70%;
+  position: absolute;
+  z-index: 100000;
+  opacity: 0;
+  margin: 0 2rem;
+  transition: transform 0.1s ease, opacity 0.2s linear;
+}
+
+.seta-direita:hover,
+.seta-esquerda:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.seta-esquerda {
+  left: 10px;
+}
+
+.seta-direita {
+  right: 10px;
+}
+
+.jogo-destaque {
+  height: 18.188rem;
+  width: 30.938rem;
+}
+
+#div-texto-e-searchbar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 12.563rem;
+}
+
+#div-texto {
+  display: flex;
+  justify-content: flex-start;
+}
+
+#div-searchbar {
+  display: flex;
+  justify-content: center;
+  width: 36.125rem;
+  height: 2.613rem;
+}
+
+#searchbar {
+  background: #d9d9d9;
+  border-radius: 5px;
+}
+#searchbar a {
+  display: flex;
+  justify-content: flex-start;
+  color: #8a8484;
+}
+
+#div-pai-container-jogos-sessoes {
+  display: flex;
+  flex-direction: column;
+  column-gap: 3rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-jogos-sessoes {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 13.875rem;
+  margin-top: 8rem;
+  overflow: hidden;
+}
+
+.jogos-sessoes {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.jogo-retrato-home {
+  width: 16.875rem;
+  height: 9.188rem;
+  border-radius: 10px;
+  background-color: #d9d9d9;
+}
+
+#botao-seta-jogos-sessoes {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.retangulo-botao {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    rgba(217, 217, 217, 0) 100%,
+    rgba(217, 217, 217, 0) 100%
   );
+  border-radius: 10px;
+  width: 16.875rem;
+  height: 9.188rem;
 }
