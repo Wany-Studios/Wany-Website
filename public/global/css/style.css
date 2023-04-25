@@ -25,6 +25,10 @@
   font-family: "roboto", arial;
 }
 
+body {
+  color: var(--FontPrimaryColor);
+}
+
 #headerWany {
   height: 8.188 rem;
   display: flex;
