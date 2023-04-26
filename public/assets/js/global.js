@@ -1,6 +1,6 @@
 const VOID_CALLBACK = () => { }
 
-const API_ENDPOINT = "http://localhost:3000/";
+const API_ENDPOINT = "/api/";
 
 const DEFAULT_OPTIONS_AXIOS = {
     withCredentials: true,
