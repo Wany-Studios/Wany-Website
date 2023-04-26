@@ -1,33 +1,24 @@
-var swiper = new Swiper(".mySwiper", {
-    effect: "coverflow",
-    grabCursor: true,
-    centeredSlides: true,
-    slidesPerView: "auto",
-    coverflowEffect: {
-      rotate: 50,
-      stretch: 0,
-      depth: 100,
-      modifier: 1,
-      slideShadows: false,
-    },
-    pagination: {
-      el: ".swiper-pagination",
-    },
-  });
-
-//   function trocarSlides(){
-//     if (document.querySelector(".seta-esquerda")){
-//         swiper.slidePrev();
-//     }
-//     else if (document.querySelector(".seta-direita")){
-//         swiper.slideNext();
-//     }
-//   }
+const swiper = new Swiper(".mySwiper", {
+  effect: "coverflow",
+  grabCursor: true,
+  centeredSlides: true,
+  slidesPerView: "auto",
+  coverflowEffect: {
+    rotate: 50,
+    stretch: 0,
+    depth: 100,
+    modifier: 1,
+    slideShadows: false,
+  },
+  pagination: {
+    el: ".swiper-pagination",
+  },
+});
 
 function moverSlideEsquerda() {
-    swiper.slidePrev();
+  swiper.slidePrev();
 }
 
 function moverSlideDireita() {
-    swiper.slideNext();
+  swiper.slideNext();
 }

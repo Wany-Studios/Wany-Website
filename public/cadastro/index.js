@@ -16,7 +16,7 @@ document.querySelector("form").addEventListener("submit", async function (e) {
 
 function sendData(data) {
     return new Promise((resolve, reject) => {
-        axios.post(API_ENDPOINT + "auth/signin", data, DEFAULT_OPTIONS_AXIOS)
+        axios.post(API_ENDPOINT + "auth/signup", data, DEFAULT_OPTIONS_AXIOS)
             .then(resolve)
             .catch(reject);
     });
@@ -28,11 +28,15 @@ function validateData(data) {
 }
 
 function getFormData() {
-    const usernameOrEmail = document.getElementById("username-email").value;
+    const username = document.getElementById("username").value;
+    const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
+    const repeatPassword = document.getElementById("repeat-password").value;
 
     return {
-        usernameOrEmail,
-        password
+        username,
+        email,
+        password,
+        repeatPassword
     }
 }

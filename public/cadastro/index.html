@@ -2,40 +2,36 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="./style.css" />
         <title>Wany Project</title>
     </head>
+
     <body>
         <div class="elements">
             <div class="box">
                 <h1>Wany - Create an account</h1>
+
                 <form method="POST" autocomplete="off">
                     <div class="input right-move">
-                        <input
-                            type="text"
-                            id="email_log"
-                            class="caixa_texto"
-                            required
-                        />
+                        <input type="text" id="email" class="caixa_texto" required />
                         <label for="email">E-mail</label>
                     </div>
 
                     <div class="input right-move">
                         <input
                             type="text"
-                            id="email_log"
+                            id="username"
                             class="caixa_texto"
                             required
                         />
-                        <label for="email">Username</label>
+                        <label for="username">Username</label>
                     </div>
 
                     <div class="input right-move">
                         <input
                             type="password"
-                            id="pass_log"
+                            id="password"
                             class="caixa_texto"
                             required
                         />
@@ -45,11 +41,11 @@
                     <div class="input right-move">
                         <input
                             type="password"
-                            id="pass_log"
+                            id="repeat-password"
                             class="caixa_texto"
                             required
                         />
-                        <label for="password">Repeat the password</label>
+                        <label for="repeat-password">Repeat the password</label>
                     </div>
 
                     <select required>
@@ -106,7 +102,7 @@
                     <div class="input ano">
                         <input
                             type="number"
-                            id="pass_log"
+                            id="year"
                             class="caixa_texto"
                             min="1800"
                             max="2023"
@@ -115,15 +111,14 @@
                         <label for="year">Year</label>
                     </div>
 
-                    <input
-                        type="button"
-                        class="botao left-move"
-                        id="button"
-                        value="Register"
-                    /><br /><br />
+                    <input type="submit" class="botao left-move" value="Register" />
+
+                    <br />
+                    <br />
+
                     <h5>
                         I already have an account?&nbsp;&nbsp;&nbsp;<a
-                            href="./index.html"
+                            href="../login/"
                             class="criar"
                             >Go to my account</a
                         >
@@ -131,5 +126,9 @@
                 </form>
             </div>
         </div>
+
+        <script src="../assets/lib/axios/axios.min.js"></script>
+        <script src="../assets/js/global.js"></script>
+        <script src="./index.js"></script>
     </body>
 </html>
