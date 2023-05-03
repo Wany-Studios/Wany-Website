@@ -58,3 +58,7 @@ body {
   width: 70%;
   row-gap: 2rem;
 }
+header{
+  width: 100%;
+  display: flex
+}
