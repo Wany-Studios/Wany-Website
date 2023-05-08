@@ -9,52 +9,35 @@
     <body>
         <div class="elements">
             <div class="box">
+                <div id="form-error"></div>
+
                 <h1>Wany</h1>
 
                 <form method="POST" autocomplete="off">
                     <div class="input right-move">
-                        <input
-                            type="text"
-                            id="username-email"
-                            class="caixa_texto"
-                            required
-                        />
+                        <input type="text" id="username-email" class="caixa_texto" required />
                         <label for="username-email">Username or E-mail</label>
                     </div>
 
                     <div class="input right-move">
-                        <input
-                            type="password"
-                            id="password"
-                            class="caixa_texto"
-                            required
-                        />
+                        <input type="password" id="password" class="caixa_texto" required />
                         <label for="password">Password</label>
                     </div>
 
-                    <input
-                        type="submit"
-                        class="botao left-move"
-                        id="button"
-                        value="Sign In"
-                    />
+                    <input type="submit" class="botao left-move" id="button" value="Sign In" />
 
                     <br />
                     <br />
 
                     <button class="botao sub left-move" type="button">
-                        <img
-                            src="../assets/img/svg/google.svg"
-                            class="foto_google"
-                        />Login with Google
+                        <img src="../assets/img/svg/google.svg" class="foto_google" />Login with
+                        Google
                     </button>
                 </form>
 
                 <br />
                 <h5>
-                    Don't have a Wany account?&nbsp;&nbsp;&nbsp;<a
-                        href="../cadastro/"
-                        class="criar"
+                    Don't have a Wany account?&nbsp;&nbsp;&nbsp;<a href="../cadastro/" class="criar"
                         >Create an account</a
                     >
                 </h5>
@@ -63,6 +46,7 @@
 
         <script src="../assets/lib/axios/axios.min.js"></script>
         <script src="../assets/js/global.js"></script>
+        <script src="../assets/js/auth.js"></script>
         <script src="./index.js"></script>
     </body>
 </html>
