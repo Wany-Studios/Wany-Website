@@ -1,17 +1,40 @@
+let makingRequest = false;
+
 document.querySelector("form").addEventListener("submit", async function (e) {
     e.preventDefault();
+
+    if (makingRequest) return;
+
+    showErrorToForm(null);
 
     const data = getFormData();
 
     if (!validateData(data)) {
-        // TODO: show validation error to the user
-        console.error("Algo é inválido");
+        showErrorToForm("Verifique se todos os campos são válidos");
         return;
     }
 
-    const response = await sendData(data).catch(VOID_CALLBACK);
+    makingRequest = true;
+    document.body.classList.add("waiting");
 
-    console.log({ response });
+    const response = await sendData(data).catch(({ response }) => {
+        const { status, data } = response;
+
+        if ([400, 401, 404].includes(status)) {
+            const { message } = data;
+            showErrorToForm(message);
+            return;
+        }
+
+        showErrorToForm("Não foi possível realizar o login", 8_000);
+    });
+
+    if (response && response.data?.user) {
+        window.location.href = "/home/";
+    }
+
+    document.body.classList.remove("waiting");
+    makingRequest = false;
 });
 
 function sendData(data) {
