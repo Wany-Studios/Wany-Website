@@ -9,8 +9,7 @@ body {
 
 .elements {
     display: flex;
-    width: 100vw;
-    height: 100vh;
+    height: 87vh;
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -26,9 +25,9 @@ body {
     text-align: center;
     background-color: var(--Header);
     width: 450px;
-    max-height: 600px;
+    max-height: 500px;
     border-radius: 10px;
-    padding: 20px;
+    padding: 10px;
 }
 
 form {
