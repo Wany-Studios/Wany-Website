@@ -7,6 +7,11 @@ body {
     font-family: 'Euclid Circular B', sans-serif;
 }
 
+#form-error {
+    color: var(--Error-Color);
+    margin-bottom: 25px;
+}
+
 .elements {
     display: flex;
     height: 87vh;
@@ -114,8 +119,6 @@ div .input .caixa_texto:valid~label {
 .foto_google {
     width: 17px;
     height: 17px;
-
-
 }
 
 .botao {

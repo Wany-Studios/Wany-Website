@@ -7,16 +7,18 @@
   --Carousel: #f54703;
   --CarouselArrow: #ff7518;
   --FontPrimaryColor: #e5e5e5;
+  --Error-Color: #dc3545;
 }
 
-.dark-theme:root {
+/* .dark-theme:root {
   --Nav: #464545;
   --Header: #2f2f2f;
   --Background: #181818;
   --Carousel: #f54703;
   --CarouselArrow: #ff7518;
   --FontPrimaryColor: #e5e5e5;
-}
+   --Error-Color: #dc3545;
+} */
 
 * {
   margin: 0;
@@ -27,6 +29,10 @@
 
 body {
   color: var(--FontPrimaryColor);
+}
+
+body.waiting * {
+  cursor: wait !important;
 }
 
 #headerWany {
