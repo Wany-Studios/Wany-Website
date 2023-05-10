@@ -64,3 +64,30 @@ body.waiting * {
   width: 70%;
   row-gap: 2rem;
 }
+header{
+  
+  display: flex;
+  height: 13vh;
+  background-color: var(--Header);
+}
+header div{
+  display:inline-flex;
+  align-items: center;
+  margin: 0 auto;
+}
+header a{
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #e5e5e5;
+  text-decoration: none;
+  cursor: pointer;
+  margin: 0 auto;
+}
+header div img{
+  display:block;
+  width: 70px;
+  height: 70px;
+  margin-right: -10px;
+
+}
