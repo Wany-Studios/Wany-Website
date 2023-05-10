@@ -176,6 +176,7 @@ h2 {
 }
 
 .container-jogos-sessoes {
+  display: flex;
   align-items: center;
   flex-direction: column;
   width: 100%;
@@ -190,7 +191,7 @@ h2 {
   margin-bottom: 20px;
   justify-content: flex-start;
   font-weight: 400;
-  font-size: 2rem;
+  font-size: 40px;
 }
 
 .jogos-sessoes {
@@ -200,11 +201,10 @@ h2 {
   justify-content: center;
   gap: 3rem;
   margin-bottom: 150px;
-  padding-left: 20px;
 }
 
 .jogo-retrato-home {
-  width: 200px;
+  width: 350px;
   height: 9.188rem;
   border-radius: 10px;
   background-color: #d9d9d9;
