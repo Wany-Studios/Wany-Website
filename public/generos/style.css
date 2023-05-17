@@ -3,6 +3,11 @@ body {
   color: var(--FontPrimaryColor);
 }
 
+h2 {
+  font-weight: 400;
+  font-size: 40px;
+}
+
 #headerWany {
   height: 4.188rem;
   display: flex;
@@ -61,110 +66,35 @@ body {
   margin-left: -2rem;
 }
 
-#sessao-destaques {
-  display: flex;
-  flex-direction: column;
-  height: 26.5rem;
-  width: 100%;
-  background: linear-gradient(180deg, #f54703 0%, rgba(122, 34, 0, 0.56) 100%);
-  margin-top: 1rem;
-}
-
-#div-h2-sessao-destaques {
-  display: flex;
-  width: 100%;
-  height: 4rem;
-  margin-top: 1rem;
-  justify-content: center;
-}
-
-h2 {
-  font-weight: 400;
-  font-size: 40px;
-}
-
-#container-jogos-destaque {
+#barra-de-pesquisa {
+  width: 368px;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
-}
-
-.swiper-slide .jogo-destaque {
   background-color: #d9d9d9;
-  margin: 0 auto;
+  border-radius: 3px;
+}
+#barra-de-pesquisa img {
+  height: 25px;
 }
 
-.swiper {
-  width: 100%;
-  padding-top: 50px;
-  padding-bottom: 50px;
-}
-
-.swiper-slide {
-  background-position: center;
-  background-size: cover;
-}
-
-.seta-direita,
-.seta-esquerda {
-  display: flex;
-  row-gap: 1rem;
-  opacity: 70%;
-  position: absolute;
-  z-index: 100000;
-  opacity: 0;
-  margin: 0 2rem;
-  transition: transform 0.1s ease, opacity 0.2s linear;
-}
-
-.seta-direita:hover,
-.seta-esquerda:hover {
-  opacity: 1;
-  transform: scale(1.1);
-}
-
-.seta-esquerda {
-  left: 10px;
-}
-
-.seta-direita {
-  right: 10px;
-}
-
-.jogo-destaque {
-  height: 18.188rem;
-  width: 30.938rem;
-}
-
-#div-texto-e-searchbar {
+#botao-filtro {
   display: flex;
   align-items: center;
-  width: 100%;
-  height: 12.563rem;
+  column-gap: 10px;
 }
 
-#div-texto {
+input#search-bar:focus {
+  outline: none;
+}
+
+#search-bar {
   display: flex;
-  justify-content: flex-start;
-}
-
-#div-searchbar {
-  display: flex;
-  justify-content: center;
-  width: 36.125rem;
-  height: 2.613rem;
-}
-
-#searchbar {
-  background: #d9d9d9;
-  border-radius: 5px;
-}
-
-#searchbar a {
-  display: flex;
-  justify-content: flex-start;
-  color: #8a8484;
+  justify-self: flex-start;
+  width: 80%;
+  height: 30px;
+  border: none;
+  background-color: #d9d9d9;
 }
 
 #div-pai-container-jogos-sessoes {
@@ -176,7 +106,6 @@ h2 {
 }
 
 .container-jogos-sessoes {
-  display: flex;
   align-items: center;
   flex-direction: column;
   width: 100%;
@@ -191,7 +120,7 @@ h2 {
   margin-bottom: 20px;
   justify-content: flex-start;
   font-weight: 400;
-  font-size: 40px;
+  font-size: 2rem;
 }
 
 .jogos-sessoes {
@@ -201,32 +130,26 @@ h2 {
   justify-content: center;
   gap: 3rem;
   margin-bottom: 150px;
+  padding-left: 20px;
 }
 
 .jogo-retrato-home {
-  width: 350px;
+  width: 200px;
   height: 9.188rem;
   border-radius: 10px;
   background-color: #d9d9d9;
 }
 
-#botao-seta-jogos-sessoes {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
+.swiper {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
-.retangulo-botao {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  background: linear-gradient(
-    90deg,
-    #ffffff 0%,
-    rgba(217, 217, 217, 0) 100%,
-    rgba(217, 217, 217, 0) 100%
-  );
-  border-radius: 10px;
-  width: 16.875rem;
-  height: 9.188rem;
+swiper-slide,
+.swiper-slide {
+  flex-basis: 0;
+  flex-shrink: 0;
+  background-position: center;
+  background-size: cover;
 }
