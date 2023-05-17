@@ -28,8 +28,13 @@ body {
   justify-content: flex-end;
   align-items: center;
   margin-right: 1rem;
-  gap: 1rem;
+  gap: 2rem;
   width: 100%;
+}
+
+#div-header-icones img {
+  height: 30px;
+  width: 30px;
 }
 
 #div-navbar {
@@ -46,6 +51,7 @@ body {
   height: 3.553rem;
   width: 61.74rem;
   background-color: var(--Nav);
+  clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);
 }
 
 #div-icones-navbar {
@@ -113,7 +119,7 @@ h2 {
   opacity: 70%;
   position: absolute;
   z-index: 100000;
-  opacity: 0;
+  opacity: 0.1;
   margin: 0 2rem;
   transition: transform 0.1s ease, opacity 0.2s linear;
 }
@@ -186,7 +192,7 @@ h2 {
 .container-jogos-sessoes h2 {
   display: flex;
   width: 100%;
-  margin-left: 65px;
+  margin-left: 20px;
   margin-bottom: 20px;
   justify-content: flex-start;
   font-weight: 400;
@@ -199,7 +205,7 @@ h2 {
   align-items: center;
   justify-content: center;
   gap: 3rem;
-  margin-bottom: 150px;
+  margin-bottom: 60px;
   padding-left: 20px;
 }
 
