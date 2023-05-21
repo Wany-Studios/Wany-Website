@@ -1,0 +1,28 @@
+header {
+    background-color: var(--Header);
+    height: 8.188rem;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+header div {
+    display: inline-flex;
+    align-items: center;
+    margin: 0 auto;
+}
+
+header a {
+    color: #e5e5e5;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 0 auto;
+}
+
+header div img {
+    display: block;
+    width: 70px;
+    height: 70px;
+    margin-right: -10px;
+}

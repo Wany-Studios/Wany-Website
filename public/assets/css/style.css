@@ -4,32 +4,37 @@
   --Nav: #464545;
   --Header: #2f2f2f;
   --Background: #181818;
+
   --Carousel: #f54703;
   --CarouselArrow: #ff7518;
+
+  --PrimaryButtonColor: #f54703;
+  --PrimaryButtonHoverColor: #ff4f0a;
+
+  --AuthBackgroudColor: #2f2f2f55;
+
+  --InputFocusColor: #f54703;
+
   --FontPrimaryColor: #e5e5e5;
-  --Error-Color: #dc3545;
+  --FontSecondaryColor: #f54703;
+
+  --ErrorColor: #dc3545;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "roboto", arial;
+  font-family: inherit;
 }
 
 body {
   color: var(--FontPrimaryColor);
+  font-family: 'Euclid Circular B', sans-serif;
 }
 
 body.waiting * {
   cursor: wait !important;
-}
-
-#headerWany {
-  height: 8.188 rem;
-  display: flex;
-  align-items: center;
-  width: 100%;
 }
 
 #div-header-logo-e-nome {
@@ -54,28 +59,16 @@ body.waiting * {
   width: 70%;
   row-gap: 2rem;
 }
-header {
-  display: flex;
-  height: 13vh;
-  background-color: var(--Header);
-}
-header div {
-  display: inline-flex;
-  align-items: center;
-  margin: 0 auto;
-}
+
 header a {
-  display: flex;
-  align-items: center;
-  text-align: center;
   color: #e5e5e5;
+  text-align: center;
   text-decoration: none;
   cursor: pointer;
-  margin: 0 auto;
 }
+
 header div img {
   display: block;
   width: 70px;
   height: 70px;
-  margin-right: -10px;
 }

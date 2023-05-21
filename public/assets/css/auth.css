@@ -2,98 +2,94 @@
 @import url("./fonts.css");
 @import url('https://fonts.cdnfonts.com/css/euclid-circular-b');
 
-body {
-    margin: 0;
-    font-family: 'Euclid Circular B', sans-serif;
+:root {
+    --HeaderHeight: 90px;
 }
 
 #form-error {
-    color: var(--Error-Color);
+    color: var(--ErrorColor);
     margin-bottom: 25px;
-}
-
-.elements {
-    display: flex;
-    height: 87vh;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--Background);
-    color: var(--FontPrimary);
-}
-
-.box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
     text-align: center;
-    background-color: var(--Header);
-    width: 450px;
-    max-height: 500px;
-    border-radius: 10px;
-    padding: 10px;
+    max-width: 60vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.title {
+    text-align: center;
+    font-weight: 300;
+    margin-bottom: 20px
+}
+
+body {
+    margin: 0;
+    background-color: var(--Background);
+}
+
+header {
+    height: var(--HeaderHeight);
+    background: transparent;
+    display: flex;
+    align-items: center;
+}
+
+header div {
+    display: inline-flex;
+    align-items: center;
+    padding-left: 25px;
+}
+
+body>section {
+    display: grid;
+    place-items: center;
+    height: calc(100vh - var(--HeaderHeight));
+    color: var(--FontPrimary);
+    margin-top: -80px;
+}
+
+.form-container {
+    width: 320px;
+    border: 1px solid #fff3;
+    border-radius: 6px;
+    text-align: center;
+    padding: 20px;
+    display: block;
+    margin: 0 auto;
+    background-color: var(--AuthBackgroudColor);
+    position: relative;
+}
+
+.form-container::before {
+    background:
+        radial-gradient(800px circle at var(--mouse-x) var(--mouse-y),
+            rgba(255, 255, 255, 0.035),
+            transparent 40%);
+    border-radius: inherit;
+    content: "";
+    top: 0px;
+    left: 0px;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
 }
 
 form {
-    width: 70%;
-}
-
-.ano {
-    position: relative;
-    max-width: 80px;
-    display: inline-block;
-}
-
-option {
-    background: var(--Header);
-}
-
-select {
-    background: transparent;
-    color: var(--FontPrimary);
-    border: 1px solid gray;
-    height: 40px;
-    width: 55px;
-    text-align: center;
-}
-
-select:focus,
-select:valid {
-    border: 1px solid var(--CarouselArrow);
-    outline: 0;
-}
-
-.caixa_texto {
-    background-color: transparent;
     width: 100%;
-    max-width: 300px;
-    height: 40px;
-    border: none;
-    border-bottom: 2px solid gray;
-    color: gray;
-    outline: 0;
     position: relative;
-    z-index: 1;
-
+    z-index: 10;
 }
 
-.criar {
-    color: var(--Carousel);
-    text-decoration: none;
+form>*:not(:last-child) {
+    margin: 18px 0;
 }
 
-.criar:hover {
-    text-decoration: underline;
-}
-
-div .input {
+.form-group {
     width: 100%;
-    margin: 30px 0;
     position: relative;
 }
 
-div .input label {
+.form-group label {
     font-size: 17px;
     position: absolute;
     left: 0;
@@ -101,39 +97,54 @@ div .input label {
     color: gray;
     cursor: text;
     outline: 0;
-    transition: 0.5s ease-in-out;
+    transition: 0.4s ease;
 }
 
-div .input .caixa_texto:focus,
-div .input .caixa_texto:valid {
-    border-bottom: 2px solid var(--CarouselArrow);
+.form-group .form-input:focus,
+.form-group .form-input:valid {
+    border-bottom: 2px solid var(--InputFocusColor);
 }
 
-div .input .caixa_texto:focus~label,
-div .input .caixa_texto:valid~label {
-    transform: translateY(-24px);
-    font-size: 13px;
-    color: var(--CarouselArrow);
+.form-group .form-input:focus~label,
+.form-group .form-input:valid~label {
+    transform: translateY(-20px);
+    font-size: 0.8rem;
+    color: var(--InputFocusColor);
 }
 
-.foto_google {
+.form-input {
+    background-color: transparent;
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-bottom: 2px solid gray;
+    color: gray;
+    outline: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.form-button {
+    width: 100%;
+    height: 38px;
+    background-color: var(--PrimaryButtonColor);
+    color: var(--FontPrimaryColor);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.1s ease-in-out background;
+}
+
+.form-button:hover {
+    background-color: var(--PrimaryButtonHoverColor);
+}
+
+.google-picture {
     width: 17px;
     height: 17px;
 }
 
-.botao {
-    width: 100%;
-    height: 38px;
-    background-color: var(--CarouselArrow);
-    color: var(--FontPrimary);
-    border: none;
-    border-radius: 10px;
-    transition: 0.5s ease-in-out;
-    cursor: pointer;
-    animation: inicial-left 2s;
-}
-
-.sub {
+.google-auth-button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -141,38 +152,6 @@ div .input .caixa_texto:valid~label {
     background-color: gray;
 }
 
-.botao:hover {
-    background-color: var(--Carousel);
-}
-
-.sub:hover {
+.google-auth-button:hover {
     background-color: rgb(87, 87, 87);
-}
-
-.left-move {
-    animation: left-move 2s;
-}
-
-.right-move {
-    animation: right-move 2s;
-}
-
-@keyframes left-move {
-    from {
-        transition: translateX(-300px);
-    }
-
-    to {
-        transition: translateX(0px);
-    }
-}
-
-@keyframes right-move {
-    from {
-        transition: translateX(-300px);
-    }
-
-    to {
-        transition: translateX(0px);
-    }
 }

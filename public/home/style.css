@@ -1,19 +1,12 @@
+@import url("../assets/css/header.css");
+
 body {
   background-color: var(--Background);
   color: var(--FontPrimaryColor);
 }
 
-#headerWany {
+header {
   height: 4.188rem;
-  display: flex;
-  align-items: center;
-  width: 100%;
-  background-color: var(--Header);
-}
-
-#headerWany #logo-img {
-  object-fit: contain;
-  height: 89px;
 }
 
 #div-header-logo-e-nome {
@@ -226,12 +219,10 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  background: linear-gradient(
-    90deg,
-    #ffffff 0%,
-    rgba(217, 217, 217, 0) 100%,
-    rgba(217, 217, 217, 0) 100%
-  );
+  background: linear-gradient(90deg,
+      #ffffff 0%,
+      rgba(217, 217, 217, 0) 100%,
+      rgba(217, 217, 217, 0) 100%);
   border-radius: 10px;
   width: 16.875rem;
   height: 9.188rem;

@@ -1,3 +1,12 @@
+document.querySelector("#form-container").onmousemove = e => {
+    const { currentTarget: target } = e;
+    const rect = target.getBoundingClientRect();
+    const [x, y] = [e.clientX - rect.left, e.clientY - rect.top];
+
+    target.style.setProperty("--mouse-x", `${x}px`);
+    target.style.setProperty("--mouse-y", `${y}px`);
+}
+
 const showErrorToForm = (() => {
     const element = document.querySelector`#form-error`;
 
@@ -43,3 +52,4 @@ const showErrorToForm = (() => {
         };
     }
 })();
+

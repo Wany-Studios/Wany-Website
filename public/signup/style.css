@@ -1,0 +1,10 @@
+@import url("../assets/css/auth.css");
+
+.go-signin {
+    color: var(--FontSecondaryColor);
+    text-decoration: none;
+}
+
+.go-signin:hover {
+    text-decoration: underline;
+}

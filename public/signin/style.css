@@ -1,0 +1,10 @@
+@import url("../assets/css/auth.css");
+
+.go-create-account {
+    color: var(--FontSecondaryColor);
+    text-decoration: none;
+}
+
+.go-create-account:hover {
+    text-decoration: underline;
+}

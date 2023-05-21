@@ -1,3 +1,5 @@
+@import url("../assets/css/header.css");
+
 body {
   background-color: var(--Background);
   color: var(--FontPrimaryColor);
@@ -8,24 +10,18 @@ h2 {
   font-size: 40px;
 }
 
-##headerWany {
-  height: 4.188rem;
+header {
+  height: 60px;
   display: flex;
   align-items: center;
   width: 100%;
   background-color: var(--Header);
 }
 
-#headerWany #logo-img {
+
+header #logo-img {
   object-fit: contain;
   height: 89px;
-}
-
-#div-header-logo-e-nome {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  row-gap: 2rem;
 }
 
 #div-header-icones {
@@ -80,6 +76,7 @@ h2 {
   background-color: #d9d9d9;
   border-radius: 3px;
 }
+
 #barra-de-pesquisa img {
   height: 25px;
 }

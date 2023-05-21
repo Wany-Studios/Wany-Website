@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="../assets/css/style.css" />
+        <link rel="stylesheet" href="./style.css" />
+        <title>Create account - Wany</title>
+    </head>
+
+    <body>
+        <header>
+            <a href="../home/">
+                <div>
+                    <img src="../assets/img/logo.png" class="logo" />
+                    <h1 style="margin-left: -10px">Wany</h1>
+                </div>
+            </a>
+        </header>
+
+        <section>
+            <div>
+                <div id="form-error"></div>
+
+                <h1 class="title">Sign up for Wany</h1>
+
+                <div id="form-container" class="form-container">
+                    <form method="POST" autocomplete="off">
+                        <div class="form-group move-right">
+                            <input type="text" id="username" class="form-input" required />
+                            <label for="username">Username</label>
+                        </div>
+
+                        <div class="form-group move-right">
+                            <input type="email" id="email" class="form-input" required />
+                            <label for="email">E-mail</label>
+                        </div>
+
+                        <div class="form-group move-right">
+                            <input type="password" id="password" class="form-input" required />
+                            <label for="password">Password</label>
+                        </div>
+
+                        <input
+                            type="submit"
+                            class="form-button move-left"
+                            id="button"
+                            value="Sign Up"
+                        />
+
+                        <button
+                            style="display: none"
+                            class="form-button google-auth-button move-left"
+                            type="button"
+                        >
+                            <img src="../assets/img/svg/google.svg" class="google-picture" />Login
+                            with Google
+                        </button>
+
+                        <div style="font-size: 0.85rem; letter-spacing: 0.5px">
+                            Already a Wany member?
+                            <a href="../signin/" class="go-signin">Sign in</a>.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <script src="../assets/lib/axios/axios.min.js"></script>
+        <script src="../assets/js/global.js"></script>
+        <script src="../assets/js/auth.js"></script>
+        <script src="./index.js"></script>
+    </body>
+</html>
