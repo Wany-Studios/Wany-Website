@@ -1,15 +1,81 @@
 @import url("../assets/css/header.css");
 
+:root {
+  --TrendingGamesCarouselHeight: 200px;
+}
+@media (min-width: 700px) {
+  :root {
+    --TrendingGamesCarouselHeight: 340px;
+  }
+}
+
 body {
   background-color: var(--Background);
   color: var(--FontPrimaryColor);
 }
 
-#div-navbar {
-  width: 100%;
+.trending-games {
+  background: linear-gradient(
+    to top,
+    hsla(0, 0%, 9%, 25%) 0%,
+    hsla(17, 100%, 42%, 50%) 50%,
+    hsla(17, 98%, 49%, 100%) 100%
+  );
+  margin-top: 30px;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.trending-games .title {
+  text-align: center;
+}
+
+.trending-games .arrow {
+  --size: 100px;
+  position: absolute;
+  z-index: 100;
+  width: var(--size);
+  height: var(--size);
+  transform: translateY(calc(var(--size) / -2));
+  top: 50%;
+  display: none;
+  opacity: 0.1;
+  transition: opacity 0.3s linear;
+}
+.trending-games .arrow:hover {
+  opacity: 1;
+  transform: scale(1.1) translateY(calc(var(--size) / -2));
+}
+
+.trending-games .right-arrow {
+  right: 0;
+}
+
+#trending-games-carousel {
+  height: var(----TrendingGamesCarouselHeight);
+  margin-top: 10px;
+  position: relative;
+}
+
+.trending-games .item {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+#trending-games-carousel .item img {
+  object-fit: cover;
+  height: var(--TrendingGamesCarouselHeight);
+  width: 90%;
+}
+@media (min-width: 700px) {
+  .trending-games .arrow {
+    display: inline;
+  }
+
+  #trending-games-carousel .item img {
+    width: 70%;
+  }
 }
 
 #sessao-destaques {
@@ -55,32 +121,6 @@ h2 {
 .swiper-slide {
   background-position: center;
   background-size: cover;
-}
-
-.seta-direita,
-.seta-esquerda {
-  display: flex;
-  row-gap: 1rem;
-  opacity: 70%;
-  position: absolute;
-  z-index: 100000;
-  opacity: 0.1;
-  margin: 0 2rem;
-  transition: transform 0.1s ease, opacity 0.2s linear;
-}
-
-.seta-direita:hover,
-.seta-esquerda:hover {
-  opacity: 1;
-  transform: scale(1.1);
-}
-
-.seta-esquerda {
-  left: 10px;
-}
-
-.seta-direita {
-  right: 10px;
 }
 
 .jogo-destaque {
@@ -155,10 +195,15 @@ h2 {
 }
 
 .jogo-retrato-home {
-  width: 200px;
+  /* width: 200px; */
   height: 9.188rem;
   border-radius: 10px;
   background-color: #d9d9d9;
+}
+
+@media (min-width: 700px) {
+  .jogo-retrato-home {
+  }
 }
 
 #botao-seta-jogos-sessoes {
