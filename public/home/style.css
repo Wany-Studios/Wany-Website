@@ -5,59 +5,11 @@ body {
   color: var(--FontPrimaryColor);
 }
 
-header {
-  height: 4.188rem;
-}
-
-#div-header-logo-e-nome {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  row-gap: 2rem;
-}
-
-#div-header-icones {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin-right: 1rem;
-  gap: 2rem;
-  width: 100%;
-}
-
-#div-header-icones img {
-  height: 30px;
-  width: 30px;
-}
-
 #div-navbar {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-#navbar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 3.553rem;
-  width: 61.74rem;
-  background-color: var(--Nav);
-  clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);
-}
-
-#div-icones-navbar {
-  display: flex;
-  gap: 3rem;
-}
-
-#div-icones-navbar a {
-  text-decoration: none;
-  color: white;
-  display: flex;
-  align-items: center;
-  margin-left: -2rem;
 }
 
 #sessao-destaques {
@@ -219,10 +171,12 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  background: linear-gradient(90deg,
-      #ffffff 0%,
-      rgba(217, 217, 217, 0) 100%,
-      rgba(217, 217, 217, 0) 100%);
+  background: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    rgba(217, 217, 217, 0) 100%,
+    rgba(217, 217, 217, 0) 100%
+  );
   border-radius: 10px;
   width: 16.875rem;
   height: 9.188rem;

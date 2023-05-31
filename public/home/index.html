@@ -1,178 +1,197 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="../assets/css/style.css" />
-        <link rel="stylesheet" href="./style.css" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-        <link
-            rel="stylesheet"
-            type="text/css"
-            href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+    />
+
+    <title>Home</title>
+  </head>
+
+  <body>
+    <header>
+      <img
+        id="logo-img"
+        src="../assets/img/logo.png"
+        alt="a logo do website, um fantasma com cores vibrantes"
+      />
+
+      <h1 class="title">WANY</h1>
+
+      <div class="icons">
+        <img
+          class="hide-mobile"
+          src="../assets/img/svg/header/person.svg"
+          alt="ícone de uma pessoa"
         />
 
-        <title>Home</title>
-    </head>
+        <img src="../assets/img/svg/header/menu.svg" alt="ícone de uma menu" />
+      </div>
+    </header>
 
-    <body>
-        <header id="headerWany">
-            <div id="div-header-logo-e-nome">
-                <img
-                    id="logo-img"
-                    src="../assets/img/logo.png"
-                    alt="a logo do website, um fantasma com cores vibrantes"
-                />
-                <h1>WANY</h1>
+    <nav>
+      <div>
+        <img src="../assets/img/svg/navbar/icon-home.svg" alt="ícone da home" />
+        <a href=".">Home</a>
+      </div>
+
+      <div>
+        <img
+          src="../assets/img/svg/navbar/controle-videogame.svg"
+          alt="ícone de controle de vídeogame"
+        />
+        <a href="../games/">Games</a>
+      </div>
+
+      <div>
+        <img
+          src="../assets/img/svg/navbar/megafone.svg"
+          alt="ícone de um megafone"
+        />
+        <a href="#">News</a>
+      </div>
+
+      <div>
+        <img
+          src="../assets/img/svg/navbar/estrela.svg"
+          alt="ícone de uma estrela"
+        />
+        <a href="#">Popular</a>
+      </div>
+    </nav>
+    <!--
+    <div id="sessao-destaques">
+      <div id="div-h2-sessao-destaques">
+        <h2>Trending</h2>
+      </div>
+
+      <div id="container-jogos-destaque" style="position: relative">
+        <img
+          class="seta-esquerda"
+          onclick="moverSlideEsquerda()"
+          src="../assets/img/svg/seta-esquerda.svg"
+          alt="ícone de uma seta para a esquerda"
+        />
+
+        <img
+          class="seta-direita"
+          onclick="moverSlideDireita()"
+          src="../assets/img/svg/seta-direita.svg"
+          alt="ícone de uma seta para a direita"
+        />
+
+        <div class="swiper mySwiper" id="main-games-carousel">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="jogo-destaque"></div>
             </div>
 
-            <div id="div-header-icones">
-                <img src="../assets/img/svg/header/person.svg" alt="ícone de uma pessoa" />
-                <img src="../assets/img/svg/header/menu.svg" alt="ícone de uma menu" />
+            <div class="swiper-slide">
+              <div class="jogo-destaque"></div>
             </div>
-        </header>
 
-        <div id="div-navbar">
-            <nav id="navbar">
-                <div id="div-icones-navbar">
-                    <img src="../assets/img/svg/navbar/icon-home.svg" alt="ícone da home" />
-
-                    <a href=".">Home</a>
-
-                    <img
-                        src="../assets/img/svg/navbar/controle-videogame.svg"
-                        alt="ícone de controle de vídeogame"
-                    />
-
-                    <a href="../games/">Games</a>
-
-                    <img src="../assets/img/svg/navbar/megafone.svg" alt="ícone de um megafone" />
-
-                    <a href="#">News</a>
-
-                    <img src="../assets/img/svg/navbar/estrela.svg" alt="ícone de uma estrela" />
-
-                    <a href="#">Popular</a>
-                </div>
-            </nav>
+            <div class="swiper-slide">
+              <div class="jogo-destaque"></div>
+            </div>
+          </div>
         </div>
 
-        <div id="sessao-destaques">
-            <div id="div-h2-sessao-destaques">
-                <h2>Trending</h2>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+
+    <div id="div-pai-container-jogos-sessoes">
+      <div class="container-jogos-sessoes">
+        <h2>Most Liked</h2>
+        <div class="jogos-sessoes">
+          <div class="swiper mySwiper" id="games-carousel">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="jogo-retrato-home"></div>
+              </div>
+              <div class="swiper-slide">
+                <div class="jogo-retrato-home"></div>
+              </div>
+              <div class="swiper-slide">
+                <div class="jogo-retrato-home"></div>
+              </div>
+              <div class="swiper-slide">
+                <div class="jogo-retrato-home"></div>
+              </div>
+              <div class="swiper-slide">
+                <div class="jogo-retrato-home"></div>
+              </div>
+              <div class="swiper-slide">
+                <div class="jogo-retrato-home"></div>
+              </div>
+              <div class="swiper-slide">
+                <div class="jogo-retrato-home"></div>
+              </div>
+              <div class="swiper-slide">
+                <div class="jogo-retrato-home"></div>
+              </div>
             </div>
-
-            <div id="container-jogos-destaque" style="position: relative">
-                <img
-                    class="seta-esquerda"
-                    onclick="moverSlideEsquerda()"
-                    src="../assets/img/svg/seta-esquerda.svg"
-                    alt="ícone de uma seta para a esquerda"
-                />
-
-                <img
-                    class="seta-direita"
-                    onclick="moverSlideDireita()"
-                    src="../assets/img/svg/seta-direita.svg"
-                    alt="ícone de uma seta para a direita"
-                />
-
-                <div class="swiper mySwiper" id="main-games-carousel">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="jogo-destaque"></div>
-                        </div>
-
-                        <div class="swiper-slide">
-                            <div class="jogo-destaque"></div>
-                        </div>
-
-                        <div class="swiper-slide">
-                            <div class="jogo-destaque"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="swiper-pagination"></div>
-            </div>
+          </div>
         </div>
-
-        <div id="div-pai-container-jogos-sessoes">
-            <div class="container-jogos-sessoes">
-                <h2>Most Liked</h2>
-                <div class="jogos-sessoes">
-                    <div class="swiper mySwiper" id="games-carousel">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="jogo-retrato-home"></div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="jogo-retrato-home"></div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="jogo-retrato-home"></div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="jogo-retrato-home"></div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="jogo-retrato-home"></div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="jogo-retrato-home"></div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="jogo-retrato-home"></div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="jogo-retrato-home"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <h2>For You</h2>
-                <div class="jogos-sessoes">
-                    <div class="swiper mySwiper" id="games-carousel">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="jogo-retrato-home"></div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="jogo-retrato-home"></div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="jogo-retrato-home"></div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="jogo-retrato-home"></div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="jogo-retrato-home"></div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="jogo-retrato-home"></div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="jogo-retrato-home"></div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="jogo-retrato-home"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <h2>For You</h2>
+        <div class="jogos-sessoes">
+          <div class="swiper mySwiper" id="games-carousel">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="jogo-retrato-home"></div>
+              </div>
+              <div class="swiper-slide">
+                <div class="jogo-retrato-home"></div>
+              </div>
+              <div class="swiper-slide">
+                <div class="jogo-retrato-home"></div>
+              </div>
+              <div class="swiper-slide">
+                <div class="jogo-retrato-home"></div>
+              </div>
+              <div class="swiper-slide">
+                <div class="jogo-retrato-home"></div>
+              </div>
+              <div class="swiper-slide">
+                <div class="jogo-retrato-home"></div>
+              </div>
+              <div class="swiper-slide">
+                <div class="jogo-retrato-home"></div>
+              </div>
+              <div class="swiper-slide">
+                <div class="jogo-retrato-home"></div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
+    </div>-->
 
-        <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-        <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-        <script
-            type="text/javascript"
-            src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
-        ></script>
-        <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-        <script src="../assets/lib/axios/axios.min.js"></script>
-        <script src="../assets/js/global.js"></script>
-        <script src="./index.js"></script>
-    </body>
+    <script
+      type="text/javascript"
+      src="//code.jquery.com/jquery-1.11.0.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="//code.jquery.com/jquery-migrate-1.2.1.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+    <script src="../assets/lib/axios/axios.min.js"></script>
+    <script src="../assets/js/global.js"></script>
+    <script src="./index.js"></script>
+  </body>
 </html>
