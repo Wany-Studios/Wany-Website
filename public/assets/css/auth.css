@@ -31,6 +31,8 @@ header {
   background: transparent;
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 header a {
@@ -49,10 +51,20 @@ header div img {
 header div {
   display: inline-flex;
   align-items: center;
-  padding-left: 25px;
 }
 
-body > section {
+@media (min-width: 620px) {
+  header {
+    flex-direction: row;
+    justify-content: left;
+  }
+
+  header div {
+    padding-left: 25px;
+  }
+}
+
+body>section {
   display: grid;
   place-items: center;
   height: calc(100vh - var(--HeaderHeight));
@@ -73,11 +85,9 @@ body > section {
 }
 
 .form-container::before {
-  background: radial-gradient(
-    800px circle at var(--mouse-x) var(--mouse-y),
-    rgba(255, 255, 255, 0.035),
-    transparent 40%
-  );
+  background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y),
+      rgba(255, 255, 255, 0.035),
+      transparent 40%);
   border-radius: inherit;
   content: "";
   top: 0px;
@@ -94,7 +104,7 @@ form {
   z-index: 10;
 }
 
-form > *:not(:last-child) {
+form>*:not(:last-child) {
   margin: 18px 0;
 }
 
@@ -119,8 +129,8 @@ form > *:not(:last-child) {
   border-bottom: 2px solid var(--InputFocusColor);
 }
 
-.form-group .form-input:focus ~ label,
-.form-group .form-input:valid ~ label {
+.form-group .form-input:focus~label,
+.form-group .form-input:valid~label {
   transform: translateY(-20px);
   font-size: 0.8rem;
   color: var(--InputFocusColor);
