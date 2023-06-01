@@ -1,28 +1,112 @@
 header {
-    background-color: var(--Header);
-    height: 8.188rem;
-    display: flex;
-    align-items: center;
-    width: 100%;
+  background-color: var(--Header);
+  height: 45px;
+  display: flex;
+  align-items: center;
 }
 
-header div {
-    display: inline-flex;
-    align-items: center;
-    margin: 0 auto;
+header .title {
+  margin-left: -5px;
 }
 
-header a {
-    color: #e5e5e5;
-    text-align: center;
+header img {
+  height: 20px;
+}
+
+header > img:first-child {
+  height: 50px;
+}
+
+header .icons {
+  margin-left: auto;
+  padding-right: 10px;
+}
+header .icons > * {
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+header .hide-mobile {
+  display: none;
+}
+
+@media (min-width: 400px) {
+  header .hide-mobile {
+    display: inline;
+  }
+}
+
+nav {
+  background-color: var(--Header);
+  padding: 5px 0;
+  display: flex;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+}
+
+nav img {
+  height: 20px;
+  width: 25px;
+}
+nav a {
+  text-decoration: none;
+  color: white;
+  font-size: 0.6rem;
+}
+
+nav > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  column-gap: 2px;
+}
+
+@media (min-width: 400px) {
+  nav {
+    background-color: var(--Nav);
+    width: 80%;
+    min-width: 250px;
+    max-width: 700px;
+    column-gap: 35px;
+    clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);
+    column-gap: 25px;
+  }
+  nav > div {
+    width: auto;
+    column-gap: 2px;
+  }
+  nav img {
+    height: 30px;
+    width: 25px;
+  }
+  nav a {
     text-decoration: none;
-    cursor: pointer;
-    margin: 0 auto;
+    color: white;
+    font-size: 0.9rem;
+  }
 }
 
-header div img {
-    display: block;
-    width: 70px;
-    height: 70px;
-    margin-right: -10px;
+/* #navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3.553rem;
+  width: 61.74rem;
+  background-color: var(--Nav);
+  clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);
 }
+
+#div-icones-navbar {
+  display: flex;
+  gap: 3rem;
+}
+
+#div-icones-navbar a {
+  text-decoration: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  margin-left: -2rem;
+} */
