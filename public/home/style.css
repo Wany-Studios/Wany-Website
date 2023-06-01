@@ -1,63 +1,81 @@
 @import url("../assets/css/header.css");
 
+:root {
+  --TrendingGamesCarouselHeight: 200px;
+}
+@media (min-width: 700px) {
+  :root {
+    --TrendingGamesCarouselHeight: 340px;
+  }
+}
+
 body {
   background-color: var(--Background);
   color: var(--FontPrimaryColor);
 }
 
-header {
-  height: 4.188rem;
+.trending-games {
+  background: linear-gradient(
+    to top,
+    hsla(0, 0%, 9%, 25%) 0%,
+    hsla(17, 100%, 42%, 50%) 50%,
+    hsla(17, 98%, 49%, 100%) 100%
+  );
+  margin-top: 30px;
+  position: relative;
+  padding-bottom: 15px;
 }
 
-#div-header-logo-e-nome {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  row-gap: 2rem;
+.trending-games .title {
+  text-align: center;
 }
 
-#div-header-icones {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin-right: 1rem;
-  gap: 2rem;
-  width: 100%;
+.trending-games .arrow {
+  --size: 100px;
+  position: absolute;
+  z-index: 100;
+  width: var(--size);
+  height: var(--size);
+  transform: translateY(calc(var(--size) / -2));
+  top: 50%;
+  display: none;
+  opacity: 0.1;
+  transition: opacity 0.3s linear;
+}
+.trending-games .arrow:hover {
+  opacity: 1;
+  transform: scale(1.1) translateY(calc(var(--size) / -2));
 }
 
-#div-header-icones img {
-  height: 30px;
-  width: 30px;
+.trending-games .right-arrow {
+  right: 0;
 }
 
-#div-navbar {
-  width: 100%;
+#trending-games-carousel {
+  height: var(----TrendingGamesCarouselHeight);
+  margin-top: 10px;
+  position: relative;
+}
+
+.trending-games .item {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-#navbar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 3.553rem;
-  width: 61.74rem;
-  background-color: var(--Nav);
-  clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);
+#trending-games-carousel .item img {
+  object-fit: cover;
+  height: var(--TrendingGamesCarouselHeight);
+  width: 90%;
 }
+@media (min-width: 700px) {
+  .trending-games .arrow {
+    display: inline;
+  }
 
-#div-icones-navbar {
-  display: flex;
-  gap: 3rem;
-}
-
-#div-icones-navbar a {
-  text-decoration: none;
-  color: white;
-  display: flex;
-  align-items: center;
-  margin-left: -2rem;
+  #trending-games-carousel .item img {
+    width: 70%;
+  }
 }
 
 #sessao-destaques {
@@ -103,32 +121,6 @@ h2 {
 .swiper-slide {
   background-position: center;
   background-size: cover;
-}
-
-.seta-direita,
-.seta-esquerda {
-  display: flex;
-  row-gap: 1rem;
-  opacity: 70%;
-  position: absolute;
-  z-index: 100000;
-  opacity: 0.1;
-  margin: 0 2rem;
-  transition: transform 0.1s ease, opacity 0.2s linear;
-}
-
-.seta-direita:hover,
-.seta-esquerda:hover {
-  opacity: 1;
-  transform: scale(1.1);
-}
-
-.seta-esquerda {
-  left: 10px;
-}
-
-.seta-direita {
-  right: 10px;
 }
 
 .jogo-destaque {
@@ -203,10 +195,15 @@ h2 {
 }
 
 .jogo-retrato-home {
-  width: 200px;
+  /* width: 200px; */
   height: 9.188rem;
   border-radius: 10px;
   background-color: #d9d9d9;
+}
+
+@media (min-width: 700px) {
+  .jogo-retrato-home {
+  }
 }
 
 #botao-seta-jogos-sessoes {
@@ -219,10 +216,12 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  background: linear-gradient(90deg,
-      #ffffff 0%,
-      rgba(217, 217, 217, 0) 100%,
-      rgba(217, 217, 217, 0) 100%);
+  background: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    rgba(217, 217, 217, 0) 100%,
+    rgba(217, 217, 217, 0) 100%
+  );
   border-radius: 10px;
   width: 16.875rem;
   height: 9.188rem;

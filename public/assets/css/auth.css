@@ -1,157 +1,171 @@
 @import url("./style.css");
 @import url("./fonts.css");
-@import url('https://fonts.cdnfonts.com/css/euclid-circular-b');
+@import url("https://fonts.cdnfonts.com/css/euclid-circular-b");
 
 :root {
-    --HeaderHeight: 90px;
+  --HeaderHeight: 90px;
 }
 
 #form-error {
-    color: var(--ErrorColor);
-    margin-bottom: 25px;
-    text-align: center;
-    max-width: 60vw;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  color: var(--ErrorColor);
+  margin-bottom: 25px;
+  text-align: center;
+  max-width: 60vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .title {
-    text-align: center;
-    font-weight: 300;
-    margin-bottom: 20px
+  text-align: center;
+  font-weight: 300;
+  margin-bottom: 20px;
 }
 
 body {
-    margin: 0;
-    background-color: var(--Background);
+  margin: 0;
+  background-color: var(--Background);
 }
 
 header {
-    height: var(--HeaderHeight);
-    background: transparent;
-    display: flex;
-    align-items: center;
+  height: var(--HeaderHeight);
+  background: transparent;
+  display: flex;
+  align-items: center;
+}
+
+header a {
+  color: #e5e5e5;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+header div img {
+  display: block;
+  width: 70px;
+  height: 70px;
 }
 
 header div {
-    display: inline-flex;
-    align-items: center;
-    padding-left: 25px;
+  display: inline-flex;
+  align-items: center;
+  padding-left: 25px;
 }
 
-body>section {
-    display: grid;
-    place-items: center;
-    height: calc(100vh - var(--HeaderHeight));
-    color: var(--FontPrimary);
-    margin-top: -80px;
+body > section {
+  display: grid;
+  place-items: center;
+  height: calc(100vh - var(--HeaderHeight));
+  color: var(--FontPrimary);
+  margin-top: -80px;
 }
 
 .form-container {
-    width: 320px;
-    border: 1px solid #fff3;
-    border-radius: 6px;
-    text-align: center;
-    padding: 20px;
-    display: block;
-    margin: 0 auto;
-    background-color: var(--AuthBackgroudColor);
-    position: relative;
+  width: 320px;
+  border: 1px solid #fff3;
+  border-radius: 6px;
+  text-align: center;
+  padding: 20px;
+  display: block;
+  margin: 0 auto;
+  background-color: var(--AuthBackgroudColor);
+  position: relative;
 }
 
 .form-container::before {
-    background:
-        radial-gradient(800px circle at var(--mouse-x) var(--mouse-y),
-            rgba(255, 255, 255, 0.035),
-            transparent 40%);
-    border-radius: inherit;
-    content: "";
-    top: 0px;
-    left: 0px;
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    z-index: 2;
+  background: radial-gradient(
+    800px circle at var(--mouse-x) var(--mouse-y),
+    rgba(255, 255, 255, 0.035),
+    transparent 40%
+  );
+  border-radius: inherit;
+  content: "";
+  top: 0px;
+  left: 0px;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 2;
 }
 
 form {
-    width: 100%;
-    position: relative;
-    z-index: 10;
+  width: 100%;
+  position: relative;
+  z-index: 10;
 }
 
-form>*:not(:last-child) {
-    margin: 18px 0;
+form > *:not(:last-child) {
+  margin: 18px 0;
 }
 
 .form-group {
-    width: 100%;
-    position: relative;
+  width: 100%;
+  position: relative;
 }
 
 .form-group label {
-    font-size: 17px;
-    position: absolute;
-    left: 0;
-    top: 11px;
-    color: gray;
-    cursor: text;
-    outline: 0;
-    transition: 0.4s ease;
+  font-size: 17px;
+  position: absolute;
+  left: 0;
+  top: 11px;
+  color: gray;
+  cursor: text;
+  outline: 0;
+  transition: 0.4s ease;
 }
 
 .form-group .form-input:focus,
 .form-group .form-input:valid {
-    border-bottom: 2px solid var(--InputFocusColor);
+  border-bottom: 2px solid var(--InputFocusColor);
 }
 
-.form-group .form-input:focus~label,
-.form-group .form-input:valid~label {
-    transform: translateY(-20px);
-    font-size: 0.8rem;
-    color: var(--InputFocusColor);
+.form-group .form-input:focus ~ label,
+.form-group .form-input:valid ~ label {
+  transform: translateY(-20px);
+  font-size: 0.8rem;
+  color: var(--InputFocusColor);
 }
 
 .form-input {
-    background-color: transparent;
-    width: 100%;
-    height: 40px;
-    border: none;
-    border-bottom: 2px solid gray;
-    color: gray;
-    outline: 0;
-    position: relative;
-    z-index: 1;
+  background-color: transparent;
+  width: 100%;
+  height: 40px;
+  border: none;
+  border-bottom: 2px solid gray;
+  color: gray;
+  outline: 0;
+  position: relative;
+  z-index: 1;
 }
 
 .form-button {
-    width: 100%;
-    height: 38px;
-    background-color: var(--PrimaryButtonColor);
-    color: var(--FontPrimaryColor);
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.1s ease-in-out background;
+  width: 100%;
+  height: 38px;
+  background-color: var(--PrimaryButtonColor);
+  color: var(--FontPrimaryColor);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.1s ease-in-out background;
 }
 
 .form-button:hover {
-    background-color: var(--PrimaryButtonHoverColor);
+  background-color: var(--PrimaryButtonHoverColor);
 }
 
 .google-picture {
-    width: 17px;
-    height: 17px;
+  width: 17px;
+  height: 17px;
 }
 
 .google-auth-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    background-color: gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: gray;
 }
 
 .google-auth-button:hover {
-    background-color: rgb(87, 87, 87);
+  background-color: rgb(87, 87, 87);
 }
