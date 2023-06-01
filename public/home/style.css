@@ -21,12 +21,13 @@ body {
     hsla(17, 100%, 42%, 50%) 50%,
     hsla(17, 98%, 49%, 100%) 100%
   );
-  margin-top: 30px;
   position: relative;
   padding-bottom: 15px;
 }
 
 .trending-games .title {
+  font-weight: 400;
+  font-size: 40px;
   text-align: center;
 }
 
@@ -68,13 +69,20 @@ body {
   height: var(--TrendingGamesCarouselHeight);
   width: 90%;
 }
+@media (min-width: 530px){
+  .trending-games{
+    margin-top: 30px;
+  }
+
+}
 @media (min-width: 700px) {
   .trending-games .arrow {
     display: inline;
   }
 
   #trending-games-carousel .item img {
-    width: 70%;
+    width: 60%;
+    max-width: 530px;
   }
 }
 
@@ -95,10 +103,7 @@ body {
   justify-content: center;
 }
 
-h2 {
-  font-weight: 400;
-  font-size: 40px;
-}
+
 
 #container-jogos-destaque {
   display: flex;
@@ -174,7 +179,7 @@ h2 {
   overflow: hidden;
 }
 
-.container-jogos-sessoes h2 {
+.container-jogos-sessoes .title {
   display: flex;
   width: 100%;
   margin-left: 20px;
