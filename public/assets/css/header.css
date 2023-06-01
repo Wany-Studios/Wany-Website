@@ -30,7 +30,7 @@ header .hide-mobile {
   display: none;
 }
 
-@media (min-width: 400px) {
+@media (min-width: 530px) {
   header .hide-mobile {
     display: inline;
   }
@@ -63,7 +63,7 @@ nav > div {
   column-gap: 2px;
 }
 
-@media (min-width: 400px) {
+@media (min-width: 530px) {
   nav {
     background-color: var(--Nav);
     width: 80%;
