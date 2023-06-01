@@ -7,10 +7,8 @@ document.querySelector("form").addEventListener("submit", async function (e) {
 
     const data = getFormData();
 
-    if (!validateData(data)) {
-        showErrorToForm("Verifique se todos os campos são válidos");
-        return;
-    }
+    showErrorToForm();
+    if (!validateData(data)) return;
 
     makingRequest = true;
     document.body.classList.add("waiting");
@@ -24,7 +22,7 @@ document.querySelector("form").addEventListener("submit", async function (e) {
             return;
         }
 
-        showErrorToForm("Não foi possível realizar o cadastro", 8_000);
+        showErrorToForm("Unable to complete the registration", 8_000);
     });
 
     if (response && response.data?.user) {
@@ -44,7 +42,11 @@ function sendData(data) {
 }
 
 function validateData(data) {
-    // TODO: implement this function
+    if (data.repeatPassword !== data.password) {
+        showErrorToForm("Passwords don't match", 5000);
+        return false;
+    }
+
     return true;
 }
 
