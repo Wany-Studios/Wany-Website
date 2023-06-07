@@ -1,16 +1,260 @@
+@import url("../assets/css/header.css");
+:root{
+  --HeaderHeight: 60px;
+}
+body {
+  background-color: var(--Background);
+  color: var(--FontPrimaryColor);
+}
+
+h2 {
+  font-weight: 400;
+  font-size: 40px;
+}
+
+header {
+  height: var(--HeaderHeight);
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: var(--Header);
+}
+
+
+header #logo-img {
+  object-fit: contain;
+  height: 89px;
+}
+
+#div-header-icones {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 1rem;
+  gap: 2rem;
+  width: 100%;
+}
+
+#div-header-icones img {
+  height: 30px;
+  width: 30px;
+}
+
+#div-navbar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3.553rem;
+  width: 61.74rem;
+  background-color: var(--Nav);
+  clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);
+}
+
+
+#div-icones-navbar a {
+  text-decoration: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  margin-left: -2rem;
+}
+
+#barra-de-pesquisa {
+  width: 368px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #d9d9d9;
+  border-radius: 3px;
+}
+
+#barra-de-pesquisa img {
+  height: 25px;
+}
+
+#botao-filtro {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+
+input#search-bar:focus {
+  outline: none;
+}
+
+#search-bar {
+  display: flex;
+  justify-self: flex-start;
+  width: 80%;
+  height: 30px;
+  border: none;
+  background-color: #d9d9d9;
+}
+
+#div-pai-container-jogos-sessoes {
+  display: flex;
+  flex-direction: column;
+  column-gap: 3rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-jogos-sessoes {
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 8rem;
+  overflow: hidden;
+}
+
+.container-jogos-sessoes h2 {
+  display: flex;
+  width: 100%;
+  margin-left: 65px;
+  margin-bottom: 20px;
+  justify-content: flex-start;
+  font-weight: 400;
+  font-size: 2rem;
+}
+
+.jogos-sessoes {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  margin-bottom: 150px;
+  padding-left: 20px;
+}
+#div-icones-navbar{
+  gap: unset;
+}
+
+.jogo-retrato-home {
+  width: 200px;
+  height: 9.188rem;
+  border-radius: 10px;
+  background-color: #d9d9d9;
+}
+
+.swiper {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.menu .itens{
+  /* padding: 6px; */
+  cursor: pointer;
+}
+.menu .itens:hover{
+  background-color: #3c3c3c;
+}
+swiper-slide,
+.swiper-slide {
+  flex-basis: 0;
+  flex-shrink: 0;
+  background-position: center;
+  background-size: cover;
+}
+
 .games_display{
-    margin: 0 auto;
-    display: flex;
-    justify-items: center;
-    width: 900px;
-    height: 500px;
+  margin: 0 auto;
+  display: flex;
+  justify-items: center;
+  width: 70%;
+  height: 80vh;
 }
 .game_titulo{
-    padding-left:10%;
+  padding-left:14%;
+}
+.interacoes{
+  font-size: 27px;
+  display: flex;
+  justify-content: flex-end;
+  padding-right:14%;
+  margin-top: -20px;
+}
+.interacoes svg{
+  display: flex;
+  padding: 10px;
+}
+.menu{
+  top: 67px;
+  background: var(--Header);
+  width: 15em;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  text-align: left;
+  position: absolute;
+  z-index: 1;
+  transition: all ease 0.3s;
+  right: 100%;
+}
+.open{
+  right: 20px;
+}
+#menu_div{
+  cursor: pointer;
+
+}
+.avatar{
+  display: flex;
+  width: 60px;
+  height: 60px;
+  border-radius: 50px;
+} @media (min-width: 900px) {
+  .menu .itens{
+    padding: 6px;
+  }
+  #nome{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 140px;
+  }
 }
 @media (max-width: 899px) {
-    .games_display{
-        width: 450px;
-        height: 250px;
-    }
+  .games_display{
+      width: 450px;
+      height: 250px;
+  
+  }
+  .open{
+    right:0;
+  }
+
+  #span_i{
+    justify-content: center;
+  }
+  #nome{
+    padding: 10px;
+  }
+  .menu{
+      text-align: center;
+      width: 100%;
+      height: calc(100% - var(--HeaderHeight));
+      top: var(--HeaderHeight)
+      
+
+  }    
+
+  .menu span{
+    padding: 5vh;
+  }
 }   
+
+
+@media (max-width: 450px){
+  .games_display{
+      width: 250px;
+      height: 150px;
+  }
+}

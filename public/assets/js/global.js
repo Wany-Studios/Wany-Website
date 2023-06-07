@@ -24,3 +24,18 @@ function logout() {
     });
 }
 
+function menu_function(e)
+{
+    let img = document.querySelector("#menu img");
+    let menu = document.querySelector(".open");
+
+    document.querySelector(".menu-overlay").classList.toggle("open");
+    
+    if(!menu){
+        document.body.style.overflow = "hidden";
+        img.setAttribute("src", "../assets/img/close.png");
+    }else{
+        document.body.style.overflow = "";
+        img.setAttribute("src", "../assets/img/svg/header/menu.svg");
+    }
+}

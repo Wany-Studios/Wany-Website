@@ -1,0 +1,138 @@
+.menu-overlay {
+    background: var(--Header);
+    width: 15em;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    text-align: left;
+    position: fixed;
+    z-index: 100000;
+    transition: all ease 0.3s;
+}
+
+.menu-overlay.open {
+    inset: 0;
+    /* right: 20px; */
+}
+
+/* #menu_div { */
+    /* cursor: pointer; */
+/* } */
+#menu {
+    position: relative;
+    z-index: 100001;
+}
+
+.menu-overlay .avatar {
+    display: flex;
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+}
+
+@media (min-width: 900px) {
+    .menu-overlay .itens {
+        padding: 6px;
+    }
+
+    .menu-overlay .nome {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 140px;
+    }
+}
+
+@media (max-width: 899px) {
+    /* .open { */
+        /* right: 0; */
+    /* } */
+
+    .menu-overlay .span_i {
+        justify-content: center;
+    }
+
+    .menu-overlay .nome {
+        padding: 10px;
+    }
+
+    .menu-overlay {
+        text-align: center;
+        width: 100%;
+        height: calc(100% - var(--HeaderHeight));
+        top: var(--HeaderHeight)
+    }
+
+    .menu-overlay span {
+        padding: 5vh;
+    }
+}
+
+
+/* .menu-overlay{
+    top: 67px;
+    background: var(--Header);
+    width: 15em;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    text-align: left;
+    position: absolute;
+    z-index: 1;
+    transition: all ease 0.3s;
+    right: 100%;
+  }
+
+  .open{
+    right: 20px;
+  }
+
+  #menu_div{
+    cursor: pointer;
+  }
+  .avatar{
+    display: flex;
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+  } @media (min-width: 900px) {
+    .menu-overlay .itens{
+      padding: 6px;
+    }
+    #nome{
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 140px;
+    }
+  }
+  @media (max-width: 899px) {
+    .games_display{
+        width: 450px;
+        height: 250px;
+    
+    }
+    .open{
+      right:0;
+    }
+  
+    #span_i{
+      justify-content: center;
+    }
+    #nome{
+      padding: 10px;
+    }
+    .menu-overlay{
+        text-align: center;
+        width: 100%;
+        height: calc(100% - var(--HeaderHeight));
+        top: var(--HeaderHeight)
+        
+  
+    }    
+  
+    .menu-overlay span{
+      padding: 5vh;
+    }
+  }   
+   */
