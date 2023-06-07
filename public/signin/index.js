@@ -9,10 +9,8 @@ document.querySelector("form").addEventListener("submit", async function (e) {
 
     const data = getFormData();
 
-    if (!validateData(data)) {
-        showErrorToForm("Verifique se todos os campos são válidos");
-        return;
-    }
+    showErrorToForm();
+    if (!validateData(data)) return;
 
     makingRequest = true;
     document.body.classList.add("waiting");
@@ -26,7 +24,7 @@ document.querySelector("form").addEventListener("submit", async function (e) {
             return;
         }
 
-        showErrorToForm("Não foi possível realizar o login", 8_000);
+        showErrorToForm("Unable to complete the login", 8_000);
     });
 
     if (response && response.data?.user) {
