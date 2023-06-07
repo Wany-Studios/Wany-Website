@@ -58,29 +58,39 @@ body {
   position: relative;
 }
 
-.trending-games .item {
+.carousel .item {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 200px;
 }
 
-#trending-games-carousel .item img {
+.carousel .item img {
   object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.trending-games .item {
+  height: auto;
+}
+
+.trending-games .item img {
   height: var(--TrendingGamesCarouselHeight);
   width: 90%;
 }
-@media (min-width: 530px){
-  .trending-games{
+
+@media (min-width: 530px) {
+  .trending-games {
     margin-top: 30px;
   }
-
 }
 @media (min-width: 700px) {
   .trending-games .arrow {
     display: inline;
   }
 
-  #trending-games-carousel .item img {
+  .trending-games .item img {
     width: 60%;
     max-width: 530px;
   }
@@ -102,8 +112,6 @@ body {
   margin-top: 1rem;
   justify-content: center;
 }
-
-
 
 #container-jogos-destaque {
   display: flex;
@@ -163,47 +171,17 @@ body {
   color: #8a8484;
 }
 
-#div-pai-container-jogos-sessoes {
-  display: flex;
-  flex-direction: column;
-  column-gap: 3rem;
-  align-items: center;
-  justify-content: center;
+.games-genre > div {
+  width: 90%;
+  margin: 0 auto;
 }
 
-.container-jogos-sessoes {
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
-  margin-top: 8rem;
-  overflow: hidden;
+.games-genre > div .title {
+  margin-bottom: 6px;
 }
 
-.container-jogos-sessoes .title {
-  display: flex;
-  width: 100%;
-  margin-left: 20px;
-  margin-bottom: 20px;
-  justify-content: flex-start;
-  font-weight: 400;
-  font-size: 2rem;
-}
-
-.jogos-sessoes {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 3rem;
-  margin-bottom: 60px;
-  padding-left: 20px;
-}
-
-.jogo-retrato-home {
-  /* width: 200px; */
-  height: 9.188rem;
-  border-radius: 10px;
-  background-color: #d9d9d9;
+.games-genre > div:not(:first-child) {
+  margin-top: 40px;
 }
 
 @media (min-width: 700px) {
