@@ -15,14 +15,8 @@ document.querySelector("form").addEventListener("submit", async function (e) {
 
     const response = await sendData(data).catch(({ response }) => {
         const { status, data } = response;
-
-        if ([400, 401, 404].includes(status)) {
-            const { message } = data;
-            showErrorToForm(message);
-            return;
-        }
-
-        showErrorToForm("Unable to complete the registration", 8_000);
+        const { message } = data;
+        showErrorToForm(message);
     });
 
     if (response && response.data?.user) {
