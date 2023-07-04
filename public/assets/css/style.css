@@ -31,17 +31,10 @@
 body {
   color: var(--FontPrimaryColor);
   font-family: "Euclid Circular B", system-ui, sans-serif;
+  background-color: var(--Background);
+  min-height: 100vh;
 }
 
 body.waiting * {
   cursor: wait !important;
-}
-
-#navbar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 3.553 rem;
-  width: 70%;
-  row-gap: 2rem;
 }

@@ -24,3 +24,10 @@ function logout() {
     });
 }
 
+function getMyGames() {
+    return new Promise((resolve, reject) => {
+        axios.get(API_ENDPOINT + "games/my", DEFAULT_OPTIONS_AXIOS)
+            .then(resolve)
+            .catch(reject);
+    });
+}

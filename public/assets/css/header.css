@@ -5,15 +5,18 @@ header {
   align-items: center;
 }
 
-header .title {
+header>a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+header>a .title {
   margin-left: -5px;
 }
 
-header img {
-  height: 20px;
-}
-
-header > img:first-child {
+header>a img {
   height: 50px;
 }
 
@@ -21,7 +24,12 @@ header .icons {
   margin-left: auto;
   padding-right: 10px;
 }
-header .icons > * {
+
+header .icons img {
+  height: 20px;
+}
+
+header .icons>* {
   margin: 0 5px;
   cursor: pointer;
 }
@@ -49,13 +57,15 @@ nav img {
   height: 20px;
   width: 25px;
 }
+
 nav a {
   text-decoration: none;
   color: white;
   font-size: 0.6rem;
 }
 
-nav > div {
+nav>div,
+nav>div a {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -73,40 +83,20 @@ nav > div {
     clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);
     column-gap: 25px;
   }
-  nav > div {
+
+  nav>div {
     width: auto;
     column-gap: 2px;
   }
+
   nav img {
     height: 30px;
     width: 25px;
   }
+
   nav a {
     text-decoration: none;
     color: white;
     font-size: 0.9rem;
   }
 }
-
-/* #navbar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 3.553rem;
-  width: 61.74rem;
-  background-color: var(--Nav);
-  clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);
-}
-
-#div-icones-navbar {
-  display: flex;
-  gap: 3rem;
-}
-
-#div-icones-navbar a {
-  text-decoration: none;
-  color: white;
-  display: flex;
-  align-items: center;
-  margin-left: -2rem;
-} */
