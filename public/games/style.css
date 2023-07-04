@@ -10,64 +10,6 @@ h2 {
   font-size: 40px;
 }
 
-header {
-  height: 60px;
-  display: flex;
-  align-items: center;
-  width: 100%;
-  background-color: var(--Header);
-}
-
-
-header #logo-img {
-  object-fit: contain;
-  height: 89px;
-}
-
-#div-header-icones {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin-right: 1rem;
-  gap: 2rem;
-  width: 100%;
-}
-
-#div-header-icones img {
-  height: 30px;
-  width: 30px;
-}
-
-#div-navbar {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#navbar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 3.553rem;
-  width: 61.74rem;
-  background-color: var(--Nav);
-  clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);
-}
-
-#div-icones-navbar {
-  display: flex;
-  gap: 3rem;
-}
-
-#div-icones-navbar a {
-  text-decoration: none;
-  color: white;
-  display: flex;
-  align-items: center;
-  margin-left: -2rem;
-}
-
 #barra-de-pesquisa {
   width: 368px;
   display: flex;
