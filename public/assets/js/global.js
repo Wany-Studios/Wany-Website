@@ -1,6 +1,10 @@
 const VOID_CALLBACK = () => { }
 
-const API_ENDPOINT = "/api/";
+function isLocalhost() {
+    return location.hostname === "localhost" || location.hostname === "127.0.0.1";
+}
+
+const API_ENDPOINT = isLocalhost() ? "/api/" : "api.wany.com.br";
 
 const DEFAULT_OPTIONS_AXIOS = {
     withCredentials: true,
