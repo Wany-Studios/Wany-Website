@@ -13,6 +13,10 @@ const showErrorToForm = (() => {
     let abortController = null;
 
     return function (message, timeout) {
+        if (message instanceof Array) {
+            message = message[0];
+        }
+
         abortController && abortController.abort();
 
         let canExecuteAction = true;

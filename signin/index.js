@@ -16,9 +16,9 @@ document.querySelector("form").addEventListener("submit", async function (e) {
     document.body.classList.add("waiting");
 
     const response = await sendData(data).catch(({ response }) => {
-        const { status, data } = response;
-        const { message } = data;
-        showErrorToForm(message);
+        const { data } = response;
+        const { message, statusCode, error } = data;
+        if (message.length) showErrorToForm(message);
     });
 
     if (response && response.data?.user) {
@@ -30,8 +30,10 @@ document.querySelector("form").addEventListener("submit", async function (e) {
 });
 
 function sendData(data) {
-    return new Promise((resolve, reject) => {
-        axios.post(API_ENDPOINT + "auth/signin", data, DEFAULT_OPTIONS_AXIOS)
+    return new Promise(async (resolve, reject) => {
+        const routes = await getRoutes();
+
+        axios.post(routes.login_url, data, DEFAULT_OPTIONS_AXIOS)
             .then(resolve)
             .catch(reject);
     });
