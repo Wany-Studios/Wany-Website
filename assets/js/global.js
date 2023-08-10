@@ -68,7 +68,7 @@ function logout() {
     return new Promise(async (resolve, reject) => {
         const routes = await getRoutes();
 
-        axios.delete(routes.logout_url, DEFAULT_OPTIONS_AXIOS)
+        axios.get(routes.logout_url, DEFAULT_OPTIONS_AXIOS)
             .then(resolve)
             .catch(reject);
     });
@@ -99,6 +99,16 @@ function requestResetPassword() {
         const routes = await getRoutes();
 
         axios.post(routes.forgot_password_url, DEFAULT_OPTIONS_AXIOS)
+            .then(resolve)
+            .catch(reject);
+    });
+}
+
+function getMe() {
+    return new Promise(async (resolve, reject) => {
+        const routes = await getRoutes();
+
+        axios.get(routes.current_user_url, DEFAULT_OPTIONS_AXIOS)
             .then(resolve)
             .catch(reject);
     });
