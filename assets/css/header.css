@@ -5,13 +5,21 @@ header {
   align-items: center;
 }
 
+header.header-center {
+  justify-content: center;
+}
+
+
+
 header>a {
   display: flex;
   align-items: center;
   text-decoration: none;
   color: inherit;
 }
-
+header .secundary-label{
+  font-size: 22px;
+}
 header>a .title {
   margin-left: -5px;
 }
