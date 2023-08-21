@@ -1,9 +1,5 @@
 @import url("../assets/css/header.css");
-
-body {
-  background-color: var(--Background);
-  color: var(--FontPrimaryColor);
-}
+@import url("../assets/css/menu.css");
 
 h2 {
   font-weight: 400;
