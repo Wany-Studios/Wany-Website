@@ -1,15 +1,12 @@
 
-main{
-}
-
 form input[type="text"]{
     width: 35px;
     height: 35px;
+    font-size: 20px;
     background: #858585;
     border: none;
     text-align: center;
     text-transform: uppercase;
-    font-size: 20px;
     border-radius: 10px;
 }
 
@@ -31,7 +28,7 @@ div.container{
     position: absolute;
     left: 50%;
     top: 50%;
-    height: 300px;
+    height: 60%;
     background: var(--Header);
     transform: translate(-50%, -50%);
     text-align: center;
@@ -43,7 +40,18 @@ div.sub-container{
     text-align: center;
     padding: 15px;
 }
-
+.digite_codigo{
+    font-size: 13px;
+}
+.nao_recebeu{
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+}
+.nao_recebeu:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
 
 @media (max-width: 700px) {
     div.container
@@ -51,3 +59,22 @@ div.sub-container{
         width: 80%;
     }
 }
+@media (max-width: 300px){
+    form input[type="text"]{
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+    }
+}
+@media (max-height: 1400px) {
+    div.container{
+        height: 400px;
+    }
+}
+@media (min-width: 1000px){
+    .informacoes_iniciais{
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+

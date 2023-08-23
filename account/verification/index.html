@@ -11,7 +11,7 @@
 </head>
 <body>
     <header class="header-center">
-        <a href=".">
+        <a href="../../home/index.html">
             <img
                 loading="lazy"
                 id="logo-img"
@@ -33,7 +33,7 @@
             <div class="sub-container">
                 <br>
                 <form>
-                    <div>
+                    <div class="informacoes_iniciais">
                         <label>
                             Um código de verificação acaba de ser enviado.
                         </label>
@@ -41,6 +41,7 @@
                         <label>
                             Por favor verifique sua caixa de entrada.
                         </label>
+                        <br><br>
                     </div>
                     
                     <div>
@@ -51,12 +52,12 @@
                         <input type="text" maxlength="1" id="verification" required>
                         <input type="text" maxlength="1" id="verification" required>
                         <br>
-                        <a href="#"><label>Digite o código de seis dígitos</label></a>
+                        <label class="digite_codigo">Digite o código de seis dígitos</label>
                     </div>
-    
-                    <button onclick="verifyAccount(this)">CONCLUIR</button>
-                </form>
-                <a><label>Não recebeu o código?</label></a>
+                    <br>
+                    <button type="button" id="btn-enviar">CONCLUIR</button>
+                </form><br>
+                <a href="#" class="nao_recebeu">Não recebeu o código?</a>
             </div>
             
         </div>
