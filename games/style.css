@@ -7,11 +7,26 @@ body {
 
 h2 {
   font-weight: 400;
-  font-size: 40px;
+  font-size: 3rem;
+}
+
+#container-pesquisa {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  padding: 0 10px;
+  column-gap: 10px;
+}
+
+#div-barra-de-pesquisa {
+  width: 65%;
+  max-width: 400px;
 }
 
 #barra-de-pesquisa {
-  width: 368px;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,14 +34,54 @@ h2 {
   border-radius: 3px;
 }
 
+#barra-de-pesquisa > img {
+  cursor: pointer;
+}
+
 #barra-de-pesquisa img {
   height: 25px;
 }
 
+#botao-filtro-overlay {
+  display: flex;
+}
+
 #botao-filtro {
+  background-color: #464545;
+  width: 110px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 40px 40px 40px 40px;
+  left: 10px;
+  transition: ease-in 0.2s;
+}
+
+#botao-filtro:hover {
+  background-color: #333232;
+  cursor: pointer;
+}
+
+#botao-filtro-imagem {
   display: flex;
   align-items: center;
   column-gap: 10px;
+}
+
+#botao-filtro-imagem img {
+  width: 25px;
+}
+
+@media (max-width: 700px) {
+  #botao-filtro {
+  }
+  #div-barra-de-pesquisa {
+    width: 90%;
+  }
+  #container-pesquisa {
+    margin-bottom: 40px;
+  }
 }
 
 input#search-bar:focus {
@@ -42,59 +97,8 @@ input#search-bar:focus {
   background-color: #d9d9d9;
 }
 
-#div-pai-container-jogos-sessoes {
-  display: flex;
-  flex-direction: column;
-  column-gap: 3rem;
-  align-items: center;
-  justify-content: center;
-}
-
-.container-jogos-sessoes {
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
-  margin-top: 8rem;
-  overflow: hidden;
-}
-
-.container-jogos-sessoes h2 {
-  display: flex;
-  width: 100%;
-  margin-left: 65px;
-  margin-bottom: 20px;
-  justify-content: flex-start;
-  font-weight: 400;
-  font-size: 2rem;
-}
-
-.jogos-sessoes {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 3rem;
-  margin-bottom: 150px;
-  padding-left: 20px;
-}
-
-.jogo-retrato-home {
-  width: 200px;
-  height: 9.188rem;
-  border-radius: 10px;
-  background-color: #d9d9d9;
-}
-
-.swiper {
-  width: 100%;
-  padding-top: 50px;
-  padding-bottom: 50px;
-}
-
-swiper-slide,
-.swiper-slide {
-  flex-basis: 0;
-  flex-shrink: 0;
-  background-position: center;
-  background-size: cover;
+@media (max-width: 330px) {
+  #barra-de-pesquisa {
+    width: 100%;
+  }
 }
