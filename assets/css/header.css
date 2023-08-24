@@ -9,9 +9,7 @@ header.header-center {
   justify-content: center;
 }
 
-
-
-header>a {
+header > a {
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -20,11 +18,11 @@ header>a {
 header .secundary-label{
   font-size: 22px;
 }
-header>a .title {
+header > a .title {
   margin-left: -5px;
 }
 
-header>a img {
+header > a img {
   height: 50px;
 }
 
@@ -37,9 +35,13 @@ header .icons img {
   height: 20px;
 }
 
-header .icons>* {
+header .icons > * {
   margin: 0 5px;
   cursor: pointer;
+}
+
+header .icons>a {
+  text-decoration: none;
 }
 
 header .hide-mobile {
@@ -69,11 +71,11 @@ nav img {
 nav a {
   text-decoration: none;
   color: white;
-  font-size: 0.6rem;
+  font-size: 0.8rem;
 }
 
-nav>div,
-nav>div a {
+nav > div,
+nav > div a {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -92,7 +94,7 @@ nav>div a {
     column-gap: 25px;
   }
 
-  nav>div {
+  nav > div {
     width: auto;
     column-gap: 2px;
   }
