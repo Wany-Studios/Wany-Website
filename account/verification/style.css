@@ -1,5 +1,7 @@
+@import url("../../assets/css/header.css");
+@import url("../../assets/css/menu.css");
 
-form input[type="text"]{
+.form input[type="text"]{
     width: 35px;
     height: 35px;
     font-size: 20px;
@@ -10,7 +12,7 @@ form input[type="text"]{
     border-radius: 10px;
 }
 
-form button
+.form button
 {
     width: 90%;
     background: var(--PrimaryButtonColor);
@@ -23,7 +25,6 @@ form button
     border-radius: 10px;
 }
 
-
 div.container{
     position: absolute;
     left: 50%;
@@ -35,20 +36,19 @@ div.container{
     border-radius: 6px;
 }
 
-
 div.sub-container{
     text-align: center;
     padding: 15px;
 }
-.digite_codigo{
+.enter-code-label {
     font-size: 13px;
 }
-.nao_recebeu{
+.code-not-received{
     color: white;
     text-decoration: none;
     font-size: 15px;
 }
-.nao_recebeu:hover{
+.code-not-received:hover{
     cursor: pointer;
     text-decoration: underline;
 }
@@ -60,7 +60,7 @@ div.sub-container{
     }
 }
 @media (max-width: 300px){
-    form input[type="text"]{
+    .form input[type="text"]{
         width: 28px;
         height: 28px;
         font-size: 12px;
