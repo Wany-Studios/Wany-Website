@@ -112,7 +112,7 @@
 }
 
 #trending-games-carousel {
-  height: var(----TrendingGamesCarouselHeight);
+  height: var(--TrendingGamesCarouselHeight);
   margin-top: 10px;
   position: relative;
 }
