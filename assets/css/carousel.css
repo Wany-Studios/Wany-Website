@@ -1,4 +1,4 @@
-.swiper-slide .jogo-destaque {
+.swiper-slide .featured-game {
   background-color: #d9d9d9;
   margin: 0 auto;
 }
@@ -13,6 +13,11 @@
   background-position: center;
   background-size: cover;
 }
+
+.games-genre {
+    margin-top: 40px;
+}
+
 .games-genre > div {
   width: 90%;
   margin: 0 auto;
@@ -32,7 +37,6 @@
   align-items: center;
   justify-content: center;
   gap: 3rem;
-  margin-bottom: 150px;
   padding-left: 20px;
 }
 
@@ -163,12 +167,12 @@
   gap: 1rem;
 }
 
-.swiper-slide .jogo-destaque {
+.swiper-slide .featured-game {
   background-color: #d9d9d9;
   margin: 0 auto;
 }
 
-.jogo-destaque {
+.featured-game {
   height: 18.188rem;
   width: 30.938rem;
 }
