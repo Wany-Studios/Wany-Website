@@ -36,7 +36,7 @@ body {
   color: #8a8484;
 }
 
-#botao-seta-jogos-sessoes {
+#botao-seta-section-games {
   display: flex;
   align-items: center;
   justify-content: flex-end;

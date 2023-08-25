@@ -37,6 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function getMenuOverlay() {
         const element = document.createElement('section');
+        const signinUrl = resolveUrl() + "signin";
+
         element.id = 'menu-overlay';
         element.innerHTML = `
             <div>
@@ -49,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <ul>
                 <li><a href="#">Fazer Upload</a></li>
                 <li><a href="#">Perfil</a></li>
-                <li><a href="../signin">Login</a></li>
+                <li><a href="${signinUrl}">Login</a></li>
                 <li><a href="javascript:menuLogout()">Sair</a></li>
             </ul>
         `;

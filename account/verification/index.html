@@ -6,65 +6,76 @@
     <title>Account Verification</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="../../assets/css/style.css">
-    <link rel="stylesheet" href="../../assets/css/header.css">
-    <script src="./index.js" defer></script>
 </head>
 <body>
-    <header class="header-center">
-        <a href="../../home/index.html">
-            <img
-                loading="lazy"
-                id="logo-img"
-                src="../../assets/img/logo.png"
-                alt="a logo do website, um fantasma com cores vibrantes"
-            />
-
-            <h1 class="title secundary-label">WANY</h1>
+    <header>
+        <a href=".">
+            <img loading="lazy" id="logo-img" src="../../assets/img/logo.png" alt="a logo do website, um fantasma com cores vibrantes" />
+            <h1 class="title">WANY</h1>
         </a>
+        
+        <div class="icons">
+            <a href="../../signin>
+                <img loading=" lazy" class="hide-mobile" src="../../assets/img/svg/header/person.svg" alt="ícone de uma pessoa" />
+            </a>
+            
+            <img id="menu" loading="lazy" src="../../assets/img/svg/header/menu.svg" alt="ícone de uma menu" />
+        </div>
     </header>
 
-    
+    <nav>
+        <div>
+            <a href=".">
+            <img loading="lazy" src="../../assets/img/svg/navbar/icon-home.svg" alt="ícone da home" /> Home </a>
+        </div>
+        <div>
+            <a href="../../games/">
+            <img loading="lazy" src="../../assets/img/svg/navbar/controle-videogame.svg" alt="ícone de controle de vídeogame" /> Games </a>
+        </div>
+        <div>
+            <a href="#">
+            <img loading="lazy" src="../../assets/img/svg/navbar/megafone.svg" alt="ícone de um megafone" /> News </a>
+        </div>
+        <div>
+            <a href="#">
+            <img loading="lazy" src="../../assets/img/svg/navbar/estrela.svg" alt="ícone de uma estrela" /> Popular </a>
+        </div>
+    </nav>
+
     <main>
         <div class="container">
-            <br>
-            <br>
-            <h3>Verifica E-mail</h3>
+            <h3 class="title">E-mail Verification</h3>
             
             <div class="sub-container">
-                <br>
-                <form>
-                    <div class="informacoes_iniciais">
-                        <label>
-                            Um código de verificação acaba de ser enviado.
-                        </label>
-                        <br>
-                        <label>
-                            Por favor verifique sua caixa de entrada.
-                        </label>
-                        <br><br>
+                <div class="initial-information">
+                    <label>A verification code was send to your e-mail.</label>
+                    <label>Please, verify your inbox.</label>
+                </div>
+                
+                <div class="textboxes-container">
+                    <div class="textboxes">
+                        <input type="text" maxlength="1" class="verification" required>
+                        <input type="text" maxlength="1" class="verification" required>
+                        <input type="text" maxlength="1" class="verification" required>
+                        <input type="text" maxlength="1" class="verification" required>
+                        <input type="text" maxlength="1" class="verification" required>
+                        <input type="text" maxlength="1" class="verification" required>
                     </div>
-                    
-                    <div>
-                        <input type="text" maxlength="1" id="verification" required>
-                        <input type="text" maxlength="1" id="verification" required>
-                        <input type="text" maxlength="1" id="verification" required>
-                        <input type="text" maxlength="1" id="verification" required>
-                        <input type="text" maxlength="1" id="verification" required>
-                        <input type="text" maxlength="1" id="verification" required>
-                        <br>
-                        <label class="digite_codigo">Digite o código de seis dígitos</label>
-                    </div>
-                    <br>
-                    <button type="button" id="btn-enviar">CONCLUIR</button>
-                </form><br>
-                <a href="#" class="nao_recebeu">Não recebeu o código?</a>
+
+                    <label class="enter-code-label">Please enter a six-digit code</label>
+                </div>
+
+                <button type="button" id="btn-send">Finalize</button>
+                
+                <a href="#" class="code-not-received">didn't receive the code?</a>
             </div>
             
         </div>
     </main>
-
-    <footer>
-
-    </footer>
+    
+    <script src="../../assets/lib/axios/axios.min.js"></script>
+    <script src="../../assets/js/global.js"></script>
+    <script src="../../assets/js/menu.js"></script>
+    <script src="./index.js"></script>
 </body>
 </html>

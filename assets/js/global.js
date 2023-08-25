@@ -4,11 +4,15 @@ function isLocalhost() {
     return location.hostname === 'localhost' || location.hostname === '127.0.0.1';
 }
 
+function isCloudShell() {
+    return window.location.host.includes("cloudshell");
+}
+
 function resolveUrl() {
     return window.location.protocol + '//' + window.location.host + '/';
 }
 
-const API_ENDPOINT = isLocalhost() ? '/api/' : 'api.wany.com.br';
+const API_ENDPOINT = isLocalhost() || isCloudShell() ? '/api/' : 'api.wany.com.br';
 
 const DEFAULT_OPTIONS_AXIOS = {
     withCredentials: true,

@@ -1,9 +1,9 @@
 
 document.addEventListener("DOMContentLoaded", () => {
-    const inputs = [...document.querySelectorAll("#verification")];
-    const btnEnviar = document.getElementById("btn-enviar");
+    const inputs = [...document.querySelectorAll(".verification")];
+    const btnSend = document.getElementById("btn-send");
 
-    btnEnviar.addEventListener("click", () => {
+    btnSend.addEventListener("click", () => {
         verifyAccount();
     });
 

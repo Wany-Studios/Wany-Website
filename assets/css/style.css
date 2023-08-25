@@ -4,6 +4,11 @@
   --Nav: #464545;
   --Header: #2f2f2f;
   --Background: #181818;
+  
+  --ContentLeftHeight: calc(
+        100vh   /* page height   */
+        - 85px  /* header height - nav height */
+    );
 
   --MenuOverlayBackground: #2f2f2f;
 
@@ -14,6 +19,7 @@
   --PrimaryButtonHoverColor: #ff4f0a;
 
   --AuthBackgroudColor: #2f2f2f55;
+  --AccountVerificationBackgroundColor: #2f2f2f;
 
   --InputFocusColor: #f54703;
 
