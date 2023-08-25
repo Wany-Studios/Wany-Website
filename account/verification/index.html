@@ -6,7 +6,6 @@
     <title>Account Verification</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="../../assets/css/style.css">
-    <script src="./index.js" defer></script>
 </head>
 <body>
     <header>
@@ -45,39 +44,38 @@
 
     <main>
         <div class="container">
-            <h3>E-mail verification</h3>
+            <h3 class="title">E-mail Verification</h3>
             
             <div class="sub-container">
-                <div class="form">
-                    <div class="informacoes_iniciais">
-                        <label>A verification code was send to your e-mail.</label>
-                        <label>Please, verify your inbox.</label>
-                    </div>
-                    
-                    <div>
-                        <div class="textboxes">
-                            <input type="text" maxlength="1" id="verification" required>
-                            <input type="text" maxlength="1" id="verification" required>
-                            <input type="text" maxlength="1" id="verification" required>
-                            <input type="text" maxlength="1" id="verification" required>
-                            <input type="text" maxlength="1" id="verification" required>
-                            <input type="text" maxlength="1" id="verification" required>
-                        </div>
-
-                        <label class="enter-code-label">Please enter a six-digit code</label>
-                    </div>
-
-                    <button type="button" id="btn-send">Finalize</button>
+                <div class="initial-information">
+                    <label>A verification code was send to your e-mail.</label>
+                    <label>Please, verify your inbox.</label>
                 </div>
                 
-                <a href="#" class="code-not-received">Didn't receive the code?</a>
+                <div class="textboxes-container">
+                    <div class="textboxes">
+                        <input type="text" maxlength="1" class="verification" required>
+                        <input type="text" maxlength="1" class="verification" required>
+                        <input type="text" maxlength="1" class="verification" required>
+                        <input type="text" maxlength="1" class="verification" required>
+                        <input type="text" maxlength="1" class="verification" required>
+                        <input type="text" maxlength="1" class="verification" required>
+                    </div>
+
+                    <label class="enter-code-label">Please enter a six-digit code</label>
+                </div>
+
+                <button type="button" id="btn-send">Finalize</button>
+                
+                <a href="#" class="code-not-received">didn't receive the code?</a>
             </div>
             
         </div>
     </main>
     
-    <br/>
-
+    <script src="../../assets/lib/axios/axios.min.js"></script>
+    <script src="../../assets/js/global.js"></script>
     <script src="../../assets/js/menu.js"></script>
+    <script src="./index.js"></script>
 </body>
 </html>

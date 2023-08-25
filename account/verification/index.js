@@ -1,6 +1,6 @@
 
 document.addEventListener("DOMContentLoaded", () => {
-    const inputs = [...document.querySelectorAll("#verification")];
+    const inputs = [...document.querySelectorAll(".verification")];
     const btnSend = document.getElementById("btn-send");
 
     btnSend.addEventListener("click", () => {
