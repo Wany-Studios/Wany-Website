@@ -15,7 +15,7 @@ document.querySelector("form").addEventListener("submit", async function (e) {
     makingRequest = true;
     document.body.classList.add("waiting");
 
-    const response = await sendData(data).catch(({ response }) => {
+    const response = await signIn(data).catch(({ response }) => {
         const { data } = response;
         const { message, statusCode, error } = data;
         if (message.length) showErrorToForm(message);
@@ -29,7 +29,7 @@ document.querySelector("form").addEventListener("submit", async function (e) {
     makingRequest = false;
 });
 
-function sendData(data) {
+function signIn(data) {
     return new Promise(async (resolve, reject) => {
         const routes = await getRoutes();
 
