@@ -5,7 +5,7 @@ function isLocalhost() {
 }
 
 function isCloudShell() {
-    return window.location.host.includes("cloudshell");
+    return window.location.host.includes('cloudshell');
 }
 
 function resolveUrl() {
@@ -41,10 +41,8 @@ function getInfo() {
  * }>>}
  */
 const getRoutes = (() => {
-    let promise = getInfo();
-
     return async function (replaces = {}) {
-        const { data } = await promise;
+        const { data } = await getInfo();
 
         const routes = {
             avatar_url: API_ENDPOINT + data.avatar_url,

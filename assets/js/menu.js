@@ -37,20 +37,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function getMenuOverlay() {
         const element = document.createElement('section');
-        const signinUrl = resolveUrl() + "signin";
+        const signinUrl = resolveUrl() + "signin/";
+        const profileUrl = resolveUrl() + "profile/";
 
         element.id = 'menu-overlay';
         element.innerHTML = `
             <div>
                 <div class="avatar">
-                    <img src="https://static.vecteezy.com/system/resources/previews/009/397/892/original/woman-face-expression-clipart-design-illustration-free-png.png" />
+                    <img alt="user image" src="https://static.vecteezy.com/system/resources/previews/009/397/892/original/woman-face-expression-clipart-design-illustration-free-png.png" />
                 </div>
                 <div><h3 title="Seu nome completo inteiro">Seu Nome completo</h3></div>
             </div>
 
             <ul>
                 <li><a href="#">Fazer Upload</a></li>
-                <li><a href="#">Perfil</a></li>
+                <li><a href="${profileUrl}">Perfil</a></li>
                 <li><a href="${signinUrl}">Login</a></li>
                 <li><a href="javascript:menuLogout()">Sair</a></li>
             </ul>
@@ -71,7 +72,7 @@ async function menuLogout() {
     try {
         document.body.classList.add('waiting');
         await logout();
-        document.location.href = resolveUrl() + 'logout';
+        document.location.href = resolveUrl() + 'logout/';
     } catch (err) {
         alert('Unable to logout');
         console.error(err);
