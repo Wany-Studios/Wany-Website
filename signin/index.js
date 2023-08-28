@@ -22,22 +22,12 @@ document.querySelector("form").addEventListener("submit", async function (e) {
     });
 
     if (response && response.data?.user) {
-        window.location.href = "/home/";
+        window.location.href = resolveUrl() + "home/";
     }
 
     document.body.classList.remove("waiting");
     makingRequest = false;
 });
-
-function signIn(data) {
-    return new Promise(async (resolve, reject) => {
-        const routes = await getRoutes();
-
-        axios.post(routes.login_url, data, DEFAULT_OPTIONS_AXIOS)
-            .then(resolve)
-            .catch(reject);
-    });
-}
 
 function validateData(data) {
     // TODO: implement this function

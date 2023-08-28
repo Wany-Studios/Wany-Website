@@ -57,3 +57,12 @@ const showErrorToForm = (() => {
     }
 })();
 
+function signIn(data) {
+    return new Promise(async (resolve, reject) => {
+        const routes = await getRoutes();
+
+        axios.post(routes.login_url, data, DEFAULT_OPTIONS_AXIOS)
+            .then(resolve)
+            .catch(reject);
+    });
+}

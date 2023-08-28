@@ -17,13 +17,28 @@ main {
 }
 
 .verification {
-    width: 35px;
-    height: 35px;
-    font-size: 1rem;
+    --size: 28px;
+    width: var(--size);
+    height: var(--size);
+    font-size: 1.4rem;
+    font-family: system-ui;
     background: #858585;
     border: none;
     text-align: center;
     border-radius: 6px;
+    text-transform: uppercase;
+}
+
+@media (min-width: 330px) {
+    .verification {
+        --size: 48px;
+    }
+}
+
+@media (min-width: 530px) {
+    .verification {
+        --size: 58px;
+    }
 }
 
 #btn-send
@@ -60,12 +75,12 @@ main {
 }
 
 .enter-code-label {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
 }
 
 .code-not-received{
     color: white;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
 }
 .code-not-received:hover{
     cursor: pointer;

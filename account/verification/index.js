@@ -1,10 +1,13 @@
+getMe().catch(() => {
+    window.location.href = resolveUrl() + "signin/";
+});
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async() => {
     const inputs = [...document.querySelectorAll(".verification")];
     const btnSend = document.getElementById("btn-send");
 
-    btnSend.addEventListener("click", () => {
-        verifyAccount();
+    btnSend.addEventListener("click", async () => {
+        await verify();
     });
 
     inputs.forEach((input, index, arr) => {
@@ -14,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        input.addEventListener("keyup", (event) => {
+        input.addEventListener("keyup", async (event) => {
             input.value = input.value.trim();
 
             if (event.key === 'Backspace') {
@@ -24,29 +27,35 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
             else if (event.key === 'Enter') {
-                verifyAccount();
+                await verify();
             }
         });
     });
-    
-    function verifyValue() {
-        const value = inputs.reduce((result, input) => result + input.value.trim(), "");
 
-        if (value.length !== inputs.length) {
-            return false;
-        }
-        return true;
+    function getValue() {
+        return inputs.reduce((result, input) => result + input.value.trim(), "").toUpperCase();
     }
 
+    function checkValue() {
+        return getValue().length === inputs.length;
+    }
 
-    function verifyAccount() {
-        if (!verifyValue()) {
+    async function verify() {
+        if (!checkValue()) {
             alert("Digite o código completo!");
             return;
         }
 
-        alert("Passou pelas verificações!");
+        const token = getValue();
 
+        try {
+            await verifyAccount(token);
+            alert("Your account has been verified");
+            window.location.href = resolveUrl() + "home/";
+        }
+        catch(err) {
+            alert("Error: " + err.message);
+        }
     }
 });
 

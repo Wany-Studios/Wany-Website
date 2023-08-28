@@ -141,3 +141,4 @@ function getMyGames() {
             .catch(reject);
     });
 }
+

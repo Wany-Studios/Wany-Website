@@ -13,14 +13,26 @@ document.querySelector("form").addEventListener("submit", async function (e) {
     makingRequest = true;
     document.body.classList.add("waiting");
 
-    const response = await signUp(data).catch(({ response }) => {
-        const { data } = response;
-        const { message, statusCode, error } = data;
-        if (message.length) showErrorToForm(message);
-    });
+    const response = await signUp(data)
+        .catch(({ response }) => {
+            const { data } = response;
+            const { message, statusCode, error } = data;
+            if (message.length) showErrorToForm(message);
+        });
 
-    if (response && response.data?.user) {
-        window.location.href = "/home/";
+    if (response.status === 201 || response.status === 200) {
+        try {
+            await signIn({
+                usernameOrEmail: data.email,
+                password: data.password
+            })
+
+            window.location.href = resolveUrl() + "account/verification/";
+        }
+        catch(err) {
+            console.error(err);
+            window.location.href = resolveUrl() + "signin/";
+        }
     }
 
     document.body.classList.remove("waiting");
