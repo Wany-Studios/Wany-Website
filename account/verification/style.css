@@ -9,7 +9,7 @@ main {
 }
 
 .title {
-    font-size: 2rem;
+    font-size: 1.3rem;
 }
 
 .initial-information {
@@ -53,6 +53,13 @@ main {
     text-align: center;
     border-radius: 10px;
     cursor: pointer;
+}
+
+.email-icon{
+    display: block;
+    width: 20%;
+    margin: 0 auto;
+    height: 20%;
 }
 
 .container{

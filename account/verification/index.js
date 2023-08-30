@@ -1,5 +1,5 @@
 getMe().catch(() => {
-    window.location.href = resolveUrl() + "signin/";
+     window.location.href = resolveUrl() + "signin/";
 });
 
 document.addEventListener("DOMContentLoaded", async() => {
