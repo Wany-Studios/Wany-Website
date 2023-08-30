@@ -1,6 +1,6 @@
-// getMe().catch(() => {
-//     window.location.href = resolveUrl() + "signin/";
-// });
+getMe().catch(() => {
+     window.location.href = resolveUrl() + "signin/";
+});
 
 document.addEventListener("DOMContentLoaded", async() => {
     const inputs = [...document.querySelectorAll(".verification")];
