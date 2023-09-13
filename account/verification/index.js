@@ -1,8 +1,8 @@
-getMe().catch(() => {
-    window.location.href = resolveUrl() + "signin/";
-});
+// getMe().catch(() => {
+//     window.location.href = resolveUrl() + "signin/";
+// });
 
-document.addEventListener("DOMContentLoaded", async() => {
+document.addEventListener("DOMContentLoaded", async () => {
     const inputs = [...document.querySelectorAll(".verification")];
     const btnSend = document.getElementById("btn-send");
 
@@ -53,10 +53,23 @@ document.addEventListener("DOMContentLoaded", async() => {
             alert("Your account has been verified");
             window.location.href = resolveUrl() + "home/";
         }
-        catch(err) {
+        catch (err) {
             alert("Error: " + err.message);
         }
     }
+
+
+    document.addEventListener("paste", (e) => {
+        const clipboardData = e.clipboardData || window.clipboardData;
+        const pastedData = clipboardData.getData('Text');
+
+            pastedData.split('').slice(0,6).forEach((value, index)=>{
+                    console.log(value);
+                    inputs[index].value = value;
+                
+            });
+        
+    });
 });
 
 
