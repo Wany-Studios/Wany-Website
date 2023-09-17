@@ -1,17 +1,20 @@
 const VOID_CALLBACK = () => {};
-const CHANNEL_EVENTS = createEnum("USER_DATA_UPDATED");
-const LOCALSTORAGE = createEntries("LOCAL_USER_DATA");
+const CHANNEL_EVENTS = createEnum('USER_DATA_UPDATED');
+const LOCALSTORAGE = createEntries('LOCAL_USER_DATA');
 const DEFAULT_OPTIONS_AXIOS = {
     withCredentials: true,
     credentials: 'include',
 };
 
 const [postMessage, channelListenForMessage] = (() => {
-    const channel = new BroadcastChannel("Wany+Channel");
+    const channel = new BroadcastChannel('Wany+Channel');
     const listeners = {};
 
-    channel.addEventListener("message", async (event) => {
-        const { data: { type, data }, ...aditional } = event;
+    channel.addEventListener('message', async (event) => {
+        const {
+            data: { type, data },
+            ...aditional
+        } = event;
         listeners[type]?.forEach((listener) => listener(data, aditional));
     });
 
@@ -26,6 +29,30 @@ const [postMessage, channelListenForMessage] = (() => {
 
     return [postMessage, channelListen];
 })();
+
+function loadComponent(ref, componentName, cssFileNames = [], additionalJS = []) {
+    return new Promise((resolve) => {
+        fetch(resolveUrl() + 'assets/components/' + componentName + '.html')
+            .then((response) => response.text())
+            .then((html) => {
+                ref.attachShadow({ mode: 'open' }).innerHTML = html;
+
+                cssFileNames.forEach((cssName) => {
+                    const link = document.createElement('link');
+                    link.href = resolveUrl() + 'assets/css/' + cssName + '.css';
+                    link.rel = 'stylesheet';
+                    ref.shadowRoot.appendChild(link);
+                });
+
+                additionalJS.forEach((jsFileName) => {
+                    const script = document.createElement('script');
+                    script.src = resolveUrl() + 'assets/js/' + jsFileName + '.js';
+                    ref.shadowRoot.appendChild(script);
+                });
+            })
+            .finally(resolve);
+    });
+}
 
 function resolveUrl() {
     return window.location.protocol + '//' + window.location.host + '/';
@@ -128,7 +155,7 @@ function saveLocalUser() {
                 id,
                 role,
                 updated_at,
-                username
+                username,
             } = response.data;
 
             postMessage(CHANNEL_EVENTS.USER_DATA_UPDATED, { ...response.data });
@@ -137,21 +164,23 @@ function saveLocalUser() {
                 return deleteLocalUser();
             }
 
-            localStorage.setItem(LOCALSTORAGE.USER_DATA, JSON.stringify({
-                avatar,
-                avatar_url,
-                birth_date,
-                created_at,
-                email,
-                id,
-                role,
-                updated_at,
-                username
-            }));
+            localStorage.setItem(
+                LOCALSTORAGE.USER_DATA,
+                JSON.stringify({
+                    avatar,
+                    avatar_url,
+                    birth_date,
+                    created_at,
+                    email,
+                    id,
+                    role,
+                    updated_at,
+                    username,
+                })
+            );
 
             resolve();
-        }
-        catch(err) {
+        } catch (err) {
             reject(err);
         }
     });
@@ -208,9 +237,11 @@ function getMyGames() {
 }
 
 function createEnum(...entries) {
-    return Object.freeze(Object.fromEntries(entries.map((entry, index) => [entry, index])));
+    return Object.freeze(
+        Object.fromEntries(entries.map((entry, index) => [entry, index]))
+    );
 }
 
 function createEntries(...entries) {
-    return Object.freeze(Object.fromEntries(entries.map(entry => [entry, entry])));
+    return Object.freeze(Object.fromEntries(entries.map((entry) => [entry, entry])));
 }

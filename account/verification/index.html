@@ -1,82 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account Verification</title>
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="../../assets/css/style.css">
-</head>
-<body>
-    <header>
-        <a href="../../signin">
-            <img loading="lazy" id="logo-img" src="../../assets/img/logo.png" alt="a logo do website, um fantasma com cores vibrantes" />
-            <h1 class="title">WANY</h1>
-        </a>
-        
-        <div class="icons">
-            <a href="../../signin">
-                <img loading=" lazy" class="hide-mobile" src="../../assets/img/svg/header/person.svg" alt="ícone de uma pessoa" />
-            </a>
-            
-            <img id="menu" loading="lazy" src="../../assets/img/svg/header/menu.svg" alt="ícone de uma menu" />
-        </div>
-    </header>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Account Verification</title>
+        <link rel="stylesheet" href="./style.css" />
+        <link rel="stylesheet" href="../../assets/css/style.css" />
+    </head>
+    <body>
+        <wany-header></wany-header>
 
-    <nav>
-        <div>
-            <a href=".">
-            <img loading="lazy" src="../../assets/img/svg/navbar/icon-home.svg" alt="ícone da home" /> Home </a>
-        </div>
-        <div>
-            <a href="../../games/">
-            <img loading="lazy" src="../../assets/img/svg/navbar/controle-videogame.svg" alt="ícone de controle de vídeogame" /> Games </a>
-        </div>
-        <div>
-            <a href="#">
-            <img loading="lazy" src="../../assets/img/svg/navbar/megafone.svg" alt="ícone de um megafone" /> News </a>
-        </div>
-        <div>
-            <a href="#">
-            <img loading="lazy" src="../../assets/img/svg/navbar/estrela.svg" alt="ícone de uma estrela" /> Popular </a>
-        </div>
-    </nav>
+        <nav>
+            <div>
+                <a href=".">
+                    <img
+                        loading="lazy"
+                        src="../../assets/img/svg/navbar/icon-home.svg"
+                        alt="ícone da home"
+                    />
+                    Home
+                </a>
+            </div>
+            <div>
+                <a href="../../games/">
+                    <img
+                        loading="lazy"
+                        src="../../assets/img/svg/navbar/controle-videogame.svg"
+                        alt="ícone de controle de vídeogame"
+                    />
+                    Games
+                </a>
+            </div>
+            <div>
+                <a href="#">
+                    <img
+                        loading="lazy"
+                        src="../../assets/img/svg/navbar/megafone.svg"
+                        alt="ícone de um megafone"
+                    />
+                    News
+                </a>
+            </div>
+            <div>
+                <a href="#">
+                    <img
+                        loading="lazy"
+                        src="../../assets/img/svg/navbar/estrela.svg"
+                        alt="ícone de uma estrela"
+                    />
+                    Popular
+                </a>
+            </div>
+        </nav>
 
-    <main>
-        <div class="container">
-            <img src="../../assets/img/svg/email-icon.svg" class="email-icon">
-            <h3 class="title">E-mail Verification</h3>
-            
-            <div class="sub-container">
-                <div class="initial-information">
-                    <label>A verification code was send to your e-mail.</label>
-                    <label>Please, verify your inbox.</label>
-                </div>
-                
-                <div class="textboxes-container">
-                    <div class="textboxes">
-                        <input type="text" maxlength="1" class="verification" required>
-                        <input type="text" maxlength="1" class="verification" required>
-                        <input type="text" maxlength="1" class="verification" required>
-                        <input type="text" maxlength="1" class="verification" required>
-                        <input type="text" maxlength="1" class="verification" required>
-                        <input type="text" maxlength="1" class="verification" required>
+        <main>
+            <div class="container">
+                <img src="../../assets/img/svg/email-icon.svg" class="email-icon" />
+                <h3 class="title">E-mail Verification</h3>
+
+                <div class="sub-container">
+                    <div class="initial-information">
+                        <label>A verification code was send to your e-mail.</label>
+                        <label>Please, verify your inbox.</label>
                     </div>
 
-                    <label class="enter-code-label">Please enter a six-digit code</label>
-                </div>
+                    <div class="textboxes-container">
+                        <div class="textboxes">
+                            <input
+                                type="text"
+                                maxlength="1"
+                                class="verification"
+                                required
+                            />
+                            <input
+                                type="text"
+                                maxlength="1"
+                                class="verification"
+                                required
+                            />
+                            <input
+                                type="text"
+                                maxlength="1"
+                                class="verification"
+                                required
+                            />
+                            <input
+                                type="text"
+                                maxlength="1"
+                                class="verification"
+                                required
+                            />
+                            <input
+                                type="text"
+                                maxlength="1"
+                                class="verification"
+                                required
+                            />
+                            <input
+                                type="text"
+                                maxlength="1"
+                                class="verification"
+                                required
+                            />
+                        </div>
 
-                <button type="button" id="btn-send">Verify</button>
-                
-                <a href="#" class="code-not-received">didn't receive the code?</a>
+                        <label class="enter-code-label"
+                            >Please enter a six-digit code</label
+                        >
+                    </div>
+
+                    <button type="button" id="btn-send">Verify</button>
+
+                    <a href="#" class="code-not-received"
+                        >didn't receive the code?</a
+                    >
+                </div>
             </div>
-            
-        </div>
-    </main>
-    
-    <script src="../../assets/lib/axios/axios.min.js"></script>
-    <script src="../../assets/js/global.js"></script>
-    <script src="../../assets/js/menu.js"></script>
-    <script src="./index.js"></script>
-</body>
+        </main>
+
+        <script src="../../assets/lib/axios/axios.min.js"></script>
+        <script src="../../assets/js/global.js"></script>
+        <script src="../../assets/js/header.js"></script>
+        <script src="./index.js"></script>
+    </body>
 </html>
