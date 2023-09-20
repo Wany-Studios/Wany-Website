@@ -1,14 +1,12 @@
 getMe().catch(() => {
-    //  window.location.href = resolveUrl() + "signin/";
+     window.location.href = resolveUrl() + "signin/";
 });
 
-document.addEventListener('DOMContentLoaded', async () => {
-    const inputs = [...document.querySelectorAll('.verification')];
-    const btnSend = document.getElementById('btn-send');
+document.addEventListener("DOMContentLoaded", async () => {
+    const inputs = [...document.querySelectorAll(".verification")];
+    const btnSend = document.getElementById("btn-send");
 
-    btnSend.addEventListener('click', async () => {
-        await verify();
-    });
+    btnSend.addEventListener('click', async () => await verify());
 
     inputs.forEach((input, index, arr) => {
         input.addEventListener('input', () => {
@@ -51,10 +49,24 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         try {
             await verifyAccount(token);
-            alert('Your account has been verified');
-            window.location.href = resolveUrl() + 'home/';
-        } catch (err) {
-            alert('Error: ' + err.message);
+            alert("Your account has been verified");
+            window.location.href = resolveUrl() + "home/";
+        }
+        catch (err) {
+            alert("Error: " + err.message);
         }
     }
+
+
+    document.addEventListener("paste", (e) => {
+        const clipboardData = e.clipboardData || window.clipboardData;
+        const pastedData = clipboardData.getData('Text');
+
+            pastedData.split('').slice(0,6).forEach((value, index)=>{
+                    console.log(value);
+                    inputs[index].value = value;
+                
+            });
+        
+    });
 });
