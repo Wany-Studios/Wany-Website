@@ -1,39 +1,38 @@
-// getMe().catch(() => {
-//     window.location.href = resolveUrl() + "signin/";
-// });
+getMe().catch(() => {
+     window.location.href = resolveUrl() + "signin/";
+});
 
 document.addEventListener("DOMContentLoaded", async () => {
     const inputs = [...document.querySelectorAll(".verification")];
     const btnSend = document.getElementById("btn-send");
 
-    btnSend.addEventListener("click", async () => {
-        await verify();
-    });
+    btnSend.addEventListener('click', async () => await verify());
 
     inputs.forEach((input, index, arr) => {
-        input.addEventListener("input", () => {
+        input.addEventListener('input', () => {
             if (index !== arr.length - 1) {
                 inputs[index + 1].focus();
             }
         });
 
-        input.addEventListener("keyup", async (event) => {
+        input.addEventListener('keyup', async (event) => {
             input.value = input.value.trim();
 
             if (event.key === 'Backspace') {
                 if (input.value.length === 0 && index !== 0) {
-                    inputs[index - 1].value = "";
+                    inputs[index - 1].value = '';
                     inputs[index - 1].focus();
                 }
-            }
-            else if (event.key === 'Enter') {
+            } else if (event.key === 'Enter') {
                 await verify();
             }
         });
     });
 
     function getValue() {
-        return inputs.reduce((result, input) => result + input.value.trim(), "").toUpperCase();
+        return inputs
+            .reduce((result, input) => result + input.value.trim(), '')
+            .toUpperCase();
     }
 
     function checkValue() {
@@ -42,7 +41,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     async function verify() {
         if (!checkValue()) {
-            alert("Digite o código completo!");
+            alert('Digite o código completo!');
             return;
         }
 
@@ -71,13 +70,3 @@ document.addEventListener("DOMContentLoaded", async () => {
         
     });
 });
-
-
-
-
-
-
-
-
-
-

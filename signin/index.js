@@ -1,6 +1,6 @@
 let makingRequest = false;
 
-document.querySelector("form").addEventListener("submit", async function (e) {
+document.querySelector('form').addEventListener('submit', async function (e) {
     e.preventDefault();
 
     if (makingRequest) return;
@@ -13,7 +13,7 @@ document.querySelector("form").addEventListener("submit", async function (e) {
     if (!validateData(data)) return;
 
     makingRequest = true;
-    document.body.classList.add("waiting");
+    document.body.classList.add('waiting');
 
     const response = await signIn(data).catch(({ response }) => {
         const { data } = response;
@@ -21,11 +21,12 @@ document.querySelector("form").addEventListener("submit", async function (e) {
         if (message.length) showErrorToForm(message);
     });
 
-    if (response && response.data?.user) {
-        window.location.href = resolveUrl() + "home/";
+    if (response) {
+        await saveLocalUser();
+        window.location.href = resolveUrl() + 'home/';
     }
 
-    document.body.classList.remove("waiting");
+    document.body.classList.remove('waiting');
     makingRequest = false;
 });
 
@@ -35,11 +36,11 @@ function validateData(data) {
 }
 
 function getFormData() {
-    const usernameOrEmail = document.getElementById("username-email").value;
-    const password = document.getElementById("password").value;
+    const usernameOrEmail = document.getElementById('username-email').value;
+    const password = document.getElementById('password').value;
 
     return {
         usernameOrEmail,
-        password
-    }
+        password,
+    };
 }
