@@ -27,36 +27,7 @@
         </style>
     </head>
     <body>
-        <header>
-            <a href="../home">
-                <img
-                    loading="lazy"
-                    id="logo-img"
-                    src="../assets/img/logo.png"
-                    alt="a logo do website, um fantasma com cores vibrantes"
-                />
-
-                <h1 class="title">WANY</h1>
-            </a>
-
-            <div class="icons">
-                <a href="../signin">
-                    <img
-                        loading="lazy"
-                        class="hide-mobile"
-                        src="../assets/img/svg/header/person.svg"
-                        alt="ícone de uma pessoa"
-                    />
-                </a>
-
-                <img
-                    id="menu"
-                    loading="lazy"
-                    src="../assets/img/svg/header/menu.svg"
-                    alt="ícone de uma menu"
-                />
-            </div>
-        </header>
+        <wany-header></wany-header>
 
         <nav>
             <div>
@@ -113,7 +84,7 @@
         </div>
 
         <script src="../assets/js/global.js"></script>
-        <script src="../assets/js/menu.js"></script>
+        <script src="../assets/js/header.js"></script>
         <script>
             const iframe = document.createElement('iframe');
             iframe.style.border = 'none';

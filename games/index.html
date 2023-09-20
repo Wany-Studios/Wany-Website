@@ -1,281 +1,412 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../assets/css/style.css" />
-    <link rel="stylesheet" href="../assets/css/carousel.css">
-    <link rel="stylesheet" href="./style.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-    <title>Games</title>
-  </head>
-  <body>
-    <header>
-      <a href="../home">
-        <img loading="lazy" id="logo-img" src="../assets/img/logo.png" alt="a logo do website, um fantasma com cores vibrantes" />
-        <h1 class="title">WANY</h1>
-      </a>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="../assets/css/style.css" />
+        <link rel="stylesheet" href="../assets/css/carousel.css" />
+        <link rel="stylesheet" href="./style.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
+        />
+        <title>Games</title>
+    </head>
+    <body>
+        <wany-header></wany-header>
 
-      <div class="icons">
-        <a href="../signin">
-          <img loading="lazy" class="hide-mobile" src="../assets/img/svg/header/person.svg" alt="ícone de uma pessoa" />
-        </a>
-        <img id="menu" loading="lazy" src="../assets/img/svg/header/menu.svg" alt="ícone de uma menu" />
-      </div>
-    </header>
-    
-    <nav>
-      <div>
-        <a href="../home/">
-          <img loading="lazy" src="../assets/img/svg/navbar/icon-home.svg" alt="ícone da home" /> Home </a>
-      </div>
-
-      <div>
-        <a href=".">
-          <img loading="lazy" src="../assets/img/svg/navbar/controle-videogame.svg" alt="ícone de controle de vídeogame" /> Games </a>
-      </div>
-
-      <div>
-        <a href="#">
-          <img loading="lazy" src="../assets/img/svg/navbar/megafone.svg" alt="ícone de um megafone" /> News </a>
-      </div>
-
-      <div>
-        <a href="#">
-          <img loading="lazy" src="../assets/img/svg/navbar/estrela.svg" alt="ícone de uma estrela" /> Popular </a>
-      </div>
-    </nav>
-   
-    <div id="search-container">
-      <div id="filter-btn-overlay">
-        <div id="filter-btn">
-          <div id="filter-btn-imagem">
-            <img src="../assets/img/svg/filter.svg" alt="Icone de ajustes/filtros" /> Sorting
-          </div>
-        </div>
-      </div>
-
-      <div id="div-search-box">
-        <div id="search-box">
-          <input id="search-bar" type="text" placeholder="search" name="search" />
-          <img src="../assets/img/svg/search.svg" alt="icone da barra de pesquisa" />
-        </div>
-      </div>
-    </div>
-
-    <section class="games-genre carousel">
-      <div>
-        <h2 class="title">Action</h2>
-        <div class="section-games">
-          <div class="swiper mySwiper games-carousel">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <div class="item">
-                  <img loading="lazy" src="https://picsum.photos/seed/musica1/200" />
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="item">
-                  <img loading="lazy" src="https://picsum.photos/seed/musica2/200" />
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="item">
-                  <img loading="lazy" src="https://picsum.photos/seed/musica3/200" />
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="item">
-                  <img loading="lazy" src="https://picsum.photos/seed/musica4/200" />
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="item">
-                  <img loading="lazy" src="https://picsum.photos/seed/musica5/200" />
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="item">
-                  <img loading="lazy" src="https://picsum.photos/seed/musica6/200" />
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="item">
-                  <img loading="lazy" src="https://picsum.photos/seed/musica7/200" />
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="item">
-                  <img loading="lazy" src="https://picsum.photos/seed/musica8/200" />
-                </div>
-              </div>
+        <nav>
+            <div>
+                <a href="../home/">
+                    <img
+                        loading="lazy"
+                        src="../assets/img/svg/navbar/icon-home.svg"
+                        alt="ícone da home"
+                    />
+                    Home
+                </a>
             </div>
-          </div>
-        </div>
-      </div>
 
-      <div>
-        <h2 class="title">Horror</h2>
-        <div class="section-games">
-          <div class="swiper mySwiper games-carousel">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <div class="item">
-                  <img loading="lazy" src="https://picsum.photos/seed/milho1/200" />
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="item">
-                  <img loading="lazy" src="https://picsum.photos/seed/milho2/200" />
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="item">
-                  <img loading="lazy" src="https://picsum.photos/seed/milho3/200" />
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="item">
-                  <img loading="lazy" src="https://picsum.photos/seed/milho4/200" />
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="item">
-                  <img loading="lazy" src="https://picsum.photos/seed/milho5/200" />
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="item">
-                  <img loading="lazy" src="https://picsum.photos/seed/milho6/200" />
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="item">
-                  <img loading="lazy" src="https://picsum.photos/seed/milho7/200" />
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="item">
-                  <img loading="lazy" src="https://picsum.photos/seed/milho8/200" />
-                </div>
-              </div>
+            <div>
+                <a href=".">
+                    <img
+                        loading="lazy"
+                        src="../assets/img/svg/navbar/controle-videogame.svg"
+                        alt="ícone de controle de vídeogame"
+                    />
+                    Games
+                </a>
             </div>
-          </div>
-        </div>
-      </div>
 
-      <div>
-        <h2 class="title">Simulation</h2>
-
-        <div class="section-games">
-          <div class="swiper mySwiper games-carousel">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <div class="item">
-                  <img loading="lazy" src="https://picsum.photos/seed/milho1/200" />
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="item">
-                  <img loading="lazy" src="https://picsum.photos/seed/milho2/200" />
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="item">
-                  <img loading="lazy" src="https://picsum.photos/seed/milho3/200" />
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="item">
-                  <img loading="lazy" src="https://picsum.photos/seed/milho4/200" />
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="item">
-                  <img loading="lazy" src="https://picsum.photos/seed/milho5/200" />
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="item">
-                  <img loading="lazy" src="https://picsum.photos/seed/milho6/200" />
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="item">
-                  <img loading="lazy" src="https://picsum.photos/seed/milho7/200" />
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="item">
-                  <img loading="lazy" src="https://picsum.photos/seed/milho8/200" />
-                </div>
-              </div>
+            <div>
+                <a href="#">
+                    <img
+                        loading="lazy"
+                        src="../assets/img/svg/navbar/megafone.svg"
+                        alt="ícone de um megafone"
+                    />
+                    News
+                </a>
             </div>
-          </div>
-        </div>
-      </div>
 
-      <div>
-        <h2 class="title">RPG</h2>
-        <div class="section-games">
-
-          <div class="swiper mySwiper games-carousel">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <div class="item">
-                  <img loading="lazy" src="https://picsum.photos/seed/milho1/200" />
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="item">
-                  <img loading="lazy" src="https://picsum.photos/seed/milho2/200" />
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="item">
-                  <img loading="lazy" src="https://picsum.photos/seed/milho3/200" />
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="item">
-                  <img loading="lazy" src="https://picsum.photos/seed/milho4/200" />
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="item">
-                  <img loading="lazy" src="https://picsum.photos/seed/milho5/200" />
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="item">
-                  <img loading="lazy" src="https://picsum.photos/seed/milho6/200" />
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="item">
-                  <img loading="lazy" src="https://picsum.photos/seed/milho7/200" />
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="item">
-                  <img loading="lazy" src="https://picsum.photos/seed/milho8/200" />
-                </div>
-              </div>
+            <div>
+                <a href="#">
+                    <img
+                        loading="lazy"
+                        src="../assets/img/svg/navbar/estrela.svg"
+                        alt="ícone de uma estrela"
+                    />
+                    Popular
+                </a>
             </div>
-          </div>
+        </nav>
+
+        <div id="search-container">
+            <div id="filter-btn-overlay">
+                <div id="filter-btn">
+                    <div id="filter-btn-imagem">
+                        <img
+                            src="../assets/img/svg/filter.svg"
+                            alt="Icone de ajustes/filtros"
+                        />
+                        Sorting
+                    </div>
+                </div>
+            </div>
+
+            <div id="div-search-box">
+                <div id="search-box">
+                    <input
+                        id="search-bar"
+                        type="text"
+                        placeholder="search"
+                        name="search"
+                    />
+                    <img
+                        src="../assets/img/svg/search.svg"
+                        alt="icone da barra de pesquisa"
+                    />
+                </div>
+            </div>
         </div>
-      </div>
-    </section>
 
-    <br/>
+        <section class="games-genre carousel">
+            <div>
+                <h2 class="title">Action</h2>
+                <div class="section-games">
+                    <div class="swiper mySwiper games-carousel">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <img
+                                        loading="lazy"
+                                        src="https://picsum.photos/seed/musica1/200"
+                                    />
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <img
+                                        loading="lazy"
+                                        src="https://picsum.photos/seed/musica2/200"
+                                    />
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <img
+                                        loading="lazy"
+                                        src="https://picsum.photos/seed/musica3/200"
+                                    />
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <img
+                                        loading="lazy"
+                                        src="https://picsum.photos/seed/musica4/200"
+                                    />
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <img
+                                        loading="lazy"
+                                        src="https://picsum.photos/seed/musica5/200"
+                                    />
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <img
+                                        loading="lazy"
+                                        src="https://picsum.photos/seed/musica6/200"
+                                    />
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <img
+                                        loading="lazy"
+                                        src="https://picsum.photos/seed/musica7/200"
+                                    />
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <img
+                                        loading="lazy"
+                                        src="https://picsum.photos/seed/musica8/200"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-    <script src="../assets/lib/axios/axios.min.js"></script>
-    <script src="../assets/js/global.js"></script>
-    <script src="../assets/js/menu.js"></script>
-    <script src="./index.js"></script>
-  </body>
+            <div>
+                <h2 class="title">Horror</h2>
+                <div class="section-games">
+                    <div class="swiper mySwiper games-carousel">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <img
+                                        loading="lazy"
+                                        src="https://picsum.photos/seed/milho1/200"
+                                    />
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <img
+                                        loading="lazy"
+                                        src="https://picsum.photos/seed/milho2/200"
+                                    />
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <img
+                                        loading="lazy"
+                                        src="https://picsum.photos/seed/milho3/200"
+                                    />
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <img
+                                        loading="lazy"
+                                        src="https://picsum.photos/seed/milho4/200"
+                                    />
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <img
+                                        loading="lazy"
+                                        src="https://picsum.photos/seed/milho5/200"
+                                    />
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <img
+                                        loading="lazy"
+                                        src="https://picsum.photos/seed/milho6/200"
+                                    />
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <img
+                                        loading="lazy"
+                                        src="https://picsum.photos/seed/milho7/200"
+                                    />
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <img
+                                        loading="lazy"
+                                        src="https://picsum.photos/seed/milho8/200"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h2 class="title">Simulation</h2>
+
+                <div class="section-games">
+                    <div class="swiper mySwiper games-carousel">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <img
+                                        loading="lazy"
+                                        src="https://picsum.photos/seed/milho1/200"
+                                    />
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <img
+                                        loading="lazy"
+                                        src="https://picsum.photos/seed/milho2/200"
+                                    />
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <img
+                                        loading="lazy"
+                                        src="https://picsum.photos/seed/milho3/200"
+                                    />
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <img
+                                        loading="lazy"
+                                        src="https://picsum.photos/seed/milho4/200"
+                                    />
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <img
+                                        loading="lazy"
+                                        src="https://picsum.photos/seed/milho5/200"
+                                    />
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <img
+                                        loading="lazy"
+                                        src="https://picsum.photos/seed/milho6/200"
+                                    />
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <img
+                                        loading="lazy"
+                                        src="https://picsum.photos/seed/milho7/200"
+                                    />
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <img
+                                        loading="lazy"
+                                        src="https://picsum.photos/seed/milho8/200"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h2 class="title">RPG</h2>
+                <div class="section-games">
+                    <div class="swiper mySwiper games-carousel">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <img
+                                        loading="lazy"
+                                        src="https://picsum.photos/seed/milho1/200"
+                                    />
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <img
+                                        loading="lazy"
+                                        src="https://picsum.photos/seed/milho2/200"
+                                    />
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <img
+                                        loading="lazy"
+                                        src="https://picsum.photos/seed/milho3/200"
+                                    />
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <img
+                                        loading="lazy"
+                                        src="https://picsum.photos/seed/milho4/200"
+                                    />
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <img
+                                        loading="lazy"
+                                        src="https://picsum.photos/seed/milho5/200"
+                                    />
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <img
+                                        loading="lazy"
+                                        src="https://picsum.photos/seed/milho6/200"
+                                    />
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <img
+                                        loading="lazy"
+                                        src="https://picsum.photos/seed/milho7/200"
+                                    />
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="item">
+                                    <img
+                                        loading="lazy"
+                                        src="https://picsum.photos/seed/milho8/200"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <br />
+
+        <script
+            type="text/javascript"
+            src="//code.jquery.com/jquery-1.11.0.min.js"
+        ></script>
+        <script
+            type="text/javascript"
+            src="//code.jquery.com/jquery-migrate-1.2.1.min.js"
+        ></script>
+        <script
+            type="text/javascript"
+            src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
+        ></script>
+        <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+        <script src="../assets/lib/axios/axios.min.js"></script>
+        <script src="../assets/js/global.js"></script>
+        <script src="../assets/js/header.js"></script>
+        <script src="./index.js"></script>
+    </body>
 </html>
