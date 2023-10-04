@@ -1,0 +1,67 @@
+@import url("../assets/css/header.css");
+@import url("../assets/css/menu.css");
+
+.plan-seaction{
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 45px);
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.plan-container{
+    width: 350px;
+    height: 80%;
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+}
+
+.plan-subcontainer{
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    width: 100%;
+    border-radius: 3px;
+    text-align: center;
+    justify-content: space-between;
+    background-color: var(--AccountVerificationBackgroundColor);
+}
+
+.control-icon{
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+}
+
+.ass-button{
+    background-color: var(--PrimaryButtonColor);
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    color: white
+}
+.benefits-item{
+    padding-top: 10px;
+}
+
+.benefits-item i{
+    width: 10%;
+}
+
+.prices
+{
+    padding-top: 25px;
+}
+
+
+.prices span:nth-child(2)
+{
+    font-size: 30px;
+}
+
+@media (max-width: 370px) {
+    .plan-container{
+        width: 100%;
+    }
+}
