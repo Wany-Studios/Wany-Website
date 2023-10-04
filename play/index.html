@@ -3,7 +3,6 @@
     <head>
         <meta charset="UTF-8" />
         <link rel="stylesheet" href="../assets/css/style.css" />
-        <link rel="stylesheet" href="../assets/css/menu.css" />
         <link rel="stylesheet" href="./style.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Jogos - Wany</title>
@@ -28,52 +27,7 @@
     </head>
     <body>
         <wany-header></wany-header>
-
-        <nav>
-            <div>
-                <a href="../home/">
-                    <img
-                        loading="lazy"
-                        src="../assets/img/svg/navbar/icon-home.svg"
-                        alt="ícone da home"
-                    />
-                    Home
-                </a>
-            </div>
-
-            <div>
-                <a href="../games/">
-                    <img
-                        loading="lazy"
-                        src="../assets/img/svg/navbar/controle-videogame.svg"
-                        alt="ícone de controle de vídeogame"
-                    />
-                    Games
-                </a>
-            </div>
-
-            <div>
-                <a href="#">
-                    <img
-                        loading="lazy"
-                        src="../assets/img/svg/navbar/megafone.svg"
-                        alt="ícone de um megafone"
-                    />
-                    News
-                </a>
-            </div>
-
-            <div>
-                <a href="#">
-                    <img
-                        loading="lazy"
-                        src="../assets/img/svg/navbar/estrela.svg"
-                        alt="ícone de uma estrela"
-                    />
-                    Popular
-                </a>
-            </div>
-        </nav>
+        <wany-nav></wany-nav>
 
         <h1 class="game-titulo">Cowgirl in Hell</h1>
 
@@ -85,6 +39,7 @@
 
         <script src="../assets/js/global.js"></script>
         <script src="../assets/js/header.js"></script>
+        <script src="../assets/js/nav.js"></script>
         <script>
             const iframe = document.createElement('iframe');
             iframe.style.border = 'none';

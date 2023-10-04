@@ -8,6 +8,15 @@ customElements.define(
         async connectedCallback() {
             await loadComponent(this, 'header', ['header', 'menu'], ['menu']);
 
+            document.head.appendChild(
+                (() => {
+                    const link = document.createElement('link');
+                    link.rel = 'stylesheet';
+                    link.href = resolveUrl() + 'assets/css/menu.css';
+                    return link;
+                })()
+            );
+
             this.shadowRoot.getElementById('header-logo-link').href =
                 resolveUrl() + 'home/';
 
