@@ -86,6 +86,7 @@ function getInfo() {
  *  user_url,
  *  verify_email_url,
  *  create_game_url,
+ *  search_games_url,
  *  get_game_url,
  *  public_game_url,
  *  public_url
@@ -107,6 +108,7 @@ const getRoutes = (() => {
             user_url: data.user_url,
             verify_email_url: data.verify_email_url,
             create_game_url: data.create_game_url,
+            search_games_url: data.search_games_url,
             get_game_url: data.get_game_url,
             public_game_url: data.public_game_url,
             public_url: data.public_url,
@@ -238,12 +240,6 @@ function getMe() {
     });
 }
 
-function getMyGames() {
-    return new Promise(async (resolve, reject) => {
-        axios.get('games/my', DEFAULT_OPTIONS_AXIOS).then(resolve).catch(reject);
-    });
-}
-
 function makeUploadGame({ title, description, genre }) {
     const input = document.createElement('input');
     input.type = 'file';
@@ -265,8 +261,6 @@ function makeUploadGame({ title, description, genre }) {
                 genre,
                 file: fileList[0],
             });
-
-            console.log({ response });
         } catch (err) {
             console.error('Unable to upload game: ' + err);
         }
@@ -277,7 +271,7 @@ function uploadGame({ title, description, genre, file }) {
     return new Promise(async (resolve, reject) => {
         const routes = await getRoutes().catch(reject);
         const form = new FormData();
-        console.log(file);
+
         form.append('file', file);
         form.append('genre', genre);
         form.append('title', title);
@@ -290,6 +284,17 @@ function uploadGame({ title, description, genre, file }) {
                     'Content-Type': 'multipart/form-data',
                 },
             })
+            .then(resolve)
+            .catch(reject);
+    });
+}
+
+function searchGames() {
+    return new Promise(async (resolve, reject) => {
+        const routes = await getRoutes();
+
+        axios
+            .get(routes.search_games_url, DEFAULT_OPTIONS_AXIOS)
             .then(resolve)
             .catch(reject);
     });
