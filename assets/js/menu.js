@@ -71,7 +71,7 @@ async function menuLogout() {
     try {
         document.body.classList.add('waiting');
         await logout();
-        document.location.href = resolveUrl() + 'logout/';
+        document.location.href = resolveUrl() + '/';
     } catch (err) {
         alert('Unable to logout');
         console.error(err);

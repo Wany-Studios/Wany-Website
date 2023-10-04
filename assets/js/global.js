@@ -84,7 +84,12 @@ function getInfo() {
  *  signup_url,
  *  upload_avatar_url,
  *  user_url,
- *  verify_email_url
+ *  verify_email_url,
+ *  create_game_url,
+ *  search_games_url,
+ *  get_game_url,
+ *  public_game_url,
+ *  public_url
  * }>>}
  */
 const getRoutes = (() => {
@@ -102,6 +107,11 @@ const getRoutes = (() => {
             upload_avatar_url: data.upload_avatar_url,
             user_url: data.user_url,
             verify_email_url: data.verify_email_url,
+            create_game_url: data.create_game_url,
+            search_games_url: data.search_games_url,
+            get_game_url: data.get_game_url,
+            public_game_url: data.public_game_url,
+            public_url: data.public_url,
         };
 
         return Object.freeze(
@@ -230,9 +240,63 @@ function getMe() {
     });
 }
 
-function getMyGames() {
+function makeUploadGame({ title, description, genre }) {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.zip';
+    input.addEventListener('change', handle);
+    input.click();
+
+    async function handle() {
+        const fileList = input.files;
+
+        if (fileList.length === 0) {
+            return reject('No file was selected.');
+        }
+
+        try {
+            const response = await uploadGame({
+                title,
+                description,
+                genre,
+                file: fileList[0],
+            });
+        } catch (err) {
+            console.error('Unable to upload game: ' + err);
+        }
+    }
+}
+
+function uploadGame({ title, description, genre, file }) {
     return new Promise(async (resolve, reject) => {
-        axios.get('games/my', DEFAULT_OPTIONS_AXIOS).then(resolve).catch(reject);
+        const routes = await getRoutes().catch(reject);
+        const form = new FormData();
+
+        form.append('file', file);
+        form.append('genre', genre);
+        form.append('title', title);
+        form.append('description', description);
+
+        axios
+            .post(routes.create_game_url, form, {
+                ...DEFAULT_OPTIONS_AXIOS,
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            })
+            .then(resolve)
+            .catch(reject);
+    });
+}
+
+function searchGames() {
+    return new Promise(async (resolve, reject) => {
+        const routes = await getRoutes();
+
+        axios
+            .get(routes.search_games_url, DEFAULT_OPTIONS_AXIOS)
+            .then(resolve)
+            .catch(reject);
     });
 }
 
