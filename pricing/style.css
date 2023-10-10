@@ -29,17 +29,25 @@
 }
 
 .control-icon{
-    width: 100px;
-    height: 100px;
+    width: 135px;
+    aspect-ratio: 1/1;
     margin: 0 auto;
 }
 
-.ass-button{
+.plan-button{
     background-color: var(--PrimaryButtonColor);
     padding: 10px;
     border: none;
-    border-radius: 3px;
-    color: white
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+.plan-subcontainer h2{
+    font-size: 2.5rem;
+}
+.beneficies-container h4{
+    font-size: 2rem;
 }
 .benefits-item{
     padding-top: 10px;
