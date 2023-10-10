@@ -87,6 +87,7 @@ function getInfo() {
  *  verify_email_url,
  *  create_game_url,
  *  search_games_url,
+ *  send_verification_email_url,
  *  get_game_url,
  *  public_game_url,
  *  public_url
@@ -104,6 +105,7 @@ const getRoutes = (() => {
             logout_url: data.logout_url,
             reset_password_url: data.reset_password_url,
             signup_url: data.signup_url,
+            send_verification_email_url: data.send_verification_email_url,
             upload_avatar_url: data.upload_avatar_url,
             user_url: data.user_url,
             verify_email_url: data.verify_email_url,
@@ -148,7 +150,7 @@ function logout() {
 }
 
 function deleteLocalUser() {
-    localStorage.removeItem(LOCALSTORAGE.USER_DATA);
+    localStorage.removeItem(LOCALSTORAGE.LOCAL_USER_DATA);
 }
 
 function saveLocalUser() {
@@ -166,6 +168,7 @@ function saveLocalUser() {
                 role,
                 updated_at,
                 username,
+                account_is_verified,
             } = response.data;
 
             postMessage(CHANNEL_EVENTS.USER_DATA_UPDATED, { ...response.data });
@@ -175,7 +178,7 @@ function saveLocalUser() {
             }
 
             localStorage.setItem(
-                LOCALSTORAGE.USER_DATA,
+                LOCALSTORAGE.LOCAL_USER_DATA,
                 JSON.stringify({
                     avatar,
                     avatar_url,
@@ -186,6 +189,7 @@ function saveLocalUser() {
                     role,
                     updated_at,
                     username,
+                    account_is_verified,
                 })
             );
 
@@ -193,6 +197,31 @@ function saveLocalUser() {
         } catch (err) {
             reject(err);
         }
+    });
+}
+
+function getLocalUser() {
+    return JSON.parse(localStorage.getItem(LOCALSTORAGE.LOCAL_USER_DATA) ?? 'null');
+}
+
+function getUserAvatar(username = null) {
+    return new Promise(async (resolve, reject) => {
+        if (!username) {
+            const user = getLocalUser();
+
+            if (!user) {
+                return reject('Must be logged in or provide a username.');
+            } else {
+                username = user.username;
+            }
+        }
+
+        const routes = await getRoutes({ username });
+
+        axios
+            .post(routes.avatar_url, DEFAULT_OPTIONS_AXIOS)
+            .then(resolve)
+            .catch(reject);
     });
 }
 
@@ -295,6 +324,25 @@ function searchGames() {
 
         axios
             .get(routes.search_games_url, DEFAULT_OPTIONS_AXIOS)
+            .then(resolve)
+            .catch(reject);
+    });
+}
+
+function sendVerificationEmail() {
+    return new Promise(async (resolve, reject) => {
+        const { account_is_verified, email } = getLocalUser();
+
+        if (account_is_verified) return reject('Account already verified.');
+
+        const routes = await getRoutes();
+
+        axios
+            .post(
+                routes.send_verification_email_url,
+                { email },
+                DEFAULT_OPTIONS_AXIOS
+            )
             .then(resolve)
             .catch(reject);
     });

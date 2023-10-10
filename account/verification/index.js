@@ -49,6 +49,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         try {
             await verifyAccount(token);
+            await saveLocalUser();
             alert('Your account has been verified');
             window.location.href = resolveUrl() + 'home/';
         } catch (err) {
@@ -61,6 +62,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const pastedData = clipboardData.getData('Text');
 
         pastedData
+            .trim()
             .split('')
             .slice(0, 6)
             .forEach((value, index) => {

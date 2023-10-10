@@ -19,7 +19,7 @@ document.querySelector('form').addEventListener('submit', async function (e) {
         if (message.length) showErrorToForm(message);
     });
 
-    if (response.status === 201 || response.status === 200) {
+    if (response?.status === 201 || response?.status === 200) {
         try {
             await signIn({
                 usernameOrEmail: data.email,
