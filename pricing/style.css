@@ -12,6 +12,8 @@
 .plan-container{
     width: 350px;
     height: 80%;
+    min-height: 450px;
+    max-height: 600px;
     display: flex;
     flex-direction: row;
     margin: 0 auto;
