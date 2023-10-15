@@ -45,7 +45,7 @@
         let imageSrc;
 
         try {
-            imageSrc = await getUserAvatar();
+            imageSrc = `${await getUserAvatarUrl()}`;
         } catch (err) {
             imageSrc =
                 'https://static.vecteezy.com/system/resources/previews/009/397/892/original/woman-face-expression-clipart-design-illustration-free-png.png';

@@ -204,6 +204,22 @@ function getLocalUser() {
     return JSON.parse(localStorage.getItem(LOCALSTORAGE.LOCAL_USER_DATA) ?? 'null');
 }
 
+async function getUserAvatarUrl(username = null) {
+    if (!username) {
+        const user = getLocalUser();
+
+        if (!user) {
+            return reject('Must be logged in or provide a username.');
+        } else {
+            username = user.username;
+        }
+    }
+
+    const routes = await getRoutes({ username });
+
+    return routes.avatar_url;
+}
+
 function getUserAvatar(username = null) {
     return new Promise(async (resolve, reject) => {
         if (!username) {
@@ -219,7 +235,7 @@ function getUserAvatar(username = null) {
         const routes = await getRoutes({ username });
 
         axios
-            .post(routes.avatar_url, DEFAULT_OPTIONS_AXIOS)
+            .get(routes.avatar_url, DEFAULT_OPTIONS_AXIOS)
             .then(resolve)
             .catch(reject);
     });
