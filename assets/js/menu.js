@@ -59,6 +59,15 @@
                   }').catch(err => alert(err?.response?.data?.message || err.message))">Verificar e-mail</a></li>`;
 
         element.id = 'menu-overlay';
+
+        if(getLocalUser() == null)
+        {
+            user_element = ' <li><a href="${signinUrl}">Login</a></li>';
+        }
+        else
+        {    
+            user_element = '<li><a href="${profileUrl}">Minha Conta</a></li><li><a href="javascript:menuLogout()">Sair</a></li>';
+        }
         element.innerHTML = `
             <div>
                 <div class="avatar">
@@ -67,12 +76,12 @@
                 <div><h3 title="Seu nome completo inteiro">Seu Nome completo</h3></div>
             </div>
 
-            <ul>
+            <ul style="width:100%">
+                <li style="border-radius: 5px"><a href="" style="background: #ff5400; cursor: pointer; text-decoration: none; display: flex; justify-content: center; border-radius: 3px;"><img src="${resolveUrl() }assets/img/png/coroa-real.png">&nbsp;Teste Wany Premium</a></li>
                 <li><a href="#">Fazer Upload</a></li>
-                <li><a href="${profileUrl}">Perfil</a></li>
-                <li><a href="${signinUrl}">Login</a></li>
+                ${user_element}
                 ${sendVerificationEmailItem}
-                <li><a href="javascript:menuLogout()">Sair</a></li>
+                
             </ul>
         `;
         document.body.appendChild(element);
