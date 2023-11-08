@@ -1,0 +1,240 @@
+@import url("../assets/css/header.css");
+@import url("../assets/css/menu.css");
+
+.flex {
+  display: flex;
+  justify-content: center;
+}
+
+#profile-upper-screen-section {
+  width: 100%;
+}
+
+#profile-banner {
+  width: 100%;
+  height: 140px;
+  background-color: #f7f7f7;
+  position: relative;
+}
+
+.div__div--DFlex {
+  display: flex;
+  margin-bottom: inherit;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+#profile-data-section {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5%;
+  background-color: var(--SecondaryBackground);
+}
+
+#profile-picture-and-editor {
+  width: 13%;
+  min-width: 120px;
+  margin-left: 20px;
+  margin-top: -50px;
+}
+
+#profile-picture {
+  width: auto;
+  background-color: #222;
+  border-radius: 50%;
+  z-index: 100;
+  position: relative;
+  aspect-ratio: 1/1;
+}
+
+#profile-editor {
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
+  height: 25px;
+}
+
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 8px;
+  border: none;
+  transition: 0.2s ease-in-out;
+  width: 20%;
+  max-width: 125px;
+  min-width: 100px;
+}
+
+button img {
+  width: 10%;
+  min-width: 20px;
+  margin: 2px;
+  padding: 5px;
+}
+
+#profile-editor button {
+  width: 100%;
+}
+
+#profile-editor button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: 0.3s ease-in-out;
+}
+
+#div__button--upload {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  background-color: var(--PrimaryButtonColor);
+  color: #fff;
+  font-weight: bold;
+  gap: 3px;
+  transition: 0.2s ease-in-out;
+  font-size: 0.7rem;
+  min-width: 150px;
+  margin-left: 15px;
+  max-width: 200px;
+}
+#div__button--upload:hover {
+  background-color: var(--PrimaryButtonHoverColor);
+}
+
+#usernames-fields {
+  margin: 5% 0 0 20%;
+  gap: 5px;
+  flex-direction: column;
+  padding-bottom: 5px;
+  height: fit-content;
+}
+
+h2#User-name {
+  font-size: 1.3rem;
+}
+h1#User-nickname {
+  font-size: 1rem;
+  color: #464545;
+}
+
+#usernames-fields > div {
+  display: flex;
+  gap: 10px;
+}
+#usernames-fields img {
+  width: 20px;
+  display: none;
+}
+.div__div--EditBio {
+  width: 50%;
+}
+.section__div--buttons {
+  gap: 25px;
+  margin-bottom: 20px;
+  margin-top: 25px;
+  width: 45%;
+  justify-content: center;
+  display: none;
+}
+.section__div--buttons button {
+  height: 25px;
+}
+
+#BioTextArea {
+  height: 60px;
+  background-color: #464545;
+  border: none;
+  border-radius: 5px;
+  width: 90%;
+  min-width: 242px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.div__div--Profiledata {
+  width: 60%;
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+  padding-top: 20px;
+  justify-content: center;
+  align-items: center;
+}
+.section__div--buttons {
+  display: none;
+}
+.section__div--buttons #buttonSave {
+  background-color: var(--PrimaryButtonColor);
+  color: var(--FontPrimaryColor);
+}
+
+.section__div--buttons #buttonSave:hover {
+  background-color: var(--PrimaryButtonHoverColor);
+}
+
+#gamesPlayed,
+#achievments,
+#hobbies {
+  width: inherit;
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#achievments {
+  height: 30px;
+}
+#hobbies {
+  height: 30px;
+}
+
+.perfil_jogos {
+  margin-top: 15%;
+}
+
+.div__modal--jogo {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.div__modal--conteudo {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+@media (max-width: 530px) {
+  #profile-editor {
+    display: none;
+  }
+  #profile-picture-and-editor {
+    min-width: 100px;
+  }
+  #usernames-fields img {
+    display: block;
+    cursor: pointer;
+  }
+  #profile-data-section {
+    background-color: transparent;
+  }
+  .div__div--Profiledata {
+    display: none;
+  }
+  .div__div--EditBio {
+    width: 100%;
+  }
+  .section__div--buttons {
+    width: auto;
+  }
+}

@@ -37,8 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function getMenuOverlay() {
         const element = document.createElement('section');
-        const signinUrl = resolveUrl() + "signin/";
-        const profileUrl = resolveUrl() + "profile/";
+        const signinUrl = resolveUrl() + "signin/index.html";
+        const profileUrl = resolveUrl() + "profile/index.html";
 
         element.id = 'menu-overlay';
         element.innerHTML = `
