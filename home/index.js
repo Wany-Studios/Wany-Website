@@ -34,8 +34,6 @@ function loadTrendingGamesCarousel() {
     leftArrow.onclick = function () {
         carousel.slidePrev();
     };
-
-    document.querySelector('.trending-games').style.display = '';
 }
 
 function loadGamesCarousel() {
@@ -69,56 +67,41 @@ function loadGamesCarousel() {
             },
         });
     });
-
-    document.querySelector('.games-genre').style.display = '';
 }
 
 window.addEventListener('load', async function () {
     try {
         const response = await searchGames();
         const { games } = response.data;
+        const lista = montaListaCardsGames(games);
 
-        document
-            .querySelector('#trending-games-carousel')
-            .querySelector('.swiper-wrapper').innerHTML = '';
+        if (lista.length === 0) {
+            document.querySelector('#trending-games-carousel-items').innerHTML =
+                '<h3 style="width: 100%;text-align: center;">Jogos não encontrados</h3>';
 
-        games.forEach(
-            ({
-                add_game_image_url,
-                createdAt,
-                delete_game_url,
-                description,
-                genre,
-                id,
-                public_game_image_urls,
-                public_game_url,
-                public_get_game_url,
-                title,
-                updatedAt,
-                userId,
-            }) => {
-                const html = `
-                  <div class="swiper-slide" title="${title} - ${description}">
-                    <div class="item" onclick="window.location.href = '${public_game_url}'">
-                        <img
-                            loading="lazy"
-                            src="${
-                                public_game_image_urls[0] ||
-                                `https://picsum.photos/seed/${Math.random()}/200`
-                            }"
-                        />
-                    </div>
-                  </div>`;
+            return;
+        }
 
-                document
-                    .querySelector('#trending-games-carousel')
-                    .querySelector('.swiper-wrapper').innerHTML += html;
-            }
-        );
+        lista.slice(0, 3).forEach((item) => {
+            document
+                .querySelector('#trending-games-carousel-items')
+                .appendChild(item());
+        });
+
+        lista.forEach((item) => {
+            document.querySelector('#game-list-carousel-items').appendChild(item());
+        });
     } catch (e) {
+        document.querySelector('#trending-games-carousel-items').innerHTML =
+            '<h3 style="width: 100%;text-align: center;">Jogos não encontrados</h3>';
+
         console.error(e);
     }
 
     loadTrendingGamesCarousel();
     loadGamesCarousel();
+
+    document.querySelectorAll('.carousel').forEach((item) => {
+        item.style.display = '';
+    });
 });

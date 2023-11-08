@@ -157,6 +157,79 @@ function logout() {
     });
 }
 
+function montaListaCardsGames(games) {
+    return games.map(
+        (
+            game = {
+                add_game_image_url,
+                createdAt,
+                delete_game_url,
+                description,
+                genre,
+                id,
+                public_game_image_urls,
+                public_game_url,
+                public_get_game_url,
+                title,
+                updatedAt,
+                userId,
+            }
+        ) => {
+            return () => {
+                const el = htmlToElement(`
+                  <div class="swiper-slide" title='${game.title}'>
+                    <div class="item">
+                        <img
+                            loading="lazy"
+                            src="${
+                                game.public_game_image_urls[0] ||
+                                `https://picsum.photos/seed/${Math.random()}/200`
+                            }"
+                        />
+                    </div>
+                  </div>`);
+
+                el.querySelector('img').onclick = () => openGameModal(game);
+
+                return el;
+            };
+        }
+    );
+}
+
+function htmlToElement(html) {
+    var template = document.createElement('template');
+    html = html.trim(); // Never return a text node of whitespace as the result
+    template.innerHTML = html;
+    return template.content.firstChild;
+}
+
+function openGameModal(
+    game = {
+        add_game_image_url,
+        createdAt,
+        delete_game_url,
+        description,
+        genre,
+        id,
+        public_game_image_urls,
+        public_game_url,
+        public_get_game_url,
+        title,
+        updatedAt,
+        userId,
+    }
+) {
+    // TODO: implement after
+
+    playGame(game.public_game_url);
+}
+
+function playGame(url) {
+    localStorage.setItem('game-path', url);
+    window.location.href = resolveUrl() + '/play/';
+}
+
 function deleteLocalUser() {
     localStorage.removeItem(LOCALSTORAGE.LOCAL_USER_DATA);
 }
@@ -314,6 +387,8 @@ function makeUploadGame({ title, description, genre }) {
                 genre,
                 file: fileList[0],
             });
+
+            return response;
         } catch (err) {
             console.error('Unable to upload game: ' + err);
         }
