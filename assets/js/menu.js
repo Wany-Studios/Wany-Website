@@ -60,13 +60,10 @@
 
         element.id = 'menu-overlay';
 
-        if(getLocalUser() == null)
-        {
-            user_element = ' <li><a href="${signinUrl}">Login</a></li>';
-        }
-        else
-        {    
-            user_element = '<li><a href="${profileUrl}">Minha Conta</a></li><li><a href="javascript:menuLogout()">Sair</a></li>';
+        if (getLocalUser() == null) {
+            user_element = `<li><a href="${signinUrl}">Login</a></li>`;
+        } else {
+            user_element = `<li><a href="${profileUrl}">Minha Conta</a></li><li><a href="javascript:menuLogout()">Sair</a></li>`;
         }
         element.innerHTML = `
             <div>
@@ -77,7 +74,7 @@
             </div>
 
             <ul style="width:100%">
-                <li style="border-radius: 5px"><a href="" style="background: #ff5400; cursor: pointer; text-decoration: none; display: flex; justify-content: center; border-radius: 3px;"><img src="${resolveUrl() }assets/img/png/coroa-real.png">&nbsp;Teste Wany Premium</a></li>
+                <li style="border-radius: 5px"><a href="" style="background: #ff5400; cursor: pointer; text-decoration: none; display: flex; justify-content: center; border-radius: 3px;"><img src="${resolveUrl()}assets/img/png/coroa-real.png">&nbsp;Teste Wany Premium</a></li>
                 <li><a href="#">Fazer Upload</a></li>
                 ${user_element}
                 ${sendVerificationEmailItem}
@@ -94,17 +91,17 @@
         document.body.appendChild(element);
         return element;
     }
-
-    async function menuLogout() {
-        try {
-            document.body.classList.add('waiting');
-            await logout();
-            document.location.href = resolveUrl() + '/';
-        } catch (err) {
-            alert('Unable to logout');
-            console.error(err);
-        } finally {
-            document.body.classList.remove('waiting');
-        }
-    }
 })();
+
+async function menuLogout() {
+    try {
+        document.body.classList.add('waiting');
+        await logout();
+        document.location.href = resolveUrl() + '/';
+    } catch (err) {
+        alert('Unable to logout');
+        console.error(err);
+    } finally {
+        document.body.classList.remove('waiting');
+    }
+}
