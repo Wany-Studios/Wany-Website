@@ -75,22 +75,26 @@ function getInfo() {
 /**
  *
  * @type {function(): Promise<Readonly<{
- *  avatar_url,
- *  current_user_url,
- *  forgot_password_url,
- *  login_url,
- *  logout_url,
- *  reset_password_url,
- *  signup_url,
- *  upload_avatar_url,
- *  user_url,
- *  verify_email_url,
- *  create_game_url,
- *  search_games_url,
- *  send_verification_email_url,
- *  get_game_url,
- *  public_game_url,
- *  public_url
+ * add_game_image_url,
+ * avatar_url,
+ * create_game_url,
+ * current_user_url,
+ * delete_game_url,
+ * forgot_password_url,
+ * public_get_game_url,
+ * login_url,
+ * logout_url,
+ * public_game_image_url,
+ * public_game_url,
+ * public_url,
+ * remove_game_image_url,
+ * reset_password_url,
+ * search_games_url,
+ * send_verification_email_url,
+ * signup_url,
+ * upload_avatar_url,
+ * user_url,
+ * verify_email_url,
  * }>>}
  */
 const getRoutes = (() => {
@@ -98,22 +102,26 @@ const getRoutes = (() => {
         const { data } = await getInfo();
 
         const routes = {
+            add_game_image_url: data.add_game_image_url,
             avatar_url: data.avatar_url,
+            create_game_url: data.create_game_url,
             current_user_url: data.current_user_url,
+            delete_game_url: data.delete_game_url,
             forgot_password_url: data.forgot_password_url,
+            public_get_game_url: data.public_get_game_url,
             login_url: data.login_url,
             logout_url: data.logout_url,
+            public_game_image_url: data.public_game_image_url,
+            public_game_url: data.public_game_url,
+            public_url: data.public_url,
+            remove_game_image_url: data.remove_game_image_url,
             reset_password_url: data.reset_password_url,
-            signup_url: data.signup_url,
+            search_games_url: data.search_games_url,
             send_verification_email_url: data.send_verification_email_url,
+            signup_url: data.signup_url,
             upload_avatar_url: data.upload_avatar_url,
             user_url: data.user_url,
             verify_email_url: data.verify_email_url,
-            create_game_url: data.create_game_url,
-            search_games_url: data.search_games_url,
-            get_game_url: data.get_game_url,
-            public_game_url: data.public_game_url,
-            public_url: data.public_url,
         };
 
         return Object.freeze(
