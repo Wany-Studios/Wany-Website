@@ -366,6 +366,59 @@ function getMe() {
     });
 }
 
+function makeUploadGameImage({ gameId, isCover }) {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.addEventListener('change', handle);
+    input.click();
+
+    async function handle() {
+        const fileList = input.files;
+
+        if (fileList.length === 0) {
+            return reject('No file was selected.');
+        }
+
+        try {
+            const response = await uploadGameImage({
+                gameId,
+                isCover,
+                file: fileList[0],
+            });
+
+            return response;
+        } catch (err) {
+            console.error('Unable to upload game: ' + err);
+        }
+    }
+}
+
+function uploadGameImage({ gameId, file, isCover }) {
+    return new Promise(async (resolve, reject) => {
+        const routes = await getRoutes().catch(reject);
+        const form = new FormData();
+
+        form.append('file', file);
+
+        axios
+            .post(
+                routes.add_game_image_url.replace('{id}', gameId) +
+                    '?cover=' +
+                    isCover,
+                form,
+                {
+                    ...DEFAULT_OPTIONS_AXIOS,
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                }
+            )
+            .then(resolve)
+            .catch(reject);
+    });
+}
+
 function makeUploadGame({ title, description, genre }) {
     const input = document.createElement('input');
     input.type = 'file';
@@ -415,6 +468,14 @@ function uploadGame({ title, description, genre, file }) {
             .then(resolve)
             .catch(reject);
     });
+}
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
 }
 
 function searchGames() {

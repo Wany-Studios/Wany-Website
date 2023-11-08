@@ -88,7 +88,7 @@ window.addEventListener('load', async function () {
                 .appendChild(item());
         });
 
-        lista.forEach((item) => {
+        shuffleArray(lista).forEach((item) => {
             document.querySelector('#game-list-carousel-items').appendChild(item());
         });
     } catch (e) {
