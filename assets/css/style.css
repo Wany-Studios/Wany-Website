@@ -1,9 +1,18 @@
 @import url("./fonts.css");
+@import url("//cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css");
+@import url("//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css");
 
 :root {
   --Nav: #464545;
   --Header: #2f2f2f;
   --Background: #181818;
+  
+  --ContentLeftHeight: calc(
+        100vh   /* page height   */
+        - 85px  /* header height - nav height */
+    );
+
+  --MenuOverlayBackground: #2f2f2f;
 
   --Carousel: #f54703;
   --CarouselArrow: #ff7518;
@@ -12,6 +21,7 @@
   --PrimaryButtonHoverColor: #ff4f0a;
 
   --AuthBackgroudColor: #2f2f2f55;
+  --AccountVerificationBackgroundColor: #2f2f2f;
 
   --InputFocusColor: #f54703;
 
@@ -28,6 +38,22 @@
   font-family: inherit;
 }
 
+html {
+  font-size: 12px;
+}
+
+@media (min-width: 300px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 530px) {
+  html {
+    font-size: 16px;
+  }
+}
+
 body {
   color: var(--FontPrimaryColor);
   font-family: "Euclid Circular B", system-ui, sans-serif;
@@ -37,4 +63,20 @@ body {
 
 body.waiting * {
   cursor: wait !important;
+}
+
+body.without-scroll {
+  overflow: hidden;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  transition: .1s linear background;
+}
+
+.overlay.show {
+  z-index: 50;
+  background-color: #0005;
 }

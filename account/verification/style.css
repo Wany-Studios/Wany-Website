@@ -1,0 +1,99 @@
+main {
+    display: grid;
+    place-items: center;
+    height: var(--ContentLeftHeight);
+    margin-top: -2vh;
+}
+
+.title {
+    font-size: 1.3rem;
+}
+
+.initial-information {
+    margin: 20px 0 10px;
+}
+
+.verification {
+    --size: 28px;
+    width: var(--size);
+    height: var(--size);
+    font-size: 1.4rem;
+    font-family: system-ui;
+    background: #858585;
+    border: none;
+    text-align: center;
+    border-radius: 6px;
+    text-transform: uppercase;
+}
+
+@media (min-width: 330px) {
+    .verification {
+        --size: 48px;
+    }
+}
+
+@media (min-width: 530px) {
+    .verification {
+        --size: 58px;
+    }
+}
+
+#btn-send
+{
+    width: 90%;
+    background: var(--PrimaryButtonColor);
+    border: none;
+    font-style: initial;
+    height: 40px;
+    color: white;
+    font-size: 1.2rem;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.email-icon{
+    display: block;
+    width: 20%;
+    margin: 0 auto;
+    height: 20%;
+}
+
+.container{
+    text-align: center;
+    border-radius: 6px;
+    max-width: 500px;
+    padding: 20px 10px;
+}
+
+.sub-container{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+    align-items: center;
+}
+
+.textboxes-container {
+    margin: 6px 0 12px;
+}
+
+.enter-code-label {
+    font-size: 0.9rem;
+}
+
+.code-not-received{
+    color: white;
+    font-size: 0.9rem;
+}
+.code-not-received:hover{
+    cursor: pointer;
+    text-decoration: none;
+}
+
+@media (min-width: 700px) {
+    .container {
+        width: 80%;
+        background: var(--AccountVerificationBackgroundColor);
+    }
+}

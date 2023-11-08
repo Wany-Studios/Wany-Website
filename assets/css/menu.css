@@ -1,0 +1,89 @@
+#menu {
+    transition: .2s ease margin;
+}
+
+#menu.open {
+    z-index: 101;
+    position: relative;
+    margin-bottom: -24px;
+}
+
+@media (min-width: 530px) {
+    #menu.open {
+        margin-bottom: 0;
+    }
+}
+
+#menu-overlay {
+    --width: 100%;
+    width: var(--width);
+    background: var(--MenuOverlayBackground);
+    padding: 10px;
+    position: fixed;
+    z-index: 100;
+    transition: all ease 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    inset: 0;
+    margin-left: calc(-1 * var(--width));
+}
+
+@media (min-width: 530px) {
+    #menu-overlay {
+        --width: 320px;
+        align-items: flex-start;
+    }
+}
+
+#menu-overlay.open {
+    margin-left: 0;
+}
+
+#menu-overlay > div:first-child {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-bottom: 22px;
+    column-gap: 10px;
+}
+
+#menu-overlay > div:nth-child(2) {
+    padding: 6px;
+}
+
+#menu-overlay .avatar img {
+    border-radius: 50px;
+    width: 50px;
+}
+
+#menu-overlay ul {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    border-radius: 2px;
+}
+
+#menu-overlay ul li {
+    min-height: 32px;
+    display: flex;
+}
+
+#menu-overlay ul a {
+    text-decoration: none;
+    text-align: center;
+    color: var(--FontPrimaryColor);
+    width: 100%;
+    align-items: center;
+    padding-left: 4px;
+}
+
+#menu-overlay ul a:hover {
+    text-decoration: underline;
+}
+
+@media (min-width: 530px) {
+    #menu-overlay ul a {
+        display: flex;
+    }
+}

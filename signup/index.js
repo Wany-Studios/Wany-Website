@@ -1,6 +1,6 @@
 let makingRequest = false;
 
-document.querySelector("form").addEventListener("submit", async function (e) {
+document.querySelector('form').addEventListener('submit', async function (e) {
     e.preventDefault();
 
     if (makingRequest) return;
@@ -11,25 +11,42 @@ document.querySelector("form").addEventListener("submit", async function (e) {
     if (!validateData(data)) return;
 
     makingRequest = true;
-    document.body.classList.add("waiting");
+    document.body.classList.add('waiting');
 
-    const response = await sendData(data).catch(({ response }) => {
-        const { status, data } = response;
-        const { message } = data;
-        showErrorToForm(message);
+    const response = await signUp(data).catch(({ response }) => {
+        const { data } = response;
+        const { message, statusCode, error } = data;
+        if (message.length) showErrorToForm(message);
     });
 
-    if (response && response.data?.user) {
-        window.location.href = "/home/";
+    if (response?.status === 201 || response?.status === 200) {
+        try {
+            await signIn({
+                usernameOrEmail: data.email,
+                password: data.password,
+            });
+            await saveLocalUser();
+            window.location.href = resolveUrl() + 'account/verification/';
+        } catch (err) {
+            console.error(err);
+            window.location.href = resolveUrl() + 'signin/';
+        }
     }
 
-    document.body.classList.remove("waiting");
+    document.body.classList.remove('waiting');
     makingRequest = false;
 });
 
-function sendData(data) {
-    return new Promise((resolve, reject) => {
-        axios.post(API_ENDPOINT + "auth/signup", data, DEFAULT_OPTIONS_AXIOS)
+function signUp(data) {
+    return new Promise(async (resolve, reject) => {
+        const routes = await getRoutes();
+
+        axios
+            .post(
+                routes.signup_url,
+                { ...data, dateOfBirth: new Date('2000-01-01') },
+                DEFAULT_OPTIONS_AXIOS
+            )
             .then(resolve)
             .catch(reject);
     });
@@ -45,15 +62,15 @@ function validateData(data) {
 }
 
 function getFormData() {
-    const username = document.getElementById("username").value;
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    const repeatPassword = document.getElementById("repeat-password").value;
+    const username = document.getElementById('username').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const repeatPassword = document.getElementById('repeat-password').value;
 
     return {
         username,
         email,
         password,
-        repeatPassword
-    }
+        repeatPassword,
+    };
 }
