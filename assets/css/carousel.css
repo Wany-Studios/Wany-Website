@@ -61,6 +61,15 @@
   border-radius: 3px;
 }
 
+.swiper-wrapper {
+  place-content: space-between;
+}
+
+.swiper-items-grow .swiper-slide {
+  flex-grow: 1;
+  max-width: 300px;
+}
+
 :root {
   --TrendingGamesCarouselHeight: 200px;
 }

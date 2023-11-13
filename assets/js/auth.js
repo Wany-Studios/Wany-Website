@@ -1,11 +1,11 @@
-document.querySelector("#form-container").onmousemove = e => {
+document.querySelector('#form-container').onmousemove = (e) => {
     const { currentTarget: target } = e;
     const rect = target.getBoundingClientRect();
     const [x, y] = [e.clientX - rect.left, e.clientY - rect.top];
 
-    target.style.setProperty("--mouse-x", `${x}px`);
-    target.style.setProperty("--mouse-y", `${y}px`);
-}
+    target.style.setProperty('--mouse-x', `${x}px`);
+    target.style.setProperty('--mouse-y', `${y}px`);
+};
 
 const showErrorToForm = (() => {
     const element = document.querySelector`#form-error`;
@@ -22,7 +22,9 @@ const showErrorToForm = (() => {
         let canExecuteAction = true;
         let finished = false;
 
-        element.innerHTML = !message ? "" : `<span>&#9888;</span> ${message.replaceAll('"', '')}`;
+        element.innerHTML = !message
+            ? ''
+            : `<span>&#9888;</span> ${message.replaceAll('"', '')}`;
         abortController = new AbortController();
 
         const signal = abortController.signal;
@@ -30,13 +32,13 @@ const showErrorToForm = (() => {
         signal.onabort = function () {
             abortController = null;
             canExecuteAction = false;
-        }
+        };
 
         if (timeout) {
-            const promise = new Promise(resolve => setTimeout(resolve, timeout));
+            const promise = new Promise((resolve) => setTimeout(resolve, timeout));
 
             promise.then(function () {
-                if (canExecuteAction) element.innerHTML = "";
+                if (canExecuteAction) element.innerHTML = '';
                 abortController = null;
                 finished = true;
             });
@@ -52,16 +54,21 @@ const showErrorToForm = (() => {
             },
             get finished() {
                 return signal.aborted || finished;
-            }
+            },
         };
-    }
+    };
 })();
+
+channelListenForMessage(CHANNEL_EVENTS.USER_DATA_UPDATED, (data) => {
+    window.location.href = resolveUrl() + 'home/';
+});
 
 function signIn(data) {
     return new Promise(async (resolve, reject) => {
         const routes = await getRoutes();
 
-        axios.post(routes.login_url, data, DEFAULT_OPTIONS_AXIOS)
+        axios
+            .post(routes.login_url, data, DEFAULT_OPTIONS_AXIOS)
             .then(resolve)
             .catch(reject);
     });
