@@ -6,6 +6,7 @@
   --Nav: #464545;
   --Header: #2f2f2f;
   --Background: #181818;
+  --SecondaryBackground: #2f2f2f;
   
   --ContentLeftHeight: calc(
         100vh   /* page height   */
@@ -16,6 +17,7 @@
 
   --Carousel: #f54703;
   --CarouselArrow: #ff7518;
+  
 
   --PrimaryButtonColor: #f54703;
   --PrimaryButtonHoverColor: #ff4f0a;
