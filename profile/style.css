@@ -50,7 +50,8 @@
 #profile-editor {
   display: flex;
   justify-content: center;
-  margin-top: 5%;
+  margin-top: 5px;
+  margin-bottom: 20px;
   height: 25px;
 }
 
@@ -76,6 +77,8 @@ button img {
 
 #profile-editor button {
   width: 100%;
+  padding: 15px;
+  margin-bottom: 10px;
 }
 
 #profile-editor button:hover {
