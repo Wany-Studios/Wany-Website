@@ -2,7 +2,7 @@ getMe().catch(() => {
     window.location.href = resolveUrl() + 'signin/';
 });
 
-const user = getLocalUser();
+let user = getLocalUser();
 const saveBtn = document.getElementById('buttonSave');
 const cancelBtn = document.getElementById('buttonCancel');
 const bioTextarea = document.getElementById('BioTextArea');
@@ -21,6 +21,7 @@ profileImg.addEventListener('click', async () => {
         alert(err.response?.data?.message || 'Unable to change avatar');
     }
 });
+bioTextarea.value = user.bio;
 
 const disableBioTextarea = () => {
     bioTextarea.removeAttribute('disabled');
@@ -39,9 +40,21 @@ const showProfileDescription = () => {
 
 enableBioTextarea();
 
-saveBtn.addEventListener('click', () => {
+saveBtn.addEventListener('click', async () => {
+    const bio = bioTextarea.value;
+
+    try {
+        await updateMe({ bio });
+    } catch (err) {
+        alert(err.response?.data?.message || 'Unable to update user');
+    }
+
+    await saveLocalUser();
+
     buttonsDiv.style.display = 'none';
     enableBioTextarea();
+
+    user = getLocalUser();
 });
 
 cancelBtn.addEventListener('click', () => {

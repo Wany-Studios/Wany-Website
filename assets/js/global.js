@@ -94,6 +94,7 @@ function getInfo() {
  * signup_url,
  * upload_avatar_url,
  * user_url,
+ * update_user_url,
  * verify_email_url,
  * }>>}
  */
@@ -121,6 +122,7 @@ const getRoutes = (() => {
             signup_url: data.signup_url,
             upload_avatar_url: data.upload_avatar_url,
             user_url: data.user_url,
+            update_user_url: data.update_user_url,
             verify_email_url: data.verify_email_url,
         };
 
@@ -362,6 +364,21 @@ function getMe() {
 
         axios
             .get(routes.current_user_url, DEFAULT_OPTIONS_AXIOS)
+            .then(resolve)
+            .catch(reject);
+    });
+}
+
+function updateMe(data = { bio, username, password, dateOfBirth }) {
+    return new Promise(async (resolve, reject) => {
+        const routes = await getRoutes().catch(reject);
+
+        axios
+            .patch(
+                routes.update_user_url,
+                JSON.parse(JSON.stringify(data)),
+                DEFAULT_OPTIONS_AXIOS
+            )
             .then(resolve)
             .catch(reject);
     });
