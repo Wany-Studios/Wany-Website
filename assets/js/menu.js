@@ -75,7 +75,7 @@
         element.innerHTML = `
             <div>
                 <div class="avatar">
-                    <img alt="user image" src="${imageSrc}" />
+                    <img alt="user image" src="${imageSrc}" style="object-fit: cover; aspect-ratio: 1/1;" />
                 </div>
                 <div><h3 title="Seu nome completo inteiro">Seu Nome completo</h3></div>
             </div>
