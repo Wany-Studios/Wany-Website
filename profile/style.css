@@ -75,35 +75,18 @@ button img {
   padding: 5px;
 }
 
-#profile-editor button {
-  width: 100%;
-  padding: 15px;
-  margin-bottom: 10px;
-}
-
-#profile-editor button:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  transition: 0.3s ease-in-out;
-}
-
 #div__button--upload {
-  width: 25%;
+  padding: 4px;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 30px;
-  background-color: var(--PrimaryButtonColor);
   color: #fff;
   font-weight: bold;
   gap: 3px;
   transition: 0.2s ease-in-out;
-  font-size: 0.7rem;
   min-width: 150px;
   margin-left: 15px;
   max-width: 200px;
-}
-#div__button--upload:hover {
-  background-color: var(--PrimaryButtonHoverColor);
 }
 
 #usernames-fields {
@@ -119,7 +102,8 @@ h2#User-name {
 }
 h1#User-nickname {
   font-size: 1rem;
-  color: #464545;
+  color: var(--FontPrimaryColor);
+  opacity: 60%;
 }
 
 #usernames-fields > div {

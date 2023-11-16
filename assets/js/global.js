@@ -206,6 +206,69 @@ function htmlToElement(html) {
     return template.content.firstChild;
 }
 
+function createModal({ title, header, body, footer } = {}) {
+    const abortController = new AbortController();
+
+    const close = () => {
+        abortController.abort();
+        modalEl.classList.remove('open');
+        document.querySelector('.overlay').classList.remove('show');
+        modalEl.remove();
+    };
+
+    const open = () => {
+        setTimeout(() => {
+            document.body.querySelector('.overlay').addEventListener(
+                'click',
+                (ev) => {
+                    if (document.body.querySelector('.overlay') !== ev.target)
+                        return;
+                    close();
+                },
+                {
+                    once: true,
+                    signal: abortController.signal,
+                }
+            );
+        }, 100);
+        modalEl.classList.add('open');
+        document.querySelector('.overlay').classList.add('show');
+    };
+
+    const modalEl = htmlToElement(`
+        <div class="modal">
+            <section class="modal-content">
+                <a id="close-modal" class="close-modal" href="#">x</a>
+
+                <div class="modal-header">
+                    <h1 class="modal-title">${title || 'Modal'}</h1>
+                    <div>${header || ''}</div>
+                </div>
+                
+                ${!!body ? '<hr />' : ''}
+
+                <div class="modal-body">
+                    ${body || ''}
+                </div>
+                
+                ${!!footer ? '<hr />' : ''}
+                
+                <div class="modal-footer">
+                    ${footer || ''}
+                </div>
+            </section>
+        </div>
+    `);
+
+    document.body.appendChild(modalEl);
+
+    [...document.querySelectorAll('.close-modal')].forEach((item) => {
+        item.addEventListener('click', () => close());
+    });
+
+    return { open, close };
+}
+
 function openGameModal(
     game = {
         add_game_image_url,

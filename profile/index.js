@@ -3,10 +3,13 @@ getMe().catch(() => {
 });
 
 let user = getLocalUser();
+let modal;
+
 const saveBtnEl = document.getElementById('buttonSave');
 const cancelBtnEl = document.getElementById('buttonCancel');
 const bioTextareaEl = document.getElementById('BioTextArea');
 const buttonsDivEl = document.querySelector('.section__div--buttons');
+const buttonUploadGame = document.getElementById('div__button--upload');
 const profileImgEl = document.getElementById('profile-picture');
 const usernameEl = document.getElementById('User-name');
 const emailEl = document.getElementById('User-nickname');
@@ -48,6 +51,20 @@ const showProfileDescription = () => {
 };
 
 enableBioTextarea();
+
+buttonUploadGame.addEventListener('click', () => {
+    modal = createModal({
+        title: 'Upload Game',
+        footer: `
+            <div style="display:flex; gap:4px; justify-content: flex-end;">
+                <button>Create</button>
+                <button class="secondary close-modal">Cancel</button>
+            </div>
+        `,
+    });
+
+    modal.open();
+});
 
 saveBtnEl.addEventListener('click', async () => {
     const bio = bioTextareaEl.value;
