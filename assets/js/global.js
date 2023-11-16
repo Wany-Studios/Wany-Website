@@ -221,7 +221,6 @@ function openGameModal(
     }
 ) {
     // TODO: implement after
-
     playGame(game.public_game_url);
 }
 
@@ -247,6 +246,7 @@ function saveLocalUser() {
                 email,
                 id,
                 role,
+                bio,
                 updated_at,
                 username,
                 account_is_verified,
@@ -266,6 +266,7 @@ function saveLocalUser() {
                     birth_date,
                     created_at,
                     email,
+                    bio,
                     id,
                     role,
                     updated_at,
@@ -344,12 +345,12 @@ function resetPassword() {
     });
 }
 
-function requestResetPassword() {
+function requestResetPassword(email) {
     return new Promise(async (resolve, reject) => {
         const routes = await getRoutes().catch(reject);
 
         axios
-            .post(routes.forgot_password_url, DEFAULT_OPTIONS_AXIOS)
+            .post(routes.forgot_password_url, { email }, DEFAULT_OPTIONS_AXIOS)
             .then(resolve)
             .catch(reject);
     });

@@ -8,6 +8,20 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     btnSend.addEventListener('click', async () => await verify());
 
+    document
+        .getElementById('code-not-received')
+        .addEventListener('click', async () => {
+            try {
+                await sendVerificationEmail();
+                alert('Verification email sent');
+            } catch (err) {
+                alert(
+                    err.response.data.message ||
+                        'Unable to resend verification email'
+                );
+            }
+        });
+
     inputs.forEach((input, index, arr) => {
         input.addEventListener('input', () => {
             if (index !== arr.length - 1) {
@@ -49,11 +63,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         try {
             await verifyAccount(token);
+        } catch (err) {
+            alert(err.response?.data?.message || 'Unable to verify account');
+        } finally {
             await saveLocalUser();
             alert('Your account has been verified');
             window.location.href = resolveUrl() + 'home/';
-        } catch (err) {
-            alert('Error: ' + err.message);
         }
     }
 
