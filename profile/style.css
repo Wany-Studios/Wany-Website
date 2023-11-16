@@ -27,7 +27,6 @@
 #profile-data-section {
   display: flex;
   flex-direction: column;
-  margin-bottom: 5%;
   background-color: var(--SecondaryBackground);
 }
 

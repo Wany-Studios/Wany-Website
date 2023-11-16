@@ -28,7 +28,7 @@ profileImgEl.addEventListener('click', async () => {
 bioTextareaEl.value = user.bio;
 
 changeUsernameEl.addEventListener('click', async () => {
-    const username = prompt('Please enter your new username');
+    const username = prompt('Please enter your new username', user.username);
     if (!username) return;
     try {
         await updateMe({ username });
