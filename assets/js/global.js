@@ -420,6 +420,51 @@ function uploadGameImage({ gameId, file, isCover }) {
     });
 }
 
+function makeUploadUserAvatar() {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.addEventListener('change', handle);
+    input.click();
+
+    async function handle() {
+        const fileList = input.files;
+
+        if (fileList.length === 0) {
+            return reject('No file was selected.');
+        }
+
+        try {
+            const response = await uploadUserAvatar({
+                file: fileList[0],
+            });
+
+            return response;
+        } catch (err) {
+            console.error('Unable to upload game: ' + err);
+        }
+    }
+}
+
+function uploadUserAvatar({ file }) {
+    return new Promise(async (resolve, reject) => {
+        const routes = await getRoutes().catch(reject);
+        const form = new FormData();
+
+        form.append('file', file);
+
+        axios
+            .post(routes.upload_avatar_url, form, {
+                ...DEFAULT_OPTIONS_AXIOS,
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            })
+            .then(resolve)
+            .catch(reject);
+    });
+}
+
 function makeUploadGame({ title, description, genre }) {
     const input = document.createElement('input');
     input.type = 'file';
