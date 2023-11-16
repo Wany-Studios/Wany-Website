@@ -14,9 +14,14 @@ profileImg.addEventListener('click', async () => {
     try {
         await makeUploadUserAvatar();
 
-        setTimeout(() => {
-            profileImg.src = user.avatar_url;
-        }, 2_500);
+        Promise.allSettled(
+            [500, 1_000, 5_000, 10_000].map(async (time) => {
+                setTimeout(() => {
+                    // many tries to ensure that user avatar will be updated
+                    profileImg.src = user.avatar_url;
+                }, time);
+            })
+        );
     } catch (err) {
         alert(err.response?.data?.message || 'Unable to change avatar');
     }
