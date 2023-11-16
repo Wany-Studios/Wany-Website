@@ -2,26 +2,37 @@ getMe().catch(() => {
     window.location.href = resolveUrl() + 'signin/';
 });
 
-const profileDescriptionDisplay = document.getElementById('BioTextArea');
+const saveBtn = document.getElementById('buttonSave');
+const cancelBtn = document.getElementById('buttonCancel');
+const bioTextarea = document.getElementById('BioTextArea');
+const buttonsDiv = document.querySelector('.section__div--buttons');
 
-profileDescriptionDisplay.setAttribute('disabled', 'disabled');
+const disableBioTextarea = () => {
+    bioTextarea.removeAttribute('disabled');
+};
 
-function showProfileDescription() {
-    document.querySelector('.section__div--buttons').style.display = 'flex';
-    profileDescriptionDisplay.removeAttribute('disabled', '');
-}
+const enableBioTextarea = () => {
+    bioTextarea.setAttribute('disabled', 'disabled');
+    bioTextarea.dataset.cachedValue = '';
+};
 
-document.querySelector('button#buttonSave').addEventListener('click', function () {
-    document.querySelector('.section__div--buttons').style.display = 'none';
-    profileDescriptionDisplay.setAttribute('disabled', 'disabled');
+const showProfileDescription = () => {
+    bioTextarea.dataset.cachedValue = bioTextarea.value;
+    buttonsDiv.style.display = 'flex';
+    disableBioTextarea();
+};
+
+enableBioTextarea();
+
+saveBtn.addEventListener('click', () => {
+    buttonsDiv.style.display = 'none';
+    enableBioTextarea();
 });
 
-document.querySelector('button#buttonCancel').addEventListener('click', function () {
-    document.querySelector('.section__div--buttons').style.display = 'none';
-    profileDescriptionDisplay.setAttribute('disabled', 'disabled');
+cancelBtn.addEventListener('click', () => {
+    bioTextarea.value = bioTextarea.dataset.cachedValue;
+    buttonsDiv.style.display = 'none';
+    enableBioTextarea();
 });
 
-document.addEventListener('DOMContentLoaded', async () => {
-    const userData = getLocalUser();
-    console.log(userData);
-});
+const userData = getLocalUser();
