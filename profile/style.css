@@ -112,7 +112,7 @@ h1#User-nickname {
 }
 #usernames-fields img {
   width: 20px;
-  display: none;
+  cursor: pointer;
 }
 
 .div__div--EditBio {

@@ -13,6 +13,7 @@ const buttonUploadGame = document.getElementById('div__button--upload');
 const profileImgEl = document.getElementById('profile-picture');
 const usernameEl = document.getElementById('User-name');
 const emailEl = document.getElementById('User-nickname');
+const changeUsernameEl = document.getElementById('change-username');
 
 usernameEl.innerHTML = user.username;
 emailEl.innerHTML = user.email;
@@ -34,6 +35,19 @@ profileImgEl.addEventListener('click', async () => {
     }
 });
 bioTextareaEl.value = user.bio;
+
+changeUsernameEl.addEventListener('click', async () => {
+    const username = prompt('Please enter your new username');
+    if (!username) return;
+    try {
+        await updateMe({ username });
+    } catch (err) {
+        alert(err.response?.data?.message || 'Unable to change username');
+    } finally {
+        usernameEl.innerHTML = username;
+        saveLocalUser();
+    }
+});
 
 const disableBioTextarea = () => {
     bioTextareaEl.removeAttribute('disabled');
