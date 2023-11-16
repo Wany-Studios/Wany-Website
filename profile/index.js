@@ -3,14 +3,18 @@ getMe().catch(() => {
 });
 
 let user = getLocalUser();
-const saveBtn = document.getElementById('buttonSave');
-const cancelBtn = document.getElementById('buttonCancel');
-const bioTextarea = document.getElementById('BioTextArea');
-const buttonsDiv = document.querySelector('.section__div--buttons');
-const profileImg = document.getElementById('profile-picture');
+const saveBtnEl = document.getElementById('buttonSave');
+const cancelBtnEl = document.getElementById('buttonCancel');
+const bioTextareaEl = document.getElementById('BioTextArea');
+const buttonsDivEl = document.querySelector('.section__div--buttons');
+const profileImgEl = document.getElementById('profile-picture');
+const usernameEl = document.getElementById('User-name');
+const emailEl = document.getElementById('User-nickname');
 
-profileImg.src = user.avatar_url;
-profileImg.addEventListener('click', async () => {
+usernameEl.innerHTML = user.username;
+emailEl.innerHTML = user.email;
+profileImgEl.src = user.avatar_url;
+profileImgEl.addEventListener('click', async () => {
     try {
         await makeUploadUserAvatar();
 
@@ -18,7 +22,7 @@ profileImg.addEventListener('click', async () => {
             [500, 1_000, 5_000, 10_000].map(async (time) => {
                 setTimeout(() => {
                     // many tries to ensure that user avatar will be updated
-                    profileImg.src = user.avatar_url;
+                    profileImgEl.src = user.avatar_url;
                 }, time);
             })
         );
@@ -26,27 +30,27 @@ profileImg.addEventListener('click', async () => {
         alert(err.response?.data?.message || 'Unable to change avatar');
     }
 });
-bioTextarea.value = user.bio;
+bioTextareaEl.value = user.bio;
 
 const disableBioTextarea = () => {
-    bioTextarea.removeAttribute('disabled');
+    bioTextareaEl.removeAttribute('disabled');
 };
 
 const enableBioTextarea = () => {
-    bioTextarea.setAttribute('disabled', 'disabled');
-    bioTextarea.dataset.cachedValue = '';
+    bioTextareaEl.setAttribute('disabled', 'disabled');
+    bioTextareaEl.dataset.cachedValue = '';
 };
 
 const showProfileDescription = () => {
-    bioTextarea.dataset.cachedValue = bioTextarea.value;
-    buttonsDiv.style.display = 'flex';
+    bioTextareaEl.dataset.cachedValue = bioTextareaEl.value;
+    buttonsDivEl.style.display = 'flex';
     disableBioTextarea();
 };
 
 enableBioTextarea();
 
-saveBtn.addEventListener('click', async () => {
-    const bio = bioTextarea.value;
+saveBtnEl.addEventListener('click', async () => {
+    const bio = bioTextareaEl.value;
 
     try {
         await updateMe({ bio });
@@ -56,15 +60,15 @@ saveBtn.addEventListener('click', async () => {
 
     await saveLocalUser();
 
-    buttonsDiv.style.display = 'none';
+    buttonsDivEl.style.display = 'none';
     enableBioTextarea();
 
     user = getLocalUser();
 });
 
-cancelBtn.addEventListener('click', () => {
-    bioTextarea.value = bioTextarea.dataset.cachedValue;
-    buttonsDiv.style.display = 'none';
+cancelBtnEl.addEventListener('click', () => {
+    bioTextareaEl.value = bioTextareaEl.dataset.cachedValue;
+    buttonsDivEl.style.display = 'none';
     enableBioTextarea();
 });
 
