@@ -91,13 +91,6 @@
         document.body.appendChild(element);
         return element;
     }
-
-    function getPageOverlay() {
-        const element = document.createElement('div');
-        element.classList.add('overlay');
-        document.body.appendChild(element);
-        return element;
-    }
 })();
 
 async function menuLogout() {

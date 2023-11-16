@@ -71,6 +71,17 @@ body.without-scroll {
   overflow: hidden;
 }
 
+.input {
+  background-color: transparent;
+  height: 40px;
+  border: none;
+  border-bottom: 2px solid gray;
+  color: gray;
+  outline: 0;
+  position: relative;
+  z-index: 1;
+}
+
 button,
 input[type=button],
 input[type=submit] {
@@ -114,12 +125,25 @@ input[type=submit].secondary:hover {
 }
 
 .modal {
-  margin: 25px;
   position: fixed;
   inset: 0;
-  background-color: var(--ModalBackgroudColor);
-  border-radius: 4px;
   z-index: 1000;
+  display: grid;
+  place-items: center;
+}
+
+.modal .form-group {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+}
+
+.modal .form-label {
+  font-size: 1.4rem;
+}
+
+.modal .input {
+  font-size: 1.2rem;
 }
 
 .modal:not(.open) {
@@ -127,10 +151,12 @@ input[type=submit].secondary:hover {
 }
 
 .modal-content {
-  height: 100%;
+  min-width: min(400px, 80vw);
   display: flex;
   flex-direction: column;
   position: relative;
+  background-color: var(--ModalBackgroudColor);
+  border-radius: 4px;
 }
 
 #close-modal {
