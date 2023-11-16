@@ -69,6 +69,31 @@ enableBioTextarea();
 buttonUploadGame.addEventListener('click', () => {
     modal = createModal({
         title: 'Upload Game',
+        body: `
+            <section style="height:100%;display:grid;place-items:center;">
+                <form style="width:100%;">
+                    <div class="form-group">
+                        <span class="form-label">Title</span>
+                        <input id="upload-game-title" type="text" class="input" value="" />
+                    </div>
+
+                    <div class="form-group">
+                        <span class="form-label">Description</span>
+                        <textarea id="upload-game-description" type="text" class="input" value="" style="resize:vertical;max-height:200px;"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <span class="form-label">Name</span>
+                        <select id="upload-game-name" class="input">
+                            <option value="Action">Action</option>
+                            <option value="Horror">Horror</option>
+                            <option value="Terror">Terror</option>
+                            <option value="Adventure">Adventure</option>
+                        </select>
+                    </div>
+                </form>
+            </section>
+        `,
         footer: `
             <div style="display:flex; gap:4px; justify-content: flex-end;">
                 <button>Create</button>
@@ -78,6 +103,10 @@ buttonUploadGame.addEventListener('click', () => {
     });
 
     modal.open();
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    buttonUploadGame.click();
 });
 
 saveBtnEl.addEventListener('click', async () => {
@@ -102,5 +131,3 @@ cancelBtnEl.addEventListener('click', () => {
     buttonsDivEl.style.display = 'none';
     enableBioTextarea();
 });
-
-const userData = getLocalUser();
