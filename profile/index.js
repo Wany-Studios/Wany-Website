@@ -20,12 +20,7 @@ profileImgEl.src = user.avatar_url;
 profileImgEl.addEventListener('click', async () => {
     try {
         await makeUploadUserAvatar();
-
-        for (let time of [500, 1_000, 5_000, 10_000]) {
-            // many tries to ensure that user avatar will be updated
-            await new Promise((resolve) => setTimeout(resolve, time));
-            profileImgEl.src = user.avatar_url;
-        }
+        profileImgEl.src = user.avatar_url + '?t=' + new Date().getTime();
     } catch (err) {
         alert(err.response?.data?.message || 'Unable to change avatar');
     }

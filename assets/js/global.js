@@ -546,29 +546,31 @@ function uploadGameImage({ gameId, file, isCover }) {
 }
 
 function makeUploadUserAvatar() {
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.accept = 'image/*';
-    input.addEventListener('change', handle);
-    input.click();
+    return new Promise((resolve, reject) => {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = 'image/*';
+        input.addEventListener('change', handle);
+        input.click();
 
-    async function handle() {
-        const fileList = input.files;
+        async function handle() {
+            const fileList = input.files;
 
-        if (fileList.length === 0) {
-            return reject('No file was selected.');
+            if (fileList.length === 0) {
+                return reject('No file was selected.');
+            }
+
+            try {
+                const response = await uploadUserAvatar({
+                    file: fileList[0],
+                });
+
+                return resolve(response);
+            } catch (err) {
+                return reject(err);
+            }
         }
-
-        try {
-            const response = await uploadUserAvatar({
-                file: fileList[0],
-            });
-
-            return response;
-        } catch (err) {
-            console.error('Unable to upload game: ' + err);
-        }
-    }
+    });
 }
 
 function uploadUserAvatar({ file }) {
