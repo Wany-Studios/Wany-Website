@@ -216,7 +216,18 @@ function getPageOverlay() {
     return document.querySelector('.overlay');
 }
 
-function createModal({ title, header, body, footer } = {}) {
+function createModal({
+    title,
+    header,
+    body,
+    footer,
+    yes,
+    no,
+    cancel,
+    onYes,
+    onNo,
+    onCancel,
+} = {}) {
     const overlay = getPageOverlay();
     const abortController = new AbortController();
 
@@ -267,7 +278,14 @@ function createModal({ title, header, body, footer } = {}) {
                 ${!!footer ? '<hr />' : ''}
                 
                 <div class="modal-footer">
-                    ${footer || ''}
+                    <div style="display:flex; gap:4px; justify-content: flex-end;">
+                        ${!!yes ? `<button id="modal-yes">${yes}</button>` : ''}
+                        ${
+                            !!cancel
+                                ? `<button id="modal-cancel" class="secondary close-modal">${cancel}</button>`
+                                : ''
+                        }
+                    </div>
                 </div>
             </section>
         </div>
@@ -279,7 +297,21 @@ function createModal({ title, header, body, footer } = {}) {
         item.addEventListener('click', () => close());
     });
 
-    return { open, close };
+    if (!!yes) {
+        modalEl.querySelector('#modal-yes').addEventListener('click', async () => {
+            onYes?.();
+        });
+    }
+    if (!!cancel) {
+        modalEl
+            .querySelector('#modal-cancel')
+            .addEventListener('click', async () => {
+                onCancel?.();
+                close();
+            });
+    }
+
+    return { open, close, el: modalEl };
 }
 
 function openGameModal(
@@ -559,32 +591,34 @@ function uploadUserAvatar({ file }) {
 }
 
 function makeUploadGame({ title, description, genre }) {
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.accept = '.zip';
-    input.addEventListener('change', handle);
-    input.click();
+    return new Promise((resolve, reject) => {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = '.zip';
+        input.addEventListener('change', handle);
+        input.click();
 
-    async function handle() {
-        const fileList = input.files;
+        async function handle() {
+            const fileList = input.files;
 
-        if (fileList.length === 0) {
-            return reject('No file was selected.');
+            if (fileList.length === 0) {
+                return reject('No file was selected.');
+            }
+
+            try {
+                const response = await uploadGame({
+                    title,
+                    description,
+                    genre,
+                    file: fileList[0],
+                });
+
+                return resolve(response);
+            } catch (err) {
+                return reject(err);
+            }
         }
-
-        try {
-            const response = await uploadGame({
-                title,
-                description,
-                genre,
-                file: fileList[0],
-            });
-
-            return response;
-        } catch (err) {
-            console.error('Unable to upload game: ' + err);
-        }
-    }
+    });
 }
 
 function uploadGame({ title, description, genre, file }) {

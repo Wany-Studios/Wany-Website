@@ -3,7 +3,6 @@ getMe().catch(() => {
 });
 
 let user = getLocalUser();
-let modal;
 
 const saveBtnEl = document.getElementById('buttonSave');
 const cancelBtnEl = document.getElementById('buttonCancel');
@@ -67,7 +66,7 @@ const showProfileDescription = () => {
 enableBioTextarea();
 
 buttonUploadGame.addEventListener('click', () => {
-    modal = createModal({
+    const modal = createModal({
         title: 'Upload Game',
         body: `
             <section style="height:100%;display:grid;place-items:center;">
@@ -84,7 +83,7 @@ buttonUploadGame.addEventListener('click', () => {
 
                     <div class="form-group">
                         <span class="form-label">Name</span>
-                        <select id="upload-game-name" class="input">
+                        <select id="upload-game-genre" class="input">
                             <option value="Action">Action</option>
                             <option value="Horror">Horror</option>
                             <option value="Terror">Terror</option>
@@ -94,12 +93,27 @@ buttonUploadGame.addEventListener('click', () => {
                 </form>
             </section>
         `,
-        footer: `
-            <div style="display:flex; gap:4px; justify-content: flex-end;">
-                <button>Create</button>
-                <button class="secondary close-modal">Cancel</button>
-            </div>
-        `,
+        yes: 'Choose file and create',
+        cancel: 'Cancel',
+        async onYes() {
+            const title = modal.el.querySelector('#upload-game-title').value;
+            const description = modal.el.querySelector(
+                '#upload-game-description'
+            ).value;
+            const genre = modal.el.querySelector('#upload-game-genre').value;
+
+            try {
+                const response = await makeUploadGame({ title, description, genre });
+
+                if (response.status === 201) {
+                    alert('Game created successfully!');
+                    modal.close();
+                }
+            } catch (err) {
+                console.error(err);
+                alert(err.response?.data?.message || 'Unable to create game');
+            }
+        },
     });
 
     modal.open();
