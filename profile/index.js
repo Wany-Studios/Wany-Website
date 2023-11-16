@@ -119,10 +119,6 @@ buttonUploadGame.addEventListener('click', () => {
     modal.open();
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    buttonUploadGame.click();
-});
-
 saveBtnEl.addEventListener('click', async () => {
     const bio = bioTextareaEl.value;
 
