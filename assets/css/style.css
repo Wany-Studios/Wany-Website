@@ -116,7 +116,20 @@ textarea {
   background-color: #464545;
   color: #fff;
   border-radius: 6px;
-  padding: 10px;
+  padding: 10px 4px 0;
+  border-radius: 0;
+}
+
+.block {
+  display: block;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.w100 {
+  width: 100%;
 }
 
 .overlay {
@@ -143,14 +156,16 @@ textarea {
   display: flex;
   flex-direction: column;
   padding: 20px 0;
+  margin-top: 5px;
 }
 
 .modal .form-label {
-  font-size: 1.4rem;
+  font-size: 1rem;
 }
 
 .modal .input {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+  padding: 10px 0 0;
 }
 
 .modal:not(.open) {
@@ -185,4 +200,23 @@ textarea {
 
 .modal-body {
   flex-grow: 1;
+}
+
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 8px;
+  border: none;
+  transition: 0.2s ease-in-out;
+  padding: 2px 8px;
+  min-width: 100px;
+}
+
+button img {
+  width: 10%;
+  min-width: 20px;
+  margin: 2px;
+  padding: 5px;
 }

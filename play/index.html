@@ -11,14 +11,21 @@
         <wany-header></wany-header>
         <wany-nav></wany-nav>
 
-        <div class="section">
-            <span id="game-author" class="game-author"></span>
-            <h1 id="game-title" class="game-title"></h1>
+        <div class="section" style="display: flex; gap: 25px; align-items: center">
+            <img
+                id="game-author-img"
+                style="width: 56px; height: 56px; border-radius: 50%"
+            />
+
+            <div>
+                <span id="game-author" class="game-author"></span>
+                <h1 id="game-title" class="game-title"></h1>
+            </div>
         </div>
 
         <div id="games-display" class="games-display section">
             <div class="play-game">
-                <button onclick="play()">JOGAR</button>
+                <button onclick="play()">PLAY</button>
             </div>
         </div>
 

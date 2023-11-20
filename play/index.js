@@ -4,6 +4,7 @@ const gameDisplayEl = document.getElementById('games-display');
 const gameAuthorEl = document.getElementById('game-author');
 const gameDescriptionEl = document.getElementById('game-description');
 const fullscreenButtonEl = document.createElement('button');
+const gameAuthorImg = document.getElementById('game-author-img');
 
 window.addEventListener('resize', handleResize);
 
@@ -122,6 +123,8 @@ async function loadGame() {
     gameTitleEl.innerText = title;
     gameAuthorEl.innerText = `Created by @${user.username}`;
     gameDescriptionEl.innerHTML = description;
+    gameAuthorImg.src = await getUserAvatarUrl(user.username);
+    gameAuthorImg.title = user.bio;
 }
 
 function play() {

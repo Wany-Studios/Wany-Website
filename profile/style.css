@@ -58,25 +58,6 @@
   height: 25px;
 }
 
-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  border-radius: 8px;
-  border: none;
-  transition: 0.2s ease-in-out;
-  padding: 2px 8px;
-  min-width: 100px;
-}
-
-button img {
-  width: 10%;
-  min-width: 20px;
-  margin: 2px;
-  padding: 5px;
-}
-
 #div__button--upload {
   display: flex;
   justify-content: center;

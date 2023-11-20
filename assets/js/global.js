@@ -6,6 +6,8 @@ const DEFAULT_OPTIONS_AXIOS = {
     credentials: 'include',
 };
 
+let usersCache = {};
+
 const [postMessage, channelListenForMessage] = (() => {
     const channel = new BroadcastChannel('Wany+Channel');
     const listeners = {};
@@ -316,7 +318,7 @@ function createModal({
     return { open, close, el: modalEl };
 }
 
-function openGameModal(
+async function openGameModal(
     game = {
         add_game_image_url,
         createdAt,
@@ -332,19 +334,43 @@ function openGameModal(
         userId,
     }
 ) {
+    let user = usersCache[game.userId];
+
+    if (!user) {
+        const response = await getUser(game.userId, true);
+        user = response.data;
+    }
+
     const modal = createModal({
-        title: '',
+        title: game.title,
         body: `
             <section style="height:100%;display:grid;place-items:center;">
-                <form>
-                </form>
+                <div class="w100" style="margin-bottom:20px;">
+                    <span>Created by <a href="#" style="color:#fff;">@${user.username}</a></span>
+                </div>
+
+                <div class="w100">
+                    <span>Description</span>
+                    <textarea class="w100" style="resize:vertical;max-height:250px;margin-top:5px;" readonly>${game.description}</textarea>
+                </div>
+
+                <div class="w100" style="margin-top:10px;">
+                    <span>Genre</span>
+                    <input class="input w100" style="cursor:auto;" type="text" value="${game.genre}" readonly />
+                </div>
             </section>
         `,
-        yes: '',
+        yes: 'Play',
+        no: 'Edit',
         cancel: 'Close',
+        onYes() {
+            playGame(game);
+        },
     });
 
-    // playGame(game);
+    modal.open();
+
+    return modal;
 }
 
 function playGame(gameObj) {
@@ -495,7 +521,11 @@ function getUser(userIdOrUsername, isById = false) {
 
         axios
             .get(routes.public_user_url, DEFAULT_OPTIONS_AXIOS)
-            .then(resolve)
+            .then((response) => {
+                resolve(response);
+                const { id, ...data } = response.data;
+                usersCache[id] = { id, ...data };
+            })
             .catch(reject);
     });
 }
