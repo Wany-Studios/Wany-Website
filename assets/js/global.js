@@ -82,6 +82,7 @@ function getInfo() {
  * delete_game_url,
  * forgot_password_url,
  * public_get_game_url,
+ * my_games_url,
  * login_url,
  * logout_url,
  * public_game_image_url,
@@ -114,6 +115,7 @@ const getRoutes = (() => {
             logout_url: data.logout_url,
             public_game_image_url: data.public_game_image_url,
             public_game_url: data.public_game_url,
+            my_games_url: data.my_games_url,
             public_url: data.public_url,
             remove_game_image_url: data.remove_game_image_url,
             reset_password_url: data.reset_password_url,
@@ -501,6 +503,17 @@ function updateMe(data = { bio, username, password, dateOfBirth }) {
                 JSON.parse(JSON.stringify(data)),
                 DEFAULT_OPTIONS_AXIOS
             )
+            .then(resolve)
+            .catch(reject);
+    });
+}
+
+function getMyGames() {
+    return new Promise(async (resolve, reject) => {
+        const routes = await getRoutes().catch(reject);
+
+        axios
+            .get(routes.my_games_url, DEFAULT_OPTIONS_AXIOS)
             .then(resolve)
             .catch(reject);
     });
