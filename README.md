@@ -1,6 +1,6 @@
 # Wany-Project
 
-the wany project is basically a platform for streaming and downloading games
+The wany project is basically a platform for streaming and playing games
 
 ### Conventional Commits
 
