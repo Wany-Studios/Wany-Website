@@ -29,15 +29,18 @@ bioTextareaEl.value = user.bio;
 
 changeUsernameEl.addEventListener('click', async () => {
     const username = prompt('Please enter your new username', user.username);
-    if (!username) return;
+
+    if (!username || username.trim() === user.username) return;
+
     try {
         await updateMe({ username });
     } catch (err) {
         alert(err.response?.data?.message || 'Unable to change username');
-    } finally {
-        usernameEl.innerHTML = username;
-        saveLocalUser();
+        return;
     }
+
+    usernameEl.innerHTML = username;
+    saveLocalUser();
 });
 
 const disableBioTextarea = () => {
