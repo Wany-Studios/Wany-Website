@@ -93,7 +93,7 @@ function getInfo() {
  * send_verification_email_url,
  * signup_url,
  * upload_avatar_url,
- * user_url,
+ * public_user_url,
  * update_user_url,
  * verify_email_url,
  * }>>}
@@ -121,7 +121,7 @@ const getRoutes = (() => {
             send_verification_email_url: data.send_verification_email_url,
             signup_url: data.signup_url,
             upload_avatar_url: data.upload_avatar_url,
-            user_url: data.user_url,
+            public_user_url: data.user_url,
             update_user_url: data.update_user_url,
             verify_email_url: data.verify_email_url,
         };
@@ -461,6 +461,20 @@ function requestResetPassword(email) {
 
         axios
             .post(routes.forgot_password_url, { email }, DEFAULT_OPTIONS_AXIOS)
+            .then(resolve)
+            .catch(reject);
+    });
+}
+
+function getUser(userIdOrUsername, isById = false) {
+    return new Promise(async (resolve, reject) => {
+        const routes = await getRoutes({
+            username: userIdOrUsername,
+            byId: isById,
+        }).catch(reject);
+
+        axios
+            .get(routes.public_user_url, DEFAULT_OPTIONS_AXIOS)
             .then(resolve)
             .catch(reject);
     });
