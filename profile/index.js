@@ -17,6 +17,8 @@ const changeUsernameEl = document.getElementById('change-username');
 getUserAvatarUrl(user.username).then((url) => (profileImgEl.src = url));
 usernameEl.innerHTML = user.username;
 emailEl.innerHTML = user.email;
+bioTextareaEl.value = user.bio;
+
 profileImgEl.addEventListener('click', async () => {
     try {
         await makeUploadUserAvatar();
@@ -25,7 +27,6 @@ profileImgEl.addEventListener('click', async () => {
         alert(err.response?.data?.message || 'Unable to change avatar');
     }
 });
-bioTextareaEl.value = user.bio;
 
 changeUsernameEl.addEventListener('click', async () => {
     const username = prompt('Please enter your new username', user.username);
@@ -57,8 +58,6 @@ const showProfileDescription = () => {
     buttonsDivEl.style.display = 'flex';
     disableBioTextarea();
 };
-
-enableBioTextarea();
 
 buttonUploadGame.addEventListener('click', () => {
     const modal = createModal({
@@ -136,3 +135,25 @@ cancelBtnEl.addEventListener('click', () => {
     buttonsDivEl.style.display = 'none';
     enableBioTextarea();
 });
+
+async function init() {
+    enableBioTextarea();
+
+    try {
+        const response = await getMyGames();
+        if (!response.status == 200) return;
+        const games = response.data.games;
+        console.log({ games });
+        const lista = montaListaCardsGames(games);
+
+        document.getElementById('my-games-carousel-list').innerHTML = '';
+
+        lista.forEach((render) => {
+            document.getElementById('my-games-carousel-list').appendChild(render());
+        });
+    } catch (err) {
+        alert(err.response?.data?.message || 'Unable to get your games');
+    }
+}
+
+init();

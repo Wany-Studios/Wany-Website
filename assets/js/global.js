@@ -332,8 +332,19 @@ function openGameModal(
         userId,
     }
 ) {
-    // TODO: implement after
-    playGame(game);
+    const modal = createModal({
+        title: '',
+        body: `
+            <section style="height:100%;display:grid;place-items:center;">
+                <form>
+                </form>
+            </section>
+        `,
+        yes: '',
+        cancel: 'Close',
+    });
+
+    // playGame(game);
 }
 
 function playGame(gameObj) {

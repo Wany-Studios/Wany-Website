@@ -115,7 +115,7 @@ async function loadGame() {
     if (!data) window.location.href = resolveUrl() + 'home/';
 
     const { description, userId, title, genre, public_game_url } = JSON.parse(data);
-    console.log(userId);
+
     const user = await getUserData(userId);
 
     iframeEl.src = public_game_url;

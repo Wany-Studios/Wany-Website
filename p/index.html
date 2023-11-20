@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="../assets/css/style.css" />
+        <link rel="stylesheet" href="./style.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Jogos - Wany</title>
+
+        <style>
+            .game {
+                margin-top: 36px;
+                overflow: hidden;
+            }
+        </style>
+    </head>
+    <body>
+        <wany-header></wany-header>
+        <wany-nav></wany-nav>
+
+        <section id="game" class="game"></section>
+        <button onclick="init()">Start</button>
+
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/screenfull.js/3.1.0/screenfull.min.js"
+            integrity="sha512-vpf3xaeHkIgfuvUQ4+shWBe7v26Qn6h72tDVRLb9OYFTRB19BTBxQalCGCAkRnVnGnQyLjSNEHvkkqdKirGETQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script>
+        <script src="../assets/lib/axios/axios.min.js"></script>
+        <script src="../assets/js/global.js"></script>
+        <script src="../assets/js/header.js"></script>
+        <script src="../assets/js/nav.js"></script>
+        <script>
+            const gameContainerEl = document.getElementById('game');
+
+            async function init() {
+                const user = await getUserData();
+                const gameData = await getGameData();
+
+                await createGame(gameData.public_game_url);
+            }
+
+            async function createGame(url) {
+                try {
+                    const [width, height] = getWindowSize();
+                    const container = gameContainerEl;
+
+                    container.innerHTML = `
+                        <object
+                            id="game-object"
+                            data="${url}"
+                            width="${width}"
+                            height="${height}"
+                            type="text/html"
+                        >
+                        </object>
+                    `;
+
+                    await updateGameObject();
+
+                    onResize(() => updateGameObject());
+                } catch (err) {
+                    console.error('Error fetching content:', err);
+                }
+            }
+
+            async function getUserData() {
+                let user = {};
+
+                try {
+                    const routes = await getRoutes({
+                        username: getLocalUser().id,
+                        byId: true,
+                    }).catch(reject);
+
+                    const response = await axios.get(
+                        routes.public_user_url,
+                        DEFAULT_OPTIONS_AXIOS
+                    );
+
+                    user = response.data;
+                } catch (err) {}
+
+                return {
+                    avatarUrl: user.avatar_url ?? 'https://picsum.photos/50',
+                    bio: user.bio ?? '',
+                    email: user.email ?? '',
+                    id: user.id ?? 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx',
+                    username: user.username ?? 'unknown',
+                };
+            }
+
+            async function getGameData() {
+                const data = localStorage.getItem('game');
+
+                if (!data) window.location.href = resolveUrl() + 'home/';
+
+                const { description, userId, title, genre, public_game_url } =
+                    JSON.parse(data);
+
+                const user = await getUserData(userId);
+
+                return { description, userId, title, genre, public_game_url };
+            }
+
+            async function updateGameObject() {
+                const [width, height] = getWindowSize();
+
+                const gameObject = document.getElementById('game-object');
+                const gameWindow = gameObject.contentWindow;
+                const gameCanvas = gameWindow.document.querySelector('canvas');
+
+                if (!gameCanvas) {
+                    await new Promise((resolve) => setTimeout(resolve, 100));
+                    return updateGameObject();
+                }
+
+                gameCanvas.style.margin = 'auto';
+                gameCanvas.style.display = 'flex';
+
+                const [maxWidth, maxHeight] = getScreenSize().map(
+                    (s) => (s / 100) * 50
+                );
+
+                const [currentWidth, currentHeight] = [
+                    gameCanvas.width,
+                    gameCanvas.height,
+                ];
+                const aspectRatio = currentWidth / currentHeight;
+
+                let canResize = false;
+                let newWidth = 0;
+                let newHeight = 0;
+
+                if (currentWidth / maxWidth > currentHeight / maxHeight) {
+                    newWidth = maxWidth;
+                    newHeight = maxWidth / aspectRatio;
+                    if (newWidth < gameCanvas.width) canResize = true;
+                } else {
+                    newHeight = maxHeight;
+                    newWidth = maxHeight * aspectRatio;
+                    if (newHeight < gameCanvas.height) canResize = true;
+                }
+
+                if (canResize) {
+                    gameCanvas.width = newWidth;
+                    gameCanvas.height = newHeight;
+                }
+            }
+
+            function onResize(callback) {
+                window.addEventListener('resize', callback);
+            }
+
+            function getWindowSize() {
+                return [document.body.clientWidth, document.body.clientHeight];
+            }
+
+            function getScreenSize() {
+                return [screen.width, screen.height];
+            }
+        </script>
+    </body>
+</html>
