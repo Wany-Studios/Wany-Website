@@ -90,7 +90,7 @@ input[type=submit] {
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  height: 38px;
+  min-height: 38px;
   transition: 0.1s ease-in-out background;
 }
 
@@ -110,6 +110,13 @@ button.secondary:hover,
 input[type=button].secondary:hover,
 input[type=submit].secondary:hover {
   background-color: rgb(87, 87, 87);
+}
+
+textarea {
+  background-color: #464545;
+  color: #fff;
+  border-radius: 6px;
+  padding: 10px;
 }
 
 .overlay {

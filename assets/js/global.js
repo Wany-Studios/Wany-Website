@@ -331,12 +331,12 @@ function openGameModal(
     }
 ) {
     // TODO: implement after
-    playGame(game.public_game_url);
+    playGame(game);
 }
 
-function playGame(url) {
-    localStorage.setItem('game-path', url);
-    window.location.href = resolveUrl() + '/play/';
+function playGame(gameObj) {
+    localStorage.setItem('game', JSON.stringify(gameObj));
+    window.location.href = resolveUrl() + 'play/';
 }
 
 function deleteLocalUser() {
