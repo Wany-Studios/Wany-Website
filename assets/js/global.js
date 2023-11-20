@@ -672,6 +672,8 @@ function sendVerificationEmail() {
 
         const routes = await getRoutes();
 
+        document.body.classList.add('waiting');
+
         axios
             .post(
                 routes.send_verification_email_url,
@@ -679,7 +681,10 @@ function sendVerificationEmail() {
                 DEFAULT_OPTIONS_AXIOS
             )
             .then(resolve)
-            .catch(reject);
+            .catch(reject)
+            .finally(() => {
+                document.body.classList.remove('waiting');
+            });
     });
 }
 
