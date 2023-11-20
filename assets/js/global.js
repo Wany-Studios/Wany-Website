@@ -403,15 +403,22 @@ async function getUserAvatarUrl(username = null) {
         const user = getLocalUser();
 
         if (!user) {
-            return reject('Must be logged in or provide a username.');
-        } else {
-            username = user.username;
+            return 'https://picsum.photos/50';
         }
+
+        username = user.username;
     }
 
     const routes = await getRoutes({ username });
 
-    return routes.avatar_url;
+    return await new Promise((resolve) => {
+        fetch(routes.avatar_url)
+            .then((response) => {
+                if (!response.ok) return resolve('https://picsum.photos/50');
+                resolve(routes.avatar_url);
+            })
+            .catch(() => resolve('https://picsum.photos/50'));
+    });
 }
 
 function getUserAvatar(username = null) {

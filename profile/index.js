@@ -14,9 +14,9 @@ const usernameEl = document.getElementById('User-name');
 const emailEl = document.getElementById('User-nickname');
 const changeUsernameEl = document.getElementById('change-username');
 
+getUserAvatarUrl(user.username).then((url) => (profileImgEl.src = url));
 usernameEl.innerHTML = user.username;
 emailEl.innerHTML = user.email;
-profileImgEl.src = user.avatar_url;
 profileImgEl.addEventListener('click', async () => {
     try {
         await makeUploadUserAvatar();
