@@ -335,10 +335,26 @@ async function openGameModal(
     }
 ) {
     let user = usersCache[game.userId];
+    let owned = false;
+    let aditional = '';
 
     if (!user) {
-        const response = await getUser(game.userId, true);
-        user = response.data;
+        const currentUser = getLocalUser();
+
+        if (currentUser?.id === game.userId) {
+            aditional = `
+                <div class="w100" style="margin-top:10px;display:flex;justify-content:flex-end;">
+                    <button id="delete-game-btn" class="secondary">
+                        Delete game
+                    </button>
+                </div>
+            `;
+            owned = true;
+            user = currentUser;
+        } else {
+            const response = await getUser(game.userId, true);
+            user = response.data;
+        }
     }
 
     const modal = createModal({
@@ -346,7 +362,7 @@ async function openGameModal(
         body: `
             <section style="height:100%;display:grid;place-items:center;">
                 <div class="w100" style="margin-bottom:20px;">
-                    <span>Created by <a href="#" style="color:#fff;">@${user.username}</a></span>
+                    <span>Created by <a href="#" style="color:#fff;" title="${user.bio}">@${user.username}</a></span>
                 </div>
 
                 <div class="w100">
@@ -358,16 +374,30 @@ async function openGameModal(
                     <span>Genre</span>
                     <input class="input w100" style="cursor:auto;" type="text" value="${game.genre}" readonly />
                 </div>
+
+                ${aditional}
             </section>
         `,
         yes: 'Play',
-        no: 'Edit',
         cancel: 'Close',
         onYes() {
             playGame(game);
         },
     });
 
+    if (owned) {
+        modal.el.querySelector('#delete-game-btn').onclick = async () => {
+            try {
+                document.body.classList.add('waiting');
+                await deleteGame(game.id);
+                document.body.classList.remove('waiting');
+                alert('Game deleted successfully');
+                modal.close();
+            } catch (err) {
+                alert(err.response?.data?.message ?? 'Unable to delete game');
+            }
+        };
+    }
     modal.open();
 
     return modal;
@@ -720,6 +750,16 @@ function uploadGame({ title, description, genre, file }) {
     });
 }
 
+function deleteGame(gameId) {
+    return new Promise(async (resolve, reject) => {
+        const routes = await getRoutes({ id: gameId }).catch(reject);
+        axios
+            .delete(routes.delete_game_url, {}, DEFAULT_OPTIONS_AXIOS)
+            .then(resolve)
+            .catch(reject);
+    });
+}
+
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -772,3 +812,5 @@ function createEnum(...entries) {
 function createEntries(...entries) {
     return Object.freeze(Object.fromEntries(entries.map((entry) => [entry, entry])));
 }
+
+getRoutes().then((r) => console.table(r));
