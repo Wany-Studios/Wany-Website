@@ -60,6 +60,8 @@ const showProfileDescription = () => {
 };
 
 buttonUploadGame.addEventListener('click', () => {
+    let gameImage = null;
+
     const modal = createModal({
         title: 'Upload Game',
         body: `
@@ -73,6 +75,13 @@ buttonUploadGame.addEventListener('click', () => {
                     <div class="form-group">
                         <span class="form-label">Description</span>
                         <textarea id="upload-game-description" type="text" class="input" value="" style="resize:vertical;max-height:200px;"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <span>Game image</span>
+                        <button id="select-game-image" type="button">Select game image</button>
+                        <img id="upload-game-image" src="" style="max-width:100%;max-height:200px;margin-top:5px;margin-bottom:5px;" />
+                        <button id="upload-game-image-delete" type="button" class="secondary" style="display:none;">Remove game image</button>
                     </div>
 
                     <div class="form-group">
@@ -96,10 +105,27 @@ buttonUploadGame.addEventListener('click', () => {
             ).value;
             const genre = modal.el.querySelector('#upload-game-genre').value;
 
+            if (!gameImage) {
+                alert('You must provide an image');
+                return;
+            }
+
+            document.body.classList.add('waiting');
+
             try {
                 const response = await makeUploadGame({ title, description, genre });
 
                 if (response.status === 201) {
+                    if (gameImage) {
+                        const { game } = response.data;
+
+                        await uploadGameImage({
+                            gameId: game.id,
+                            file: gameImage,
+                            isCover: true,
+                        }).catch(() => {});
+                    }
+
                     alert('Game created successfully!');
                     modal.close();
                     window.location.reload();
@@ -107,9 +133,32 @@ buttonUploadGame.addEventListener('click', () => {
             } catch (err) {
                 console.error(err);
                 alert(err.response?.data?.message || 'Unable to create game');
+            } finally {
+                document.body.classList.remove('waiting');
             }
         },
     });
+
+    const imgEl = modal.el.querySelector('#upload-game-image');
+    const imgDeleteEl = modal.el.querySelector('#upload-game-image-delete');
+    const imgSelectEl = modal.el.querySelector('#select-game-image');
+
+    imgSelectEl.onclick = async () => {
+        const fileList = await getImageInput();
+        const fileReader = new FileReader();
+        fileReader.onload = () => (imgEl.src = fileReader.result);
+        fileReader.readAsDataURL(fileList[0]);
+        imgDeleteEl.style.display = '';
+        imgSelectEl.style.display = 'none';
+        gameImage = fileList[0];
+    };
+
+    imgDeleteEl.onclick = async () => {
+        gameImage = null;
+        imgEl.src = '';
+        imgDeleteEl.style.display = 'none';
+        imgSelectEl.style.display = '';
+    };
 
     modal.open();
 });

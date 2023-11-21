@@ -265,7 +265,7 @@ function createModal({
 
     const modalEl = htmlToElement(`
         <div class="modal">
-            <section class="modal-content">
+            <section class="modal-content" style="overflow-y:auto;max-height:100vh;">
                 <a id="close-modal" class="close-modal" href="#">x</a>
 
                 <div class="modal-header">
@@ -597,32 +597,40 @@ function getMyGames() {
     });
 }
 
-function makeUploadGameImage({ gameId, isCover }) {
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.accept = 'image/*';
-    input.addEventListener('change', handle);
-    input.click();
+function getImageInput() {
+    return new Promise((resolve, reject) => {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = 'image/*';
+        input.addEventListener('change', handle);
+        input.click();
 
-    async function handle() {
-        const fileList = input.files;
+        async function handle() {
+            const fileList = input.files;
 
-        if (fileList.length === 0) {
-            return reject('No file was selected.');
+            if (fileList.length === 0) {
+                return reject(new Error('No file was selected.'));
+            }
+
+            return resolve(fileList);
         }
+    });
+}
 
+function makeUploadGameImage({ gameId, isCover }) {
+    return new Promise(async (resolve, reject) => {
+        const fileList = await getImageInput();
         try {
             const response = await uploadGameImage({
                 gameId,
                 isCover,
                 file: fileList[0],
             });
-
-            return response;
+            return resolve(response);
         } catch (err) {
-            console.error('Unable to upload game: ' + err);
+            return reject(err);
         }
-    }
+    });
 }
 
 function uploadGameImage({ gameId, file, isCover }) {
