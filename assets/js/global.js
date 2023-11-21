@@ -163,7 +163,7 @@ function logout() {
     });
 }
 
-function montaListaCardsGames(games) {
+function generateListCardGames(games) {
     return games.map(
         (
             game = {
@@ -183,7 +183,13 @@ function montaListaCardsGames(games) {
         ) => {
             return () => {
                 const el = htmlToElement(`
-                  <div class="swiper-slide" title='${game.title}'>
+                  <div class="swiper-slide">
+                    <h2  
+                        title='${game.title}' 
+                        style="padding:4px;text-align:center;cursor:default;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+                        ${game.title}
+                    </h2>
+
                     <div class="item">
                         <img
                             loading="lazy"
@@ -776,12 +782,15 @@ function shuffleArray(array) {
     return array;
 }
 
-function searchGames() {
+function searchGames(query = []) {
     return new Promise(async (resolve, reject) => {
         const routes = await getRoutes();
 
         axios
-            .get(routes.search_games_url, DEFAULT_OPTIONS_AXIOS)
+            .get(
+                routes.search_games_url + '?' + query.join('&'),
+                DEFAULT_OPTIONS_AXIOS
+            )
             .then(resolve)
             .catch(reject);
     });
@@ -809,6 +818,15 @@ function sendVerificationEmail() {
                 document.body.classList.remove('waiting');
             });
     });
+}
+
+function debounce(callback, delay = 300) {
+    let timerId;
+
+    return (...args) => {
+        clearTimeout(timerId);
+        timerId = setTimeout(() => callback(...args), delay);
+    };
 }
 
 function createEnum(...entries) {

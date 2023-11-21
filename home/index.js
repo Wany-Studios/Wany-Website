@@ -73,7 +73,7 @@ window.addEventListener('load', async function () {
     try {
         const response = await searchGames();
         const { games } = response.data;
-        const lista = montaListaCardsGames(games);
+        const lista = generateListCardGames(games);
 
         if (lista.length === 0) {
             document.querySelector('#trending-games-carousel-items').innerHTML =
@@ -98,10 +98,10 @@ window.addEventListener('load', async function () {
         console.error(e);
     }
 
-    loadTrendingGamesCarousel();
-    loadGamesCarousel();
-
     document.querySelectorAll('.carousel').forEach((item) => {
         item.style.display = '';
     });
+
+    loadTrendingGamesCarousel();
+    loadGamesCarousel();
 });

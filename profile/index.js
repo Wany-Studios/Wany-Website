@@ -194,7 +194,7 @@ async function init() {
         if (!response.status == 200) return;
         const games = response.data.games;
         console.log({ games });
-        const lista = montaListaCardsGames(games);
+        const lista = generateListCardGames(games);
 
         document.getElementById('my-games-carousel-list').innerHTML = '';
 
