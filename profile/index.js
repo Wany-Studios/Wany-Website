@@ -102,6 +102,7 @@ buttonUploadGame.addEventListener('click', () => {
                 if (response.status === 201) {
                     alert('Game created successfully!');
                     modal.close();
+                    window.location.reload();
                 }
             } catch (err) {
                 console.error(err);

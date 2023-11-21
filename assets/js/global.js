@@ -391,9 +391,8 @@ async function openGameModal(
                 document.body.classList.add('waiting');
                 await deleteGame(game.id);
                 document.body.classList.remove('waiting');
-                alert('Game deleted successfully');
-                window.location.href = '';
                 modal.close();
+                window.location.reload();
             } catch (err) {
                 alert(err.response?.data?.message ?? 'Unable to delete game');
             }
