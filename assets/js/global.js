@@ -81,6 +81,7 @@ function getInfo() {
  * avatar_url,
  * create_game_url,
  * current_user_url,
+ * delete_user_url,
  * delete_game_url,
  * forgot_password_url,
  * public_get_game_url,
@@ -110,6 +111,7 @@ const getRoutes = (() => {
             avatar_url: data.avatar_url,
             create_game_url: data.create_game_url,
             current_user_url: data.current_user_url,
+            delete_user_url: data.delete_user_url,
             delete_game_url: data.delete_game_url,
             forgot_password_url: data.forgot_password_url,
             public_get_game_url: data.public_get_game_url,
@@ -543,6 +545,17 @@ function requestResetPassword(email) {
 
         axios
             .post(routes.forgot_password_url, { email }, DEFAULT_OPTIONS_AXIOS)
+            .then(resolve)
+            .catch(reject);
+    });
+}
+
+function deleteUser() {
+    return new Promise(async (resolve, reject) => {
+        const routes = await getRoutes().catch(reject);
+
+        axios
+            .delete(routes.delete_user_url, DEFAULT_OPTIONS_AXIOS)
             .then(resolve)
             .catch(reject);
     });

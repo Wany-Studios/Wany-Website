@@ -85,6 +85,8 @@ window.addEventListener('load', async function () {
             return;
         }
 
+        document.querySelector('#trending-games-carousel-items').innerHTML = '';
+
         lista.slice(0, 3).forEach((item) => {
             document
                 .querySelector('#trending-games-carousel-items')

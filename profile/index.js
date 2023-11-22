@@ -59,6 +59,21 @@ const showProfileDescription = () => {
     disableBioTextarea();
 };
 
+const deleteAccount = async () => {
+    if (!confirm('Are you sure you want to delete your account?')) return;
+    if (!confirm('Your account will be permanently deleted.')) return;
+
+    document.body.classList.add('waiting');
+    try {
+        await deleteUser();
+        deleteLocalUser();
+        window.location.href = resolveUrl() + 'home';
+    } catch (err) {
+        alert(err.response?.data?.message || 'Unable to delete account');
+    }
+    document.body.classList.remove('waiting');
+};
+
 buttonUploadGame.addEventListener('click', () => {
     let gameImage = null;
 
