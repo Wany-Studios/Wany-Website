@@ -61,6 +61,8 @@ nav {
   margin: auto;
   align-items: center;
   justify-content: center;
+  z-index: 50;
+  position: relative;
 }
 
 nav img {

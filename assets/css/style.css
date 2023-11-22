@@ -6,6 +6,7 @@
   --Nav: #464545;
   --Header: #2f2f2f;
   --Background: #181818;
+  --SecondaryBackground: #2f2f2f;
   
   --ContentLeftHeight: calc(
         100vh   /* page height   */
@@ -16,12 +17,13 @@
 
   --Carousel: #f54703;
   --CarouselArrow: #ff7518;
-
+  
   --PrimaryButtonColor: #f54703;
   --PrimaryButtonHoverColor: #ff4f0a;
 
   --AuthBackgroudColor: #2f2f2f55;
   --AccountVerificationBackgroundColor: #2f2f2f;
+  --ModalBackgroudColor: #2f2f2f;
 
   --InputFocusColor: #f54703;
 
@@ -69,6 +71,67 @@ body.without-scroll {
   overflow: hidden;
 }
 
+.input {
+  background-color: transparent;
+  height: 40px;
+  border: none;
+  border-bottom: 2px solid gray;
+  color: gray;
+  outline: 0;
+  position: relative;
+  z-index: 1;
+}
+
+button,
+input[type=button],
+input[type=submit] {
+  background-color: var(--PrimaryButtonColor);
+  color: var(--FontPrimaryColor);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  min-height: 38px;
+  transition: 0.1s ease-in-out background;
+}
+
+button:hover,
+input[type=button]:hover,
+input[type=submit]:hover {
+  background-color: var(--PrimaryButtonHoverColor);
+}
+
+button.secondary,
+input[type=button].secondary,
+input[type=submit].secondary {
+  background-color: gray;
+}
+
+button.secondary:hover,
+input[type=button].secondary:hover,
+input[type=submit].secondary:hover {
+  background-color: rgb(87, 87, 87);
+}
+
+textarea {
+  background-color: #464545;
+  color: #fff;
+  border-radius: 6px;
+  padding: 10px 4px 0;
+  border-radius: 0;
+}
+
+.block {
+  display: block;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.w100 {
+  width: 100%;
+}
+
 .overlay {
   position: fixed;
   inset: 0;
@@ -79,4 +142,81 @@ body.without-scroll {
 .overlay.show {
   z-index: 50;
   background-color: #0005;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+}
+
+.modal .form-group {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+  margin-top: 5px;
+}
+
+.modal .form-label {
+  font-size: 1rem;
+}
+
+.modal .input {
+  font-size: 1.1rem;
+  padding: 10px 0 0;
+}
+
+.modal:not(.open) {
+  display: none;
+}
+
+.modal-content {
+  min-width: min(400px, 80vw);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: var(--ModalBackgroudColor);
+  border-radius: 10px;
+}
+
+#close-modal {
+  position: absolute;
+  top: 7px;
+  right: 15px;
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.modal-content > div {
+  padding: 16px 25px;
+}
+
+.modal-title {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.modal-body {
+  flex-grow: 1;
+}
+
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 8px;
+  border: none;
+  transition: 0.2s ease-in-out;
+  padding: 2px 8px;
+  min-width: 100px;
+}
+
+button img {
+  width: 10%;
+  min-width: 20px;
+  margin: 2px;
+  padding: 5px;
 }

@@ -25,7 +25,7 @@ customElements.define(
                 .querySelector('img').src = resolveUrl() + 'assets/img/logo.png';
 
             this.shadowRoot.getElementById('header-person-link').href =
-                resolveUrl() + 'signin/';
+                resolveUrl() + 'profile/';
 
             this.shadowRoot
                 .getElementById('header-person-link')

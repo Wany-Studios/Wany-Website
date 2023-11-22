@@ -1,76 +1,44 @@
-function loadGamesCarousel() {
-  const elements = [...document.querySelectorAll(".games-carousel")];
+const gamesListCarousel = document.getElementById('game-list-carousel-items');
+const searchInputEl = document.getElementById('search-bar');
+const debounceSearch = debounce(search, 300);
 
-  elements.forEach((item) => {
-    new Swiper(item, {
-      slidesPerView: 1,
-      spaceBetween: 20,
-      pagination: {
-        el: item.querySelector(".swiper-pagination"),
-        clickable: true,
-      },
-      breakpoints: {
-        350: {
-          slidesPerView: 2,
-          spaceBetween: 20,
-        },
-        600: {
-          slidesPerView: 3,
-          spaceBetween: 20,
-        },
-        768: {
-          slidesPerView: 4,
-          spaceBetween: 40,
-        },
-        1024: {
-          slidesPerView: 5,
-          spaceBetween: 50,
-        },
-      },
-    });
-  });
-}
-
-window.addEventListener("load", function () {
-  loadGamesCarousel();
+window.addEventListener('load', async () => {
+    search();
 });
 
-//  const gamesCarousel = new Swiper("#games-carousel", {
-//   slidesPerView: 1,
-//   spaceBetween: 10,
-//   pagination: {
-//     el: ".swiper-pagination",
-//     clickable: true,
-//   },
-//   breakpoints: {
-//     640: {
-//       slidesPerView: 2,
-//       spaceBetween: 20,
-//     },
-//     768: {
-//       slidesPerView: 4,
-//       spaceBetween: 40,
-//     },
-//     1024: {
-//       slidesPerView: 5,
-//       spaceBetween: 50,
-//     },
-//   },
-// })
+searchInputEl.addEventListener('input', () => {
+    document.body.classList.add('waiting');
+    debounceSearch();
+    document.body.classList.remove('waiting');
+});
 
-// const mainGamesCarousel = new Swiper("#main-games-carousel", {
-//   effect: "coverflow",
-//   grabCursor: true,
-//   centeredSlides: true,
-//   slidesPerView: "auto",
-//   coverflowEffect: {
-//     rotate: 50,
-//     stretch: 0,
-//     depth: 100,
-//     modifier: 1,
-//     slideShadows: false,
-//   },
-//   pagination: {
-//     el: ".swiper-pagination",
-//   },
-// });
+async function search() {
+    const searchTerm = searchInputEl.value;
+    let games = [];
+
+    try {
+        const searchQuery =
+            searchTerm.length == 0
+                ? []
+                : ['title'].map((term) => `${term}=${searchTerm}`);
+        const response = await searchGames(searchQuery);
+        games = response.data.games;
+    } catch (err) {
+        console.error(err);
+        alert(err.response?.data?.message || 'Unable to get games from server');
+    }
+
+    await renderGames(games);
+}
+
+async function renderGames(games) {
+    gamesListCarousel.innerHTML = '';
+
+    const listGenerateCards = generateListCardGames(games);
+    const listCards = listGenerateCards.map((renderCard) => renderCard());
+
+    for (const cardEl of listCards) {
+        cardEl.querySelector('img').style.width = 'auto';
+        gamesListCarousel.appendChild(cardEl);
+    }
+}

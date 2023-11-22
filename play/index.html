@@ -6,161 +6,42 @@
         <link rel="stylesheet" href="./style.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Jogos - Wany</title>
-        <style>
-            #games-display {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 75vh;
-            }
-
-            .fullscreen-button {
-                position: fixed;
-                bottom: 10px;
-                right: 10px;
-                z-index: 25;
-                padding: 22px 60px;
-                cursor: pointer;
-                font-size: 2rem;
-            }
-        </style>
     </head>
     <body>
         <wany-header></wany-header>
         <wany-nav></wany-nav>
 
-        <h1 class="game-titulo">Cowgirl in Hell</h1>
+        <div class="section" style="display: flex; gap: 25px; align-items: center">
+            <img
+                id="game-author-img"
+                style="width: 56px; height: 56px; border-radius: 50%"
+            />
 
-        <div id="games-display" class="games-display">
-            <div class="play-game">
-                <button onclick="play()">JOGAR</button>
+            <div>
+                <span id="game-author" class="game-author"></span>
+                <h1 id="game-title" class="game-title"></h1>
             </div>
         </div>
 
+        <div id="games-display" class="games-display section">
+            <div class="play-game">
+                <button onclick="play()">PLAY</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3 class="game-description-title">About the game</h3>
+            <textarea
+                id="game-description"
+                class="game-description"
+                readonly
+            ></textarea>
+        </div>
+
+        <script src="../assets/lib/axios/axios.min.js"></script>
         <script src="../assets/js/global.js"></script>
         <script src="../assets/js/header.js"></script>
         <script src="../assets/js/nav.js"></script>
-        <script>
-            const iframe = document.createElement('iframe');
-            iframe.style.border = 'none';
-
-            const gameDisplay = document.querySelector('#games-display');
-
-            const fullscreenButton = document.createElement('button');
-            fullscreenButton.innerHTML = 'Fullscreen';
-            fullscreenButton.className = 'fullscreen-button';
-            fullscreenButton.addEventListener('click', toggleFullscreen);
-            document.body.appendChild(fullscreenButton);
-
-            function enterFullscreen() {
-                if (gameDisplay.requestFullscreen) {
-                    gameDisplay.requestFullscreen();
-                } else if (gameDisplay.mozRequestFullScreen) {
-                    gameDisplay.mozRequestFullScreen();
-                } else if (gameDisplay.webkitRequestFullscreen) {
-                    gameDisplay.webkitRequestFullscreen();
-                } else if (gameDisplay.msRequestFullscreen) {
-                    gameDisplay.msRequestFullscreen();
-                }
-            }
-
-            function exitFullscreen() {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                } else if (document.mozCancelFullScreen) {
-                    document.mozCancelFullScreen();
-                } else if (document.webkitExitFullscreen) {
-                    document.webkitExitFullscreen();
-                } else if (document.msExitFullscreen) {
-                    document.msExitFullscreen();
-                }
-            }
-
-            function toggleFullscreen() {
-                if (
-                    document.fullscreenElement ||
-                    document.mozFullScreenElement ||
-                    document.webkitFullscreenElement ||
-                    document.msFullscreenElement
-                ) {
-                    exitFullscreen();
-                } else {
-                    enterFullscreen();
-                }
-            }
-
-            function resizeCanvas() {
-                const iframeDoc =
-                    iframe.contentDocument || iframe.contentWindow.document;
-                const canvas = iframeDoc.querySelector('canvas');
-
-                if (canvas) {
-                    canvas.style.width = iframe.clientWidth + 'px';
-                    canvas.style.height = iframe.clientHeight + 'px';
-                }
-            }
-
-            function handleResize() {
-                iframe.style.width = '100%';
-                iframe.style.height = '100%';
-                resizeCanvas();
-            }
-
-            function handleFullscreenChange() {
-                if (
-                    !document.fullscreenElement &&
-                    !document.mozFullScreenElement &&
-                    !document.webkitFullscreenElement &&
-                    !document.msFullscreenElement
-                ) {
-                    resizeCanvas();
-                }
-            }
-
-            iframe.onload = function () {
-                const iframeDoc =
-                    iframe.contentDocument || iframe.contentWindow.document;
-                const style = iframeDoc.createElement('style');
-
-                style.innerHTML = `
-                    canvas {
-                        position: absolute !important;
-                        top: 50%;
-                        left: 50%;
-                        transform: translate(-50%, -50%) !important;
-                        width: 100% !important;
-                        height: 100% !important;
-                    }
-                `;
-
-                iframeDoc.head.appendChild(style);
-                resizeCanvas();
-            };
-
-            window.addEventListener('resize', handleResize);
-            document.addEventListener('fullscreenchange', handleFullscreenChange);
-            document.addEventListener('mozfullscreenchange', handleFullscreenChange);
-            document.addEventListener(
-                'webkitfullscreenchange',
-                handleFullscreenChange
-            );
-            document.addEventListener('msfullscreenchange', handleFullscreenChange);
-
-            iframe.style =
-                'width: 100%; align-items: center; display: flex; margin: 0 auto';
-
-            iframe.src = localStorage.getItem('game-path');
-
-            function play() {
-                if (gameDisplay.firstChild === iframe) {
-                    exitFullscreen();
-                    gameDisplay.innerHTML = '';
-                } else {
-                    enterFullscreen();
-                    gameDisplay.innerHTML = '';
-                    gameDisplay.appendChild(iframe);
-                }
-            }
-        </script>
+        <script src="./index.js"></script>
     </body>
 </html>
