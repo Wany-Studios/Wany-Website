@@ -70,6 +70,9 @@ function loadGamesCarousel() {
 }
 
 window.addEventListener('load', async function () {
+    document.querySelector('#trending-games-carousel-items').innerHTML =
+        '<h3 style="width: 100%;text-align: center;">Buscando jogos...</h3>';
+
     try {
         const response = await searchGames();
         const { games } = response.data;
@@ -92,10 +95,12 @@ window.addEventListener('load', async function () {
             document.querySelector('#game-list-carousel-items').appendChild(item());
         });
     } catch (e) {
+        console.error(e);
+
         document.querySelector('#trending-games-carousel-items').innerHTML =
             '<h3 style="width: 100%;text-align: center;">Jogos não encontrados</h3>';
 
-        console.error(e);
+        return;
     }
 
     document.querySelectorAll('.carousel').forEach((item) => {
