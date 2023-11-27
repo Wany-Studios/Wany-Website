@@ -33,7 +33,7 @@
         align-items: flex-start;
     }
 }
-
+/* 
 #menu-overlay.open::before {
     --size: 10px;
     content: "";
@@ -45,7 +45,7 @@
     border-bottom: 25px solid var(--MenuOverlayBackground);
     top: -8px;
     right: 0;
-}
+} */
 
 #menu-overlay.open {
     margin-right: 5px;

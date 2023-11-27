@@ -183,6 +183,7 @@ function generateListCardGames(games) {
                 userId,
             }
         ) => {
+            console.log(game.public_game_image_urls);
             return () => {
                 const el = htmlToElement(`
                   <div class="swiper-slide">
