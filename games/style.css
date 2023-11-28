@@ -97,3 +97,11 @@ input#search-bar:focus {
     width: 100%;
   }
 }
+
+.carousel .item img {
+  height: 400px;
+}
+
+.carousel .item {
+  margin-bottom: 54px;
+}
