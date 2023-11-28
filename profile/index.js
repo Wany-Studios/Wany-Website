@@ -13,8 +13,10 @@ const profileImgEl = document.getElementById("profile-picture");
 const usernameEl = document.getElementById("User-name");
 const emailEl = document.getElementById("User-nickname");
 const changeUsernameEl = document.getElementById("change-username");
+const changePasswordEl = document.getElementById("change-password");
 
 getUserAvatarUrl(user.username).then((url) => (profileImgEl.src = url));
+
 usernameEl.innerHTML = user.username;
 emailEl.innerHTML = user.email;
 bioTextareaEl.value = user.bio;
@@ -70,8 +72,9 @@ const deleteAccount = async () => {
         window.location.href = resolveUrl() + "home";
     } catch (err) {
         alert(err.response?.data?.message || "Unable to delete account");
+    } finally {
+        document.body.classList.remove("waiting");
     }
-    document.body.classList.remove("waiting");
 };
 
 buttonUploadGame.addEventListener("click", () => {
@@ -191,10 +194,14 @@ buttonUploadGame.addEventListener("click", () => {
 saveBtnEl.addEventListener("click", async () => {
     const bio = bioTextareaEl.value;
 
+    document.body.classList.add("waiting");
+
     try {
         await updateMe({ bio });
     } catch (err) {
         alert(err.response?.data?.message || "Unable to update user");
+    } finally {
+        document.body.classList.remove("waiting");
     }
 
     await saveLocalUser();
@@ -211,14 +218,44 @@ cancelBtnEl.addEventListener("click", () => {
     enableBioTextarea();
 });
 
+changePasswordEl.addEventListener("click", async () => {
+    const changePassword = async () => {
+        const password = prompt("Please enter your new password");
+
+        if (!password) return;
+
+        document.body.classList.add("waiting");
+
+        try {
+            await updateMe({ password });
+        } catch (err) {
+            alert(err.response?.data?.message || "Unable to change password");
+
+            if (err.response.status === 400) {
+                await changePassword();
+                return;
+            }
+
+            return;
+        } finally {
+            document.body.classList.remove("waiting");
+        }
+
+        alert("Password changed successfully!");
+    };
+
+    await changePassword();
+});
+
 async function init() {
     enableBioTextarea();
 
     try {
         const response = await getMyGames();
+
         if (!response.status == 200) return;
+
         const games = response.data.games;
-        console.log({ games });
         const lista = generateListCardGames(games);
 
         document.getElementById("my-games-carousel-list").innerHTML = "";
