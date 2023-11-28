@@ -1,43 +1,43 @@
 getMe().catch(() => {
-    window.location.href = resolveUrl() + 'signin/';
+    window.location.href = resolveUrl() + "signin/";
 });
 
-document.addEventListener('DOMContentLoaded', async () => {
-    const inputs = [...document.querySelectorAll('.verification')];
-    const btnSend = document.getElementById('btn-send');
+document.addEventListener("DOMContentLoaded", async () => {
+    const inputs = [...document.querySelectorAll(".verification")];
+    const btnSend = document.getElementById("btn-send");
 
-    btnSend.addEventListener('click', async () => await verify());
+    btnSend.addEventListener("click", async () => await verify());
 
     document
-        .getElementById('code-not-received')
-        .addEventListener('click', async () => {
+        .getElementById("code-not-received")
+        .addEventListener("click", async () => {
             try {
                 await sendVerificationEmail();
-                alert('Verification email sent');
+                await alert("Verification email sent");
             } catch (err) {
-                alert(
+                await alert(
                     err.response.data.message ||
-                        'Unable to resend verification email'
+                        "Unable to resend verification email"
                 );
             }
         });
 
     inputs.forEach((input, index, arr) => {
-        input.addEventListener('input', () => {
+        input.addEventListener("input", () => {
             if (index !== arr.length - 1) {
                 inputs[index + 1].focus();
             }
         });
 
-        input.addEventListener('keyup', async (event) => {
+        input.addEventListener("keyup", async (event) => {
             input.value = input.value.trim();
 
-            if (event.key === 'Backspace') {
+            if (event.key === "Backspace") {
                 if (input.value.length === 0 && index !== 0) {
-                    inputs[index - 1].value = '';
+                    inputs[index - 1].value = "";
                     inputs[index - 1].focus();
                 }
-            } else if (event.key === 'Enter') {
+            } else if (event.key === "Enter") {
                 await verify();
             }
         });
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     function getValue() {
         return inputs
-            .reduce((result, input) => result + input.value.trim(), '')
+            .reduce((result, input) => result + input.value.trim(), "")
             .toUpperCase();
     }
 
@@ -55,30 +55,32 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     async function verify() {
         if (!checkValue()) {
-            alert('Digite o código completo!');
+            await alert("Digite o código completo!");
             return;
         }
 
         const token = getValue();
 
         try {
+            document.body.classList.add("waiting");
             await verifyAccount(token);
         } catch (err) {
-            alert(err.response?.data?.message || 'Unable to verify account');
+            await alert(err.response?.data?.message || "Unable to verify account");
         } finally {
             await saveLocalUser();
-            alert('Your account has been verified');
-            window.location.href = resolveUrl() + 'home/';
+            document.body.classList.remove("waiting");
+            await alert("Your account has been verified");
+            window.location.href = resolveUrl() + "home/";
         }
     }
 
-    document.addEventListener('paste', (e) => {
+    document.addEventListener("paste", (e) => {
         const clipboardData = e.clipboardData || window.clipboardData;
-        const pastedData = clipboardData.getData('Text');
+        const pastedData = clipboardData.getData("Text");
 
         pastedData
             .trim()
-            .split('')
+            .split("")
             .slice(0, 6)
             .forEach((value, index) => {
                 inputs[index].value = value;

@@ -228,103 +228,161 @@ function getPageOverlay() {
     return document.querySelector(".overlay");
 }
 
-function createModal({
-    title,
-    header,
-    body,
-    footer,
-    yes,
-    no,
-    cancel,
-    onYes,
-    onNo,
-    onCancel,
-} = {}) {
-    const overlay = getPageOverlay();
-    const abortController = new AbortController();
-
-    const close = () => {
-        abortController.abort();
-        modalEl.classList.remove("open");
-        document.body.classList.remove("without-scroll");
-        overlay.classList.remove("show");
-        modalEl.remove();
-    };
-
-    const open = () => {
-        setTimeout(() => {
-            overlay.addEventListener(
-                "click",
-                (ev) => {
-                    if (overlay !== ev.target) return;
-                    close();
-                },
-                {
-                    once: true,
-                    signal: abortController.signal,
-                }
-            );
-        }, 100);
-
-        document.body.classList.add("without-scroll");
-        modalEl.classList.add("open");
-        overlay.classList.add("show");
-    };
-
-    const modalEl = htmlToElement(`
-        <div class="modal">
-            <section class="modal-content" style="overflow-y:auto;max-height:100vh;">
-                <a id="close-modal" class="close-modal" href="#">x</a>
-
-                <div class="modal-header">
-                    <h1 class="modal-title">${title || "Modal"}</h1>
-                    <div>${header || ""}</div>
-                </div>
-                
-                ${!!body ? "<hr />" : ""}
-
-                <div class="modal-body">
-                    ${body || ""}
-                </div>
-                
-                ${!!footer ? "<hr />" : ""}
-                
-                <div class="modal-footer">
-                    <div style="display:flex; gap:4px; justify-content: flex-end;">
-                        ${!!yes ? `<button id="modal-yes">${yes}</button>` : ""}
-                        ${
-                            !!cancel
-                                ? `<button id="modal-cancel" class="secondary close-modal">${cancel}</button>`
-                                : ""
-                        }
-                    </div>
-                </div>
-            </section>
-        </div>
-    `);
-
-    document.body.appendChild(modalEl);
-
-    [...document.querySelectorAll(".close-modal")].forEach((item) => {
-        item.addEventListener("click", () => close());
-    });
-
-    if (!!yes) {
-        modalEl.querySelector("#modal-yes").addEventListener("click", async () => {
-            onYes?.();
+function alert(...text) {
+    return new Promise((resolve) => {
+        const modal = createModal({
+            body: `<span>${text.join(" ")}</span>`,
+            yes: "Ok",
+            onYes() {
+                resolve(null);
+                modal.close();
+            },
+            closeModal: false,
         });
-    }
-    if (!!cancel) {
-        modalEl
-            .querySelector("#modal-cancel")
-            .addEventListener("click", async () => {
-                onCancel?.();
-                close();
-            });
-    }
 
-    return { open, close, el: modalEl };
+        modal.open();
+    });
 }
+
+function prompt(text, defaultValue = "") {
+    return new Promise((resolve) => {
+        const modal = createModal({
+            body: `<span style="word-wrap:break-word;overflow:auto;">${text}</span>`,
+            footer: `<div class="w100">
+                        <input id="prompt-input" class="input" style="width:100%;" value="${defaultValue}" />
+                    </div>`,
+            yes: "Ok",
+            cancel: "Cancel",
+            onYes() {
+                resolve(modal.el.querySelector("#prompt-input").value);
+                modal.close();
+            },
+            onCancel() {
+                resolve(null);
+                modal.close();
+            },
+        });
+
+        modal.open();
+    });
+}
+
+const createModal = (() => {
+    let lastModalCloseFn = null;
+
+    return function ({
+        title,
+        header,
+        body,
+        footer,
+        yes,
+        no,
+        cancel,
+        onYes,
+        onNo,
+        onCancel,
+        closeModal,
+    } = {}) {
+        const overlay = getPageOverlay();
+        const abortController = new AbortController();
+
+        const modalEl = htmlToElement(`
+            <div class="modal">
+                <section class="modal-content">
+                    ${
+                        closeModal !== false
+                            ? `<a id="close-modal" class="close-modal" href="javascript:void(0)">x</a>`
+                            : ""
+                    }
+
+                    <div class="modal-header">
+                        ${!!title ? `<h1 class="modal-title">${title}</h1>` : ""}
+                        <div>${header || ""}</div>
+                    </div>
+                    
+                    ${!!body && !!title && !!header ? "<hr />" : ""}
+
+                    <div class="modal-body">
+                        ${body || ""}
+                    </div>
+
+                    ${
+                        !!footer
+                            ? `<div style="padding-top:0;">${footer}</div><hr />`
+                            : ""
+                    }
+                    
+                    <div class="modal-footer">
+                        <div style="display:flex; gap:4px; justify-content: flex-end;">
+                            ${!!yes ? `<button id="modal-yes">${yes}</button>` : ""}
+                            ${
+                                !!cancel
+                                    ? `<button id="modal-cancel" class="secondary close-modal">${cancel}</button>`
+                                    : ""
+                            }
+                        </div>
+                    </div>
+                </section>
+            </div>
+        `);
+
+        const close = () => {
+            abortController.abort();
+            modalEl.classList.remove("open");
+            document.body.classList.remove("without-scroll");
+            overlay.classList.remove("show");
+            modalEl.remove();
+            lastModalCloseFn = null;
+        };
+
+        const open = () => {
+            setTimeout(() => {
+                overlay.addEventListener(
+                    "click",
+                    (ev) => {
+                        if (overlay !== ev.target) return;
+                        close();
+                    },
+                    {
+                        once: true,
+                        signal: abortController.signal,
+                    }
+                );
+            }, 100);
+
+            document.body.classList.add("without-scroll");
+            modalEl.classList.add("open");
+            overlay.classList.add("show");
+
+            if (lastModalCloseFn) lastModalCloseFn();
+            lastModalCloseFn = close;
+        };
+
+        document.body.appendChild(modalEl);
+
+        [...document.querySelectorAll(".close-modal")].forEach((item) => {
+            item.addEventListener("click", () => close());
+        });
+
+        if (!!yes) {
+            modalEl
+                .querySelector("#modal-yes")
+                .addEventListener("click", async () => {
+                    onYes?.();
+                });
+        }
+        if (!!cancel) {
+            modalEl
+                .querySelector("#modal-cancel")
+                .addEventListener("click", async () => {
+                    onCancel?.();
+                    close();
+                });
+        }
+
+        return { open, close, el: modalEl };
+    };
+})();
 
 async function openGameModal(
     game = {
