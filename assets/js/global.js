@@ -481,15 +481,23 @@ async function openGameModal(
 
     if (owned) {
         modal.el.querySelector("#delete-game-btn").onclick = async () => {
+            modal.close();
+
+            if (!(await confirm("Are you sure you want to delete this game?"))) {
+                return;
+            }
+
             try {
                 document.body.classList.add("waiting");
                 await deleteGame(game.id);
-                document.body.classList.remove("waiting");
-                modal.close();
-                window.location.reload();
             } catch (err) {
                 alert(err.response?.data?.message ?? "Unable to delete game");
+                return;
+            } finally {
+                document.body.classList.remove("waiting");
             }
+
+            window.location.reload();
         };
     }
     modal.open();
