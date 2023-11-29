@@ -361,7 +361,10 @@ const createModal = (() => {
         document.body.appendChild(modalEl);
 
         [...document.querySelectorAll(".close-modal")].forEach((item) => {
-            item.addEventListener("click", () => close());
+            item.addEventListener("click", async () => {
+                onCancel?.();
+                close();
+            });
         });
 
         if (!!yes) {
@@ -369,14 +372,6 @@ const createModal = (() => {
                 .querySelector("#modal-yes")
                 .addEventListener("click", async () => {
                     onYes?.();
-                });
-        }
-        if (!!cancel) {
-            modalEl
-                .querySelector("#modal-cancel")
-                .addEventListener("click", async () => {
-                    onCancel?.();
-                    close();
                 });
         }
 
