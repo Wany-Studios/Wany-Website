@@ -1,6 +1,6 @@
 @import url("./fonts.css");
-@import url("//cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css");
-@import url("//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css");
+@import url("./lib/swiper9.min.css");
+@import url("./lib/slick-carousel.css");
 
 :root {
     --Nav: #464545;

@@ -38,7 +38,6 @@ async function renderGames(games) {
     const listCards = listGenerateCards.map((renderCard) => renderCard());
 
     for (const cardEl of listCards) {
-        cardEl.querySelector("img").style.width = "auto";
         gamesListCarousel.appendChild(cardEl);
     }
 }
