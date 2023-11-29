@@ -194,7 +194,6 @@ function generateListCardGames(games) {
 
                     <div class="item">
                         <img
-                            loading="lazy"
                             src="${
                                 game.public_game_image_urls[0] ||
                                 `picsum.photos/id/63/5000/2813`
@@ -244,6 +243,27 @@ function alert(...text) {
     });
 }
 
+function confirm(text) {
+    return new Promise((resolve) => {
+        const modal = createModal({
+            body: `<span>${text}</span>`,
+            yes: "Yes",
+            no: "No",
+            onYes() {
+                resolve(true);
+                modal.close();
+            },
+            onNo() {
+                resolve(false);
+                modal.close();
+            },
+            closeModal: true,
+        });
+
+        modal.open();
+    });
+}
+
 function prompt(text, defaultValue = "") {
     return new Promise((resolve) => {
         const modal = createModal({
@@ -261,6 +281,7 @@ function prompt(text, defaultValue = "") {
                 resolve(null);
                 modal.close();
             },
+            closeModal: true,
         });
 
         modal.open();
@@ -320,6 +341,11 @@ const createModal = (() => {
                                     ? `<button id="modal-cancel" class="secondary close-modal">${cancel}</button>`
                                     : ""
                             }
+                            ${
+                                !!no
+                                    ? `<button id="modal-no" class="secondary close-modal">${no}</button>`
+                                    : ""
+                            }
                         </div>
                     </div>
                 </section>
@@ -362,16 +388,29 @@ const createModal = (() => {
 
         [...document.querySelectorAll(".close-modal")].forEach((item) => {
             item.addEventListener("click", async () => {
-                onCancel?.();
                 close();
             });
         });
 
+        if (!!cancel) {
+            modalEl
+                .querySelector("#modal-cancel")
+                .addEventListener("click", async () => {
+                    onCancel?.();
+                });
+        }
         if (!!yes) {
             modalEl
                 .querySelector("#modal-yes")
                 .addEventListener("click", async () => {
                     onYes?.();
+                });
+        }
+        if (!!no) {
+            modalEl
+                .querySelector("#modal-no")
+                .addEventListener("click", async () => {
+                    onNo?.();
                 });
         }
 

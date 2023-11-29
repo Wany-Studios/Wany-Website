@@ -22,24 +22,30 @@ emailEl.innerHTML = user.email;
 bioTextareaEl.value = user.bio;
 
 profileImgEl.addEventListener("click", async () => {
+    document.body.classList.add("waiting");
     try {
         await makeUploadUserAvatar();
         profileImgEl.src = user.avatar_url + "?t=" + new Date().getTime();
     } catch (err) {
-        alert(err.response?.data?.message || "Unable to change avatar");
+        await alert(err.response?.data?.message || "Unable to change avatar");
+    } finally {
+        document.body.classList.remove("waiting");
     }
 });
 
 changeUsernameEl.addEventListener("click", async () => {
-    const username = prompt("Please enter your new username", user.username);
+    const username = await prompt("Please enter your new username", user.username);
 
     if (!username || username.trim() === user.username) return;
 
+    document.body.classList.add("waiting");
     try {
         await updateMe({ username });
     } catch (err) {
-        alert(err.response?.data?.message || "Unable to change username");
+        await alert(err.response?.data?.message || "Unable to change username");
         return;
+    } finally {
+        document.body.classList.remove("waiting");
     }
 
     usernameEl.innerHTML = username;
@@ -62,8 +68,8 @@ const showProfileDescription = () => {
 };
 
 const deleteAccount = async () => {
-    if (!confirm("Are you sure you want to delete your account?")) return;
-    if (!confirm("Your account will be permanently deleted.")) return;
+    if (!(await confirm("Are you sure you want to delete your account?"))) return;
+    if (!(await confirm("Your account will be permanently deleted."))) return;
 
     document.body.classList.add("waiting");
     try {
@@ -71,7 +77,7 @@ const deleteAccount = async () => {
         deleteLocalUser();
         window.location.href = resolveUrl() + "home";
     } catch (err) {
-        alert(err.response?.data?.message || "Unable to delete account");
+        await alert(err.response?.data?.message || "Unable to delete account");
     } finally {
         document.body.classList.remove("waiting");
     }
@@ -124,12 +130,11 @@ buttonUploadGame.addEventListener("click", () => {
             const genre = modal.el.querySelector("#upload-game-genre").value;
 
             if (!gameImage) {
-                alert("You must provide an image");
+                await alert("You must provide an image");
                 return;
             }
 
             document.body.classList.add("waiting");
-
             try {
                 const response = await makeUploadGame({ title, description, genre });
 
@@ -154,16 +159,19 @@ buttonUploadGame.addEventListener("click", () => {
                         }
                     }
 
-                    alert("Game created successfully!");
                     modal.close();
-                    window.location.reload();
                 }
             } catch (err) {
                 console.error(err);
-                alert(err.response?.data?.message || "Unable to create game");
+                await alert(err.response?.data?.message || "Unable to create game");
+                return;
             } finally {
                 document.body.classList.remove("waiting");
             }
+
+            await alert("Game created successfully!");
+
+            window.location.reload();
         },
     });
 
@@ -195,11 +203,10 @@ saveBtnEl.addEventListener("click", async () => {
     const bio = bioTextareaEl.value;
 
     document.body.classList.add("waiting");
-
     try {
         await updateMe({ bio });
     } catch (err) {
-        alert(err.response?.data?.message || "Unable to update user");
+        await alert(err.response?.data?.message || "Unable to update user");
     } finally {
         document.body.classList.remove("waiting");
     }
@@ -220,16 +227,15 @@ cancelBtnEl.addEventListener("click", () => {
 
 changePasswordEl.addEventListener("click", async () => {
     const changePassword = async () => {
-        const password = prompt("Please enter your new password");
+        const password = await prompt("Please enter your new password");
 
         if (!password) return;
 
         document.body.classList.add("waiting");
-
         try {
             await updateMe({ password });
         } catch (err) {
-            alert(err.response?.data?.message || "Unable to change password");
+            await alert(err.response?.data?.message || "Unable to change password");
 
             if (err.response.status === 400) {
                 await changePassword();
@@ -241,7 +247,7 @@ changePasswordEl.addEventListener("click", async () => {
             document.body.classList.remove("waiting");
         }
 
-        alert("Password changed successfully!");
+        await alert("Password changed successfully!");
     };
 
     await changePassword();
@@ -250,6 +256,7 @@ changePasswordEl.addEventListener("click", async () => {
 async function init() {
     enableBioTextarea();
 
+    document.body.classList.add("waiting");
     try {
         const response = await getMyGames();
 
@@ -264,7 +271,10 @@ async function init() {
             document.getElementById("my-games-carousel-list").appendChild(render());
         });
     } catch (err) {
-        alert(err.response?.data?.message || "Unable to get your games");
+        await alert(err.response?.data?.message || "Unable to get your games");
+        return;
+    } finally {
+        document.body.classList.remove("waiting");
     }
 }
 

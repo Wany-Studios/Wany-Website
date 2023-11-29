@@ -1,107 +1,99 @@
 h2 {
-  font-weight: 400;
-  font-size: 2rem;
+    font-weight: 400;
+    font-size: 2rem;
 }
 
 #search-container {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 40px;
-  padding: 0 10px;
-  column-gap: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    padding: 0 10px;
+    column-gap: 10px;
 }
 
 #div-search-box {
-  width: 65%;
-  max-width: 400px;
+    width: 65%;
+    max-width: 400px;
 }
 
 #search-box {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #d9d9d9;
-  border-radius: 3px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #d9d9d9;
+    border-radius: 3px;
 }
 
 #search-box > img {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 #search-box img {
-  height: 25px;
+    height: 25px;
 }
 
 #filter-btn-overlay {
-  display: flex;
+    display: flex;
 }
 
 #filter-btn {
-  background-color: #464545;
-  width: 110px;
-  height: 35px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 40px 40px 40px 40px;
-  left: 10px;
-  transition: ease-in 0.2s;
+    background-color: #464545;
+    width: 110px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 40px 40px 40px 40px;
+    left: 10px;
+    transition: ease-in 0.2s;
 }
 
 #filter-btn:hover {
-  background-color: #333232;
-  cursor: pointer;
+    background-color: #333232;
+    cursor: pointer;
 }
 
 #filter-btn-imagem {
-  display: flex;
-  align-items: center;
-  column-gap: 10px;
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
 }
 
 #filter-btn-imagem img {
-  width: 25px;
+    width: 25px;
 }
 
 @media (max-width: 700px) {
-  #div-search-box {
-    width: 90%;
-  }
-  #search-container {
-    margin-bottom: 40px;
-  }
+    #div-search-box {
+        width: 90%;
+    }
+    #search-container {
+        margin-bottom: 40px;
+    }
 }
 
 .games-genre {
-  margin-top: 100px;
+    margin-top: 100px;
 }
 
 input#search-bar:focus {
-  outline: none;
+    outline: none;
 }
 
 #search-bar {
-  display: flex;
-  justify-self: flex-start;
-  width: 80%;
-  height: 30px;
-  border: none;
-  background-color: #d9d9d9;
+    display: flex;
+    justify-self: flex-start;
+    width: 80%;
+    height: 30px;
+    border: none;
+    background-color: #d9d9d9;
 }
 
 @media (max-width: 330px) {
-  #search-box {
-    width: 100%;
-  }
-}
-
-.carousel .item img {
-  height: 400px;
-}
-
-.carousel .item {
-  margin-bottom: 54px;
+    #search-box {
+        width: 100%;
+    }
 }
