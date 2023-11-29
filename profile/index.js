@@ -27,7 +27,7 @@ profileImgEl.addEventListener("click", async () => {
         await makeUploadUserAvatar();
         profileImgEl.src = user.avatar_url + "?t=" + new Date().getTime();
     } catch (err) {
-        await alert(err.response?.data?.message || "Unable to change avatar");
+        alert(err.response?.data?.message || "Unable to change avatar");
     } finally {
         document.body.classList.remove("waiting");
     }
@@ -42,7 +42,7 @@ changeUsernameEl.addEventListener("click", async () => {
     try {
         await updateMe({ username });
     } catch (err) {
-        await alert(err.response?.data?.message || "Unable to change username");
+        alert(err.response?.data?.message || "Unable to change username");
         return;
     } finally {
         document.body.classList.remove("waiting");
@@ -69,18 +69,34 @@ const showProfileDescription = () => {
 
 const deleteAccount = async () => {
     if (!(await confirm("Are you sure you want to delete your account?"))) return;
-    if (!(await confirm("Your account will be permanently deleted."))) return;
+
+    while (true) {
+        const input = await prompt("To confirm delete, type your username", "");
+
+        if (!input) return;
+
+        if (input.toLowerCase().trim() !== user.username.toLowerCase().trim()) {
+            await alert("Username does not match!");
+            continue;
+        }
+
+        break;
+    }
 
     document.body.classList.add("waiting");
     try {
         await deleteUser();
         deleteLocalUser();
-        window.location.href = resolveUrl() + "home";
     } catch (err) {
-        await alert(err.response?.data?.message || "Unable to delete account");
+        alert(err.response?.data?.message || "Unable to delete account");
+        return;
     } finally {
         document.body.classList.remove("waiting");
     }
+
+    await alert("Your account has been deleted!");
+
+    window.location.href = resolveUrl() + "signin";
 };
 
 buttonUploadGame.addEventListener("click", () => {
@@ -144,7 +160,7 @@ buttonUploadGame.addEventListener("click", () => {
 
                         for (
                             let uploadImageTry = 0;
-                            uploadImageTry < 3;
+                            uploadImageTry < 5;
                             uploadImageTry++
                         ) {
                             try {
@@ -155,7 +171,12 @@ buttonUploadGame.addEventListener("click", () => {
                                 });
 
                                 break;
-                            } catch (err) {}
+                            } catch (err) {
+                                console.error(err);
+                                await new Promise((resolve) =>
+                                    setTimeout(resolve, 1000)
+                                );
+                            }
                         }
                     }
 
@@ -163,7 +184,7 @@ buttonUploadGame.addEventListener("click", () => {
                 }
             } catch (err) {
                 console.error(err);
-                await alert(err.response?.data?.message || "Unable to create game");
+                alert(err.response?.data?.message || "Unable to create game");
                 return;
             } finally {
                 document.body.classList.remove("waiting");
@@ -206,7 +227,8 @@ saveBtnEl.addEventListener("click", async () => {
     try {
         await updateMe({ bio });
     } catch (err) {
-        await alert(err.response?.data?.message || "Unable to update user");
+        alert(err.response?.data?.message || "Unable to update user");
+        return;
     } finally {
         document.body.classList.remove("waiting");
     }
@@ -235,12 +257,14 @@ changePasswordEl.addEventListener("click", async () => {
         try {
             await updateMe({ password });
         } catch (err) {
-            await alert(err.response?.data?.message || "Unable to change password");
-
-            if (err.response.status === 400) {
-                await changePassword();
-                return;
-            }
+            alert(
+                err.response?.data?.message || "Unable to change password"
+            ).finally(async () => {
+                if (err.response.status === 400) {
+                    await changePassword();
+                    return;
+                }
+            });
 
             return;
         } finally {
@@ -271,7 +295,7 @@ async function init() {
             document.getElementById("my-games-carousel-list").appendChild(render());
         });
     } catch (err) {
-        await alert(err.response?.data?.message || "Unable to get your games");
+        alert(err.response?.data?.message || "Unable to get your games");
         return;
     } finally {
         document.body.classList.remove("waiting");

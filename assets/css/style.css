@@ -189,6 +189,7 @@ textarea {
     border-radius: 10px;
     overflow-y: hidden;
     max-height: 95vh;
+    box-shadow: 0 0 10px #0006;
 }
 
 .modal-content > div {
