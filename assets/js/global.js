@@ -196,7 +196,7 @@ function generateListCardGames(games) {
                         <img
                             src="${
                                 game.public_game_image_urls[0] ||
-                                `picsum.photos/id/63/5000/2813`
+                                `http://picsum.photos/id/63/5000/2813`
                             }"
                         />
                     </div>
@@ -289,7 +289,7 @@ function prompt(text, defaultValue = "") {
 }
 
 const createModal = (() => {
-    let lastModalCloseFn = null;
+    // let lastModalCloseFn = null;
 
     return function ({
         title,
@@ -321,17 +321,11 @@ const createModal = (() => {
                         <div>${header || ""}</div>
                     </div>
                     
-                    ${!!body && !!title && !!header ? "<hr />" : ""}
-
                     <div class="modal-body">
                         ${body || ""}
                     </div>
 
-                    ${
-                        !!footer
-                            ? `<div style="padding-top:0;">${footer}</div><hr />`
-                            : ""
-                    }
+                    ${!!footer ? `<div style="padding-top:0;">${footer}</div>` : ""}
                     
                     <div class="modal-footer">
                         <div style="display:flex; gap:4px; justify-content: flex-end;">
@@ -358,7 +352,7 @@ const createModal = (() => {
             document.body.classList.remove("without-scroll");
             overlay.classList.remove("show");
             modalEl.remove();
-            lastModalCloseFn = null;
+            // lastModalCloseFn = null;
         };
 
         const open = () => {
@@ -380,8 +374,8 @@ const createModal = (() => {
             modalEl.classList.add("open");
             overlay.classList.add("show");
 
-            if (lastModalCloseFn) lastModalCloseFn();
-            lastModalCloseFn = close;
+            // if (lastModalCloseFn) lastModalCloseFn();
+            // lastModalCloseFn = close;
         };
 
         document.body.appendChild(modalEl);

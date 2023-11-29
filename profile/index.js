@@ -41,15 +41,15 @@ changeUsernameEl.addEventListener("click", async () => {
     document.body.classList.add("waiting");
     try {
         await updateMe({ username });
+        await saveLocalUser();
     } catch (err) {
         alert(err.response?.data?.message || "Unable to change username");
         return;
     } finally {
         document.body.classList.remove("waiting");
     }
-
+    user = getLocalUser();
     usernameEl.innerHTML = username;
-    saveLocalUser();
 });
 
 const disableBioTextarea = () => {
@@ -158,6 +158,8 @@ buttonUploadGame.addEventListener("click", () => {
                     if (gameImage) {
                         const { game } = response.data;
 
+                        let successUploadImage = false;
+
                         for (
                             let uploadImageTry = 0;
                             uploadImageTry < 5;
@@ -169,10 +171,11 @@ buttonUploadGame.addEventListener("click", () => {
                                     file: gameImage,
                                     isCover: true,
                                 });
-
+                                successUploadImage = true;
                                 break;
                             } catch (err) {
                                 console.error(err);
+
                                 await new Promise((resolve) =>
                                     setTimeout(resolve, 1000)
                                 );
