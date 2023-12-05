@@ -8,3 +8,16 @@
 .go-create-account:hover {
     text-decoration: underline;
 }
+
+.forgot-password {
+    color: #fff9;
+    font-weight: 200;
+}
+
+.forgot-password:hover {
+    color: #fff;
+}
+
+.forgot-password:active {
+    color: #fff5;
+}

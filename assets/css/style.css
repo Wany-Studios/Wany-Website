@@ -1,222 +1,229 @@
 @import url("./fonts.css");
-@import url("//cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css");
-@import url("//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css");
+@import url("./lib/swiper9.min.css");
+@import url("./lib/slick-carousel.css");
 
 :root {
-  --Nav: #464545;
-  --Header: #2f2f2f;
-  --Background: #181818;
-  --SecondaryBackground: #2f2f2f;
-  
-  --ContentLeftHeight: calc(
-        100vh   /* page height   */
-        - 85px  /* header height - nav height */
+    --Nav: #464545;
+    --Header: #2f2f2f;
+    --Background: #181818;
+    --SecondaryBackground: #2f2f2f;
+
+    --ContentLeftHeight: calc(
+        100vh /* page height   */ - 85px /* header height - nav height */
     );
 
-  --MenuOverlayBackground: #2f2f2f;
+    --MenuOverlayBackground: #2f2f2f;
 
-  --Carousel: #f54703;
-  --CarouselArrow: #ff7518;
-  
-  --PrimaryButtonColor: #f54703;
-  --PrimaryButtonHoverColor: #ff4f0a;
+    --Carousel: #f54703;
+    --CarouselArrow: #ff7518;
 
-  --AuthBackgroudColor: #2f2f2f55;
-  --AccountVerificationBackgroundColor: #2f2f2f;
-  --ModalBackgroudColor: #2f2f2f;
+    --PrimaryButtonColor: #f54703;
+    --PrimaryButtonHoverColor: #ff4f0a;
 
-  --InputFocusColor: #f54703;
+    --AuthBackgroudColor: #2f2f2f55;
+    --AccountVerificationBackgroundColor: #2f2f2f;
+    --ModalBackgroudColor: #2f2f2f;
 
-  --FontPrimaryColor: #e5e5e5;
-  --FontSecondaryColor: #f54703;
+    --InputFocusColor: #f54703;
 
-  --ErrorColor: #dc3545;
+    --FontPrimaryColor: #e5e5e5;
+    --FontSecondaryColor: #f54703;
+
+    --ErrorColor: #dc3545;
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: inherit;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: inherit;
 }
 
 html {
-  font-size: 12px;
+    font-size: 12px;
 }
 
 @media (min-width: 300px) {
-  html {
-    font-size: 14px;
-  }
+    html {
+        font-size: 14px;
+    }
 }
 
 @media (min-width: 530px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 body {
-  color: var(--FontPrimaryColor);
-  font-family: "Euclid Circular B", system-ui, sans-serif;
-  background-color: var(--Background);
-  min-height: 100vh;
+    color: var(--FontPrimaryColor);
+    font-family: "Euclid Circular B", system-ui, sans-serif;
+    background-color: var(--Background);
+    min-height: 100vh;
 }
 
 body.waiting * {
-  cursor: wait !important;
+    cursor: wait !important;
 }
 
 body.without-scroll {
-  overflow: hidden;
+    overflow: hidden;
 }
 
 .input {
-  background-color: transparent;
-  height: 40px;
-  border: none;
-  border-bottom: 2px solid gray;
-  color: gray;
-  outline: 0;
-  position: relative;
-  z-index: 1;
+    background-color: transparent;
+    height: 40px;
+    border: none;
+    border-bottom: 2px solid gray;
+    color: gray;
+    outline: 0;
+    position: relative;
+    z-index: 1;
 }
 
 button,
-input[type=button],
-input[type=submit] {
-  background-color: var(--PrimaryButtonColor);
-  color: var(--FontPrimaryColor);
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  min-height: 38px;
-  transition: 0.1s ease-in-out background;
+input[type="button"],
+input[type="submit"] {
+    background-color: var(--PrimaryButtonColor);
+    color: var(--FontPrimaryColor);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    min-height: 38px;
+    transition: 0.1s ease-in-out background;
 }
 
 button:hover,
-input[type=button]:hover,
-input[type=submit]:hover {
-  background-color: var(--PrimaryButtonHoverColor);
+input[type="button"]:hover,
+input[type="submit"]:hover {
+    background-color: var(--PrimaryButtonHoverColor);
 }
 
 button.secondary,
-input[type=button].secondary,
-input[type=submit].secondary {
-  background-color: gray;
+input[type="button"].secondary,
+input[type="submit"].secondary {
+    background-color: gray;
 }
 
 button.secondary:hover,
-input[type=button].secondary:hover,
-input[type=submit].secondary:hover {
-  background-color: rgb(87, 87, 87);
+input[type="button"].secondary:hover,
+input[type="submit"].secondary:hover {
+    background-color: rgb(87, 87, 87);
 }
 
 textarea {
-  background-color: #464545;
-  color: #fff;
-  border-radius: 6px;
-  padding: 10px 4px 0;
-  border-radius: 0;
+    background-color: #464545;
+    color: #fff;
+    border-radius: 6px;
+    padding: 10px 4px 0;
+    border-radius: 0;
 }
 
 .block {
-  display: block;
+    display: block;
 }
 
 .inline-block {
-  display: inline-block;
+    display: inline-block;
 }
 
 .w100 {
-  width: 100%;
+    width: 100%;
 }
 
 .overlay {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  transition: .1s linear background;
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    transition: 0.1s linear background;
 }
 
 .overlay.show {
-  z-index: 50;
-  background-color: #0005;
+    z-index: 50;
+    background-color: #0005;
 }
 
 .modal {
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  display: grid;
-  place-items: center;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: grid;
+    place-items: center;
 }
 
 .modal .form-group {
-  display: flex;
-  flex-direction: column;
-  padding: 20px 0;
-  margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+    margin-top: 5px;
 }
 
 .modal .form-label {
-  font-size: 1rem;
+    font-size: 1rem;
 }
 
 .modal .input {
-  font-size: 1.1rem;
-  padding: 10px 0 0;
+    font-size: 1.1rem;
+    padding: 10px 0 0;
 }
 
 .modal:not(.open) {
-  display: none;
-}
-
-.modal-content {
-  min-width: min(400px, 80vw);
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  background-color: var(--ModalBackgroudColor);
-  border-radius: 10px;
+    display: none;
 }
 
 #close-modal {
-  position: absolute;
-  top: 7px;
-  right: 15px;
-  color: #fff;
-  font-size: 1.2rem;
+    position: absolute;
+    top: 7px;
+    right: 15px;
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+.modal-content {
+    min-width: min(400px, 80vw);
+    max-width: 80vw;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: var(--ModalBackgroudColor);
+    border-radius: 10px;
+    overflow-y: hidden;
+    max-height: 95vh;
+    box-shadow: 0 0 10px #0006;
 }
 
 .modal-content > div {
-  padding: 16px 25px;
+    padding: 16px 25px;
 }
 
 .modal-title {
-  text-align: center;
-  font-size: 2rem;
+    text-align: center;
+    font-size: 2rem;
 }
 
 .modal-body {
-  flex-grow: 1;
+    flex-grow: 1;
+    overflow: auto;
+    word-wrap: break-word;
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 
 button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  border-radius: 8px;
-  border: none;
-  transition: 0.2s ease-in-out;
-  padding: 2px 8px;
-  min-width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 8px;
+    border: none;
+    transition: 0.2s ease-in-out;
+    padding: 2px 8px;
+    min-width: 100px;
 }
 
 button img {
-  width: 10%;
-  min-width: 20px;
-  margin: 2px;
-  padding: 5px;
+    width: 10%;
+    min-width: 20px;
+    margin: 2px;
+    padding: 5px;
 }

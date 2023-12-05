@@ -1,18 +1,18 @@
 const VOID_CALLBACK = () => {};
-const CHANNEL_EVENTS = createEnum('USER_DATA_UPDATED');
-const LOCALSTORAGE = createEntries('LOCAL_USER_DATA');
+const CHANNEL_EVENTS = createEnum("USER_DATA_UPDATED");
+const LOCALSTORAGE = createEntries("LOCAL_USER_DATA");
 const DEFAULT_OPTIONS_AXIOS = {
     withCredentials: true,
-    credentials: 'include',
+    credentials: "include",
 };
 
 let usersCache = {};
 
 const [postMessage, channelListenForMessage] = (() => {
-    const channel = new BroadcastChannel('Wany+Channel');
+    const channel = new BroadcastChannel("Wany+Channel");
     const listeners = {};
 
-    channel.addEventListener('message', async (event) => {
+    channel.addEventListener("message", async (event) => {
         const {
             data: { type, data },
             ...aditional
@@ -34,21 +34,21 @@ const [postMessage, channelListenForMessage] = (() => {
 
 function loadComponent(ref, componentName, cssFileNames = [], additionalJS = []) {
     return new Promise((resolve) => {
-        fetch(resolveUrl() + 'assets/components/' + componentName + '.html')
+        fetch(resolveUrl() + "assets/components/" + componentName + ".html")
             .then((response) => response.text())
             .then((html) => {
-                ref.attachShadow({ mode: 'open' }).innerHTML = html;
+                ref.attachShadow({ mode: "open" }).innerHTML = html;
 
                 cssFileNames.forEach((cssName) => {
-                    const link = document.createElement('link');
-                    link.href = resolveUrl() + 'assets/css/' + cssName + '.css';
-                    link.rel = 'stylesheet';
+                    const link = document.createElement("link");
+                    link.href = resolveUrl() + "assets/css/" + cssName + ".css";
+                    link.rel = "stylesheet";
                     ref.shadowRoot.appendChild(link);
                 });
 
                 additionalJS.forEach((jsFileName) => {
-                    const script = document.createElement('script');
-                    script.src = resolveUrl() + 'assets/js/' + jsFileName + '.js';
+                    const script = document.createElement("script");
+                    script.src = resolveUrl() + "assets/js/" + jsFileName + ".js";
                     ref.shadowRoot.appendChild(script);
                 });
             })
@@ -57,18 +57,18 @@ function loadComponent(ref, componentName, cssFileNames = [], additionalJS = [])
 }
 
 function resolveUrl() {
-    return window.location.protocol + '//' + window.location.host + '/';
+    return window.location.protocol + "//" + window.location.host + "/";
 }
 
 function getInfo() {
     return new Promise((resolve, reject) => {
         const isLocalhost =
-            location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+            location.hostname === "localhost" || location.hostname === "127.0.0.1";
 
-        const isCloudShell = window.location.host.includes('cloudshell');
+        const isCloudShell = window.location.host.includes("cloudshell");
 
         const API_ENDPOINT =
-            isLocalhost || isCloudShell ? '/api/' : 'api.wany.com.br';
+            isLocalhost || isCloudShell ? "/api/" : "api.wany.com.br";
 
         axios.get(API_ENDPOINT, DEFAULT_OPTIONS_AXIOS).then(resolve).catch(reject);
     });
@@ -138,7 +138,7 @@ const getRoutes = (() => {
                     Object.entries(replaces).forEach(
                         ([replaceKey, replaceValue]) => {
                             value = value.replace(
-                                '{' + replaceKey + '}',
+                                "{" + replaceKey + "}",
                                 replaceValue
                             );
                         }
@@ -194,16 +194,15 @@ function generateListCardGames(games) {
 
                     <div class="item">
                         <img
-                            loading="lazy"
                             src="${
                                 game.public_game_image_urls[0] ||
-                                `https://picsum.photos/seed/${Math.random()}/200`
+                                `http://picsum.photos/id/63/5000/2813`
                             }"
                         />
                     </div>
                   </div>`);
 
-                el.querySelector('img').onclick = () => openGameModal(game);
+                el.querySelector("img").onclick = () => openGameModal(game);
 
                 return el;
             };
@@ -212,119 +211,206 @@ function generateListCardGames(games) {
 }
 
 function htmlToElement(html) {
-    var template = document.createElement('template');
+    var template = document.createElement("template");
     html = html.trim(); // Never return a text node of whitespace as the result
     template.innerHTML = html;
     return template.content.firstChild;
 }
 
 function getPageOverlay() {
-    if (!document.querySelector('.overlay')) {
-        const element = document.createElement('div');
-        element.classList.add('overlay');
+    if (!document.querySelector(".overlay")) {
+        const element = document.createElement("div");
+        element.classList.add("overlay");
         document.body.appendChild(element);
     }
 
-    return document.querySelector('.overlay');
+    return document.querySelector(".overlay");
 }
 
-function createModal({
-    title,
-    header,
-    body,
-    footer,
-    yes,
-    no,
-    cancel,
-    onYes,
-    onNo,
-    onCancel,
-} = {}) {
-    const overlay = getPageOverlay();
-    const abortController = new AbortController();
-
-    const close = () => {
-        abortController.abort();
-        modalEl.classList.remove('open');
-        document.body.classList.remove('without-scroll');
-        overlay.classList.remove('show');
-        modalEl.remove();
-    };
-
-    const open = () => {
-        setTimeout(() => {
-            overlay.addEventListener(
-                'click',
-                (ev) => {
-                    if (overlay !== ev.target) return;
-                    close();
-                },
-                {
-                    once: true,
-                    signal: abortController.signal,
-                }
-            );
-        }, 100);
-
-        document.body.classList.add('without-scroll');
-        modalEl.classList.add('open');
-        overlay.classList.add('show');
-    };
-
-    const modalEl = htmlToElement(`
-        <div class="modal">
-            <section class="modal-content" style="overflow-y:auto;max-height:100vh;">
-                <a id="close-modal" class="close-modal" href="#">x</a>
-
-                <div class="modal-header">
-                    <h1 class="modal-title">${title || 'Modal'}</h1>
-                    <div>${header || ''}</div>
-                </div>
-                
-                ${!!body ? '<hr />' : ''}
-
-                <div class="modal-body">
-                    ${body || ''}
-                </div>
-                
-                ${!!footer ? '<hr />' : ''}
-                
-                <div class="modal-footer">
-                    <div style="display:flex; gap:4px; justify-content: flex-end;">
-                        ${!!yes ? `<button id="modal-yes">${yes}</button>` : ''}
-                        ${
-                            !!cancel
-                                ? `<button id="modal-cancel" class="secondary close-modal">${cancel}</button>`
-                                : ''
-                        }
-                    </div>
-                </div>
-            </section>
-        </div>
-    `);
-
-    document.body.appendChild(modalEl);
-
-    [...document.querySelectorAll('.close-modal')].forEach((item) => {
-        item.addEventListener('click', () => close());
-    });
-
-    if (!!yes) {
-        modalEl.querySelector('#modal-yes').addEventListener('click', async () => {
-            onYes?.();
+function alert(...text) {
+    return new Promise((resolve) => {
+        const modal = createModal({
+            body: `<span>${text.join(" ")}</span>`,
+            yes: "Ok",
+            onYes() {
+                resolve(null);
+                modal.close();
+            },
+            closeModal: false,
         });
-    }
-    if (!!cancel) {
-        modalEl
-            .querySelector('#modal-cancel')
-            .addEventListener('click', async () => {
-                onCancel?.();
+
+        modal.open();
+    });
+}
+
+function confirm(text) {
+    return new Promise((resolve) => {
+        const modal = createModal({
+            body: `<span>${text}</span>`,
+            yes: "Yes",
+            no: "No",
+            onYes() {
+                resolve(true);
+                modal.close();
+            },
+            onNo() {
+                resolve(false);
+                modal.close();
+            },
+            closeModal: true,
+        });
+
+        modal.open();
+    });
+}
+
+function prompt(text, defaultValue = "") {
+    return new Promise((resolve) => {
+        const modal = createModal({
+            body: `<span style="word-wrap:break-word;overflow:auto;">${text}</span>`,
+            footer: `<div class="w100">
+                        <input id="prompt-input" class="input" style="width:100%;" value="${defaultValue}" />
+                    </div>`,
+            yes: "Ok",
+            cancel: "Cancel",
+            onYes() {
+                resolve(modal.el.querySelector("#prompt-input").value);
+                modal.close();
+            },
+            onCancel() {
+                resolve(null);
+                modal.close();
+            },
+            closeModal: true,
+        });
+
+        modal.open();
+    });
+}
+
+const createModal = (() => {
+    // let lastModalCloseFn = null;
+
+    return function ({
+        title,
+        header,
+        body,
+        footer,
+        yes,
+        no,
+        cancel,
+        onYes,
+        onNo,
+        onCancel,
+        closeModal,
+    } = {}) {
+        const overlay = getPageOverlay();
+        const abortController = new AbortController();
+
+        const modalEl = htmlToElement(`
+            <div class="modal">
+                <section class="modal-content">
+                    ${
+                        closeModal !== false
+                            ? `<a id="close-modal" class="close-modal" href="javascript:void(0)">x</a>`
+                            : ""
+                    }
+
+                    <div class="modal-header">
+                        ${!!title ? `<h1 class="modal-title">${title}</h1>` : ""}
+                        <div>${header || ""}</div>
+                    </div>
+                    
+                    <div class="modal-body">
+                        ${body || ""}
+                    </div>
+
+                    ${!!footer ? `<div style="padding-top:0;">${footer}</div>` : ""}
+                    
+                    <div class="modal-footer">
+                        <div style="display:flex; gap:4px; justify-content: flex-end;">
+                            ${!!yes ? `<button id="modal-yes">${yes}</button>` : ""}
+                            ${
+                                !!cancel
+                                    ? `<button id="modal-cancel" class="secondary close-modal">${cancel}</button>`
+                                    : ""
+                            }
+                            ${
+                                !!no
+                                    ? `<button id="modal-no" class="secondary close-modal">${no}</button>`
+                                    : ""
+                            }
+                        </div>
+                    </div>
+                </section>
+            </div>
+        `);
+
+        const close = () => {
+            abortController.abort();
+            modalEl.classList.remove("open");
+            document.body.classList.remove("without-scroll");
+            overlay.classList.remove("show");
+            modalEl.remove();
+            // lastModalCloseFn = null;
+        };
+
+        const open = () => {
+            setTimeout(() => {
+                overlay.addEventListener(
+                    "click",
+                    (ev) => {
+                        if (overlay !== ev.target) return;
+                        close();
+                    },
+                    {
+                        once: true,
+                        signal: abortController.signal,
+                    }
+                );
+            }, 100);
+
+            document.body.classList.add("without-scroll");
+            modalEl.classList.add("open");
+            overlay.classList.add("show");
+
+            // if (lastModalCloseFn) lastModalCloseFn();
+            // lastModalCloseFn = close;
+        };
+
+        document.body.appendChild(modalEl);
+
+        [...document.querySelectorAll(".close-modal")].forEach((item) => {
+            item.addEventListener("click", async () => {
                 close();
             });
-    }
+        });
 
-    return { open, close, el: modalEl };
-}
+        if (!!cancel) {
+            modalEl
+                .querySelector("#modal-cancel")
+                .addEventListener("click", async () => {
+                    onCancel?.();
+                });
+        }
+        if (!!yes) {
+            modalEl
+                .querySelector("#modal-yes")
+                .addEventListener("click", async () => {
+                    onYes?.();
+                });
+        }
+        if (!!no) {
+            modalEl
+                .querySelector("#modal-no")
+                .addEventListener("click", async () => {
+                    onNo?.();
+                });
+        }
+
+        return { open, close, el: modalEl };
+    };
+})();
 
 async function openGameModal(
     game = {
@@ -344,7 +430,7 @@ async function openGameModal(
 ) {
     let user = usersCache[game.userId];
     let owned = false;
-    let aditional = '';
+    let aditional = "";
 
     if (!user) {
         const currentUser = getLocalUser();
@@ -386,24 +472,32 @@ async function openGameModal(
                 ${aditional}
             </section>
         `,
-        yes: 'Play',
-        cancel: 'Close',
+        yes: "Play",
+        cancel: "Close",
         onYes() {
             playGame(game);
         },
     });
 
     if (owned) {
-        modal.el.querySelector('#delete-game-btn').onclick = async () => {
-            try {
-                document.body.classList.add('waiting');
-                await deleteGame(game.id);
-                document.body.classList.remove('waiting');
-                modal.close();
-                window.location.reload();
-            } catch (err) {
-                alert(err.response?.data?.message ?? 'Unable to delete game');
+        modal.el.querySelector("#delete-game-btn").onclick = async () => {
+            modal.close();
+
+            if (!(await confirm("Are you sure you want to delete this game?"))) {
+                return;
             }
+
+            try {
+                document.body.classList.add("waiting");
+                await deleteGame(game.id);
+            } catch (err) {
+                alert(err.response?.data?.message ?? "Unable to delete game");
+                return;
+            } finally {
+                document.body.classList.remove("waiting");
+            }
+
+            window.location.reload();
         };
     }
     modal.open();
@@ -412,8 +506,8 @@ async function openGameModal(
 }
 
 function playGame(gameObj) {
-    localStorage.setItem('game', JSON.stringify(gameObj));
-    window.location.href = resolveUrl() + 'play/';
+    localStorage.setItem("game", JSON.stringify(gameObj));
+    window.location.href = resolveUrl() + "play/";
 }
 
 function deleteLocalUser() {
@@ -470,7 +564,7 @@ function saveLocalUser() {
 }
 
 function getLocalUser() {
-    return JSON.parse(localStorage.getItem(LOCALSTORAGE.LOCAL_USER_DATA) ?? 'null');
+    return JSON.parse(localStorage.getItem(LOCALSTORAGE.LOCAL_USER_DATA) ?? "null");
 }
 
 async function getUserAvatarUrl(username = null) {
@@ -478,7 +572,7 @@ async function getUserAvatarUrl(username = null) {
         const user = getLocalUser();
 
         if (!user) {
-            return 'https://picsum.photos/50';
+            return "https://picsum.photos/id/22/4434/3729";
         }
 
         username = user.username;
@@ -489,10 +583,11 @@ async function getUserAvatarUrl(username = null) {
     return await new Promise((resolve) => {
         fetch(routes.avatar_url)
             .then((response) => {
-                if (!response.ok) return resolve('https://picsum.photos/50');
+                if (!response.ok)
+                    return resolve("https://picsum.photos/id/22/4434/3729");
                 resolve(routes.avatar_url);
             })
-            .catch(() => resolve('https://picsum.photos/50'));
+            .catch(() => resolve("https://picsum.photos/id/22/4434/3729"));
     });
 }
 
@@ -502,7 +597,7 @@ function getUserAvatar(username = null) {
             const user = getLocalUser();
 
             if (!user) {
-                return reject('Must be logged in or provide a username.');
+                return reject("Must be logged in or provide a username.");
             } else {
                 username = user.username;
             }
@@ -618,17 +713,17 @@ function getMyGames() {
 
 function getImageInput() {
     return new Promise((resolve, reject) => {
-        const input = document.createElement('input');
-        input.type = 'file';
-        input.accept = 'image/*';
-        input.addEventListener('change', handle);
+        const input = document.createElement("input");
+        input.type = "file";
+        input.accept = "image/*";
+        input.addEventListener("change", handle);
         input.click();
 
         async function handle() {
             const fileList = input.files;
 
             if (fileList.length === 0) {
-                return reject(new Error('No file was selected.'));
+                return reject(new Error("No file was selected."));
             }
 
             return resolve(fileList);
@@ -657,18 +752,18 @@ function uploadGameImage({ gameId, file, isCover }) {
         const routes = await getRoutes().catch(reject);
         const form = new FormData();
 
-        form.append('file', file);
+        form.append("file", file);
 
         axios
             .post(
-                routes.add_game_image_url.replace('{id}', gameId) +
-                    '?cover=' +
+                routes.add_game_image_url.replace("{id}", gameId) +
+                    "?cover=" +
                     isCover,
                 form,
                 {
                     ...DEFAULT_OPTIONS_AXIOS,
                     headers: {
-                        'Content-Type': 'multipart/form-data',
+                        "Content-Type": "multipart/form-data",
                     },
                 }
             )
@@ -679,17 +774,17 @@ function uploadGameImage({ gameId, file, isCover }) {
 
 function makeUploadUserAvatar() {
     return new Promise((resolve, reject) => {
-        const input = document.createElement('input');
-        input.type = 'file';
-        input.accept = 'image/*';
-        input.addEventListener('change', handle);
+        const input = document.createElement("input");
+        input.type = "file";
+        input.accept = "image/*";
+        input.addEventListener("change", handle);
         input.click();
 
         async function handle() {
             const fileList = input.files;
 
             if (fileList.length === 0) {
-                return reject('No file was selected.');
+                return reject("No file was selected.");
             }
 
             try {
@@ -710,13 +805,13 @@ function uploadUserAvatar({ file }) {
         const routes = await getRoutes().catch(reject);
         const form = new FormData();
 
-        form.append('file', file);
+        form.append("file", file);
 
         axios
             .post(routes.upload_avatar_url, form, {
                 ...DEFAULT_OPTIONS_AXIOS,
                 headers: {
-                    'Content-Type': 'multipart/form-data',
+                    "Content-Type": "multipart/form-data",
                 },
             })
             .then(resolve)
@@ -726,17 +821,17 @@ function uploadUserAvatar({ file }) {
 
 function makeUploadGame({ title, description, genre }) {
     return new Promise((resolve, reject) => {
-        const input = document.createElement('input');
-        input.type = 'file';
-        input.accept = '.zip';
-        input.addEventListener('change', handle);
+        const input = document.createElement("input");
+        input.type = "file";
+        input.accept = ".zip";
+        input.addEventListener("change", handle);
         input.click();
 
         async function handle() {
             const fileList = input.files;
 
             if (fileList.length === 0) {
-                return reject('No file was selected.');
+                return reject("No file was selected.");
             }
 
             try {
@@ -760,16 +855,16 @@ function uploadGame({ title, description, genre, file }) {
         const routes = await getRoutes().catch(reject);
         const form = new FormData();
 
-        form.append('file', file);
-        form.append('genre', genre);
-        form.append('title', title);
-        form.append('description', description);
+        form.append("file", file);
+        form.append("genre", genre);
+        form.append("title", title);
+        form.append("description", description);
 
         axios
             .post(routes.create_game_url, form, {
                 ...DEFAULT_OPTIONS_AXIOS,
                 headers: {
-                    'Content-Type': 'multipart/form-data',
+                    "Content-Type": "multipart/form-data",
                 },
             })
             .then(resolve)
@@ -801,7 +896,7 @@ function searchGames(query = []) {
 
         axios
             .get(
-                routes.search_games_url + '?' + query.join('&'),
+                routes.search_games_url + "?" + query.join("&"),
                 DEFAULT_OPTIONS_AXIOS
             )
             .then(resolve)
@@ -813,11 +908,11 @@ function sendVerificationEmail() {
     return new Promise(async (resolve, reject) => {
         const { account_is_verified, email } = getLocalUser();
 
-        if (account_is_verified) return reject('Account already verified.');
+        if (account_is_verified) return reject("Account already verified.");
 
         const routes = await getRoutes();
 
-        document.body.classList.add('waiting');
+        document.body.classList.add("waiting");
 
         axios
             .post(
@@ -828,7 +923,7 @@ function sendVerificationEmail() {
             .then(resolve)
             .catch(reject)
             .finally(() => {
-                document.body.classList.remove('waiting');
+                document.body.classList.remove("waiting");
             });
     });
 }

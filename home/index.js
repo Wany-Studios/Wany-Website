@@ -1,9 +1,9 @@
 function loadTrendingGamesCarousel() {
-    const carousel = new Swiper('#trending-games-carousel', {
+    const carousel = new Swiper("#trending-games-carousel", {
         slidesPerView: 1,
         spaceBetween: 10,
         pagination: {
-            el: '#trending-games-carousel-pagination',
+            el: "#trending-games-carousel-pagination",
             clickable: true,
         },
         breakpoints: {
@@ -23,9 +23,9 @@ function loadTrendingGamesCarousel() {
     });
 
     const rightArrow = document.querySelector(
-        '#trending-games-carousel .right-arrow'
+        "#trending-games-carousel .right-arrow"
     );
-    const leftArrow = document.querySelector('#trending-games-carousel .left-arrow');
+    const leftArrow = document.querySelector("#trending-games-carousel .left-arrow");
 
     rightArrow.onclick = function () {
         carousel.slideNext();
@@ -36,41 +36,8 @@ function loadTrendingGamesCarousel() {
     };
 }
 
-function loadGamesCarousel() {
-    const elements = [...document.querySelectorAll('.games-carousel')];
-
-    elements.forEach((item) => {
-        new Swiper(item, {
-            slidesPerView: 1,
-            spaceBetween: 20,
-            pagination: {
-                el: item.querySelector('.swiper-pagination'),
-                clickable: true,
-            },
-            breakpoints: {
-                350: {
-                    slidesPerView: 2,
-                    spaceBetween: 20,
-                },
-                600: {
-                    slidesPerView: 3,
-                    spaceBetween: 20,
-                },
-                768: {
-                    slidesPerView: 4,
-                    spaceBetween: 40,
-                },
-                1024: {
-                    slidesPerView: 5,
-                    spaceBetween: 50,
-                },
-            },
-        });
-    });
-}
-
-window.addEventListener('load', async function () {
-    document.querySelector('#trending-games-carousel-items').innerHTML =
+window.addEventListener("load", async function () {
+    document.querySelector("#trending-games-carousel-items").innerHTML =
         '<h3 style="width: 100%;text-align: center;">Buscando jogos...</h3>';
 
     try {
@@ -79,36 +46,35 @@ window.addEventListener('load', async function () {
         const lista = generateListCardGames(games);
 
         if (lista.length === 0) {
-            document.querySelector('#trending-games-carousel-items').innerHTML =
+            document.querySelector("#trending-games-carousel-items").innerHTML =
                 '<h3 style="width: 100%;text-align: center;">Jogos não encontrados</h3>';
 
             return;
         }
 
-        document.querySelector('#trending-games-carousel-items').innerHTML = '';
+        document.querySelector("#trending-games-carousel-items").innerHTML = "";
 
         lista.slice(0, 3).forEach((item) => {
-            document
-                .querySelector('#trending-games-carousel-items')
-                .appendChild(item());
+            const el = item();
+            document.querySelector("#trending-games-carousel-items").appendChild(el);
         });
 
         shuffleArray(lista).forEach((item) => {
-            document.querySelector('#game-list-carousel-items').appendChild(item());
+            document.querySelector("#game-list-carousel-items").appendChild(item());
         });
     } catch (e) {
         console.error(e);
 
-        document.querySelector('#trending-games-carousel-items').innerHTML =
+        document.querySelector("#trending-games-carousel-items").innerHTML =
             '<h3 style="width: 100%;text-align: center;">Jogos não encontrados</h3>';
 
         return;
     }
 
-    document.querySelectorAll('.carousel').forEach((item) => {
-        item.style.display = '';
+    document.querySelectorAll(".carousel").forEach((item) => {
+        item.style.display = "";
     });
 
     loadTrendingGamesCarousel();
-    loadGamesCarousel();
+    // loadGamesCarousel();
 });

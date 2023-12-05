@@ -3,7 +3,7 @@ function loadGamesCarousel() {
 
     elements.forEach((item) => {
         new Swiper(item, {
-            slidesPerView: 1,
+            slidesPerView: "auto",
             spaceBetween: 20,
             pagination: {
                 el: item.querySelector(".swiper-pagination"),
